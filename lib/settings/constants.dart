@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+
+BoxDecoration boxDecoration = BoxDecoration(
+  shape: BoxShape.rectangle,
+  borderRadius: BorderRadius.circular(minCurved),
+);
+
+
+BoxDecoration reservationBoxDecoration = BoxDecoration(
+  color: tertiaryColor,
+  shape: BoxShape.rectangle,
+  borderRadius: BorderRadius.circular(minCurved),
+);
+
+const primaryColor = Color(0xff1b5e20);
+const secondaryColor = Color(0x4D2A2D2E);
+const bgColor = Color(0x40222525);
+const tertiaryColor = Color(0xff62C6C7);
+
+const font = "RacingSansOne";
+
+TextStyle contentTextStyle = const TextStyle(
+  fontFamily: font,
+  fontSize: 20,
+  color: primaryColor
+);
+
+deviceHeight(BuildContext context)=>
+ MediaQuery.of(context).size.height;
+// Cihaz ekran yüksekliği
+
+deviceWidth(BuildContext context)=>
+ MediaQuery.of(context).size.width; 
+//Cihaz ekran genişliği
+
+const defaultPadding = 16.0;
+const cardCurved = 20.0;
+const minCurved = 3.0;
+
+const minSpace = 5.0;
+const maxSpace = 10.0;
+
+const iconSize = 25.0;
+
+var circularBasic = const Center(child: CircularProgressIndicator(backgroundColor: primaryColor,valueColor: AlwaysStoppedAnimation<Color>(secondaryColor)));
