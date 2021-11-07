@@ -4,8 +4,6 @@ import 'package:bordered_text/bordered_text.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
-import 'package:genc_takim/view/FieldPages/basketball_field_page.dart';
-import 'package:genc_takim/view/FieldPages/football_field_page.dart';
 import 'package:genc_takim/view/HomePage/home_page.dart';
 import 'package:genc_takim/view/HomePage/coming_matches_page.dart';
 import 'package:genc_takim/view/HomePage/passed_matches_page.dart';
@@ -25,11 +23,6 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
     const Tab(text: "Geçmiş", icon: Icon(Icons.history))
   ];
 
-  List<Widget> profileTabItems =[
-    const Tab(text: "Ayarlar", icon: Icon(Icons.settings)),
-    const Tab(text: "Hesap", icon: Icon(Icons.account_balance_wallet))
-  ];
-
   late final List<Widget> _pages = [const HomePage(),const ComingMatchesPage(),const ProfilePage()];
   final List<String> _titles = ["ANASAYFA","MAÇLAR", "PROFİL"];
   @override
@@ -39,9 +32,9 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
       child: SafeArea(
         child: Scaffold(
           backgroundColor: bgColor,
-          body: _currentTab == 1 || _currentTab == 2 ? TabBarView(children: [
-            _currentTab == 1 ? ComingMatchesPage() : FootballFieldPage(),
-            _currentTab == 1 ? PassedMatchesPage() : BasketballFieldPage(),
+          body: _currentTab == 1 ? TabBarView(children: [
+             ComingMatchesPage(),
+             PassedMatchesPage()
           ]) :
           _pages[_currentTab],
           extendBodyBehindAppBar: true,
@@ -51,12 +44,18 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
               backgroundColor: primaryColor,
               centerTitle: true,
               flexibleSpace: 
-              _currentTab == 0 ?
+              _currentTab == 0 || _currentTab == 2 ?
               Container(             
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
+              decoration: _currentTab==0 ? 
+              const BoxDecoration(
+                borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
                 color: primaryColor,
                 image: DecorationImage(image: AssetImage("assets/images/balls.jpg"),fit: BoxFit.cover) 
+              ): 
+              const BoxDecoration(
+                borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
+                color: primaryColor,
+                image: DecorationImage(image: AssetImage("assets/images/sports.jpg"),fit: BoxFit.cover) 
               ),
               child: Container(
                       alignment: Alignment.topCenter,
@@ -92,10 +91,10 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
                       )),
 
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight: Radius.circular(20))),
-            bottom: _currentTab == 1 || _currentTab == 2 ? TabBar(
+            bottom: _currentTab == 1 ? TabBar(
               indicatorColor: Colors.white,
               indicatorSize: TabBarIndicatorSize.label,
-              tabs: _currentTab == 1 ? matchesTabItems : profileTabItems 
+              tabs: matchesTabItems 
             ) 
             : null,
 

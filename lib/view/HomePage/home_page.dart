@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
 
             TeamOptionsWidget(
               leading  : "Takım Kur",
-              iconImage: AssetImage("assets/images/makeTeam.png"),
+              iconImage: AssetImage("assets/icons/makeTeam.png"),
               onTap    : (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> MakeTeamPage()));
               },
@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
 
             TeamOptionsWidget(
               leading  : "Takıma Katıl",
-              iconImage: AssetImage("assets/images/addPlayer.png"),
+              iconImage: AssetImage("assets/icons/addPlayer.png"),
               onTap    : (){},
             ),
           ]),
@@ -41,13 +41,13 @@ class HomePage extends StatelessWidget {
 
               TeamOptionsWidget(
               leading: "Yaklaşan Maçlar",
-              iconImage: AssetImage("assets/images/match.png"),
+              iconImage: AssetImage("assets/icons/match.png"),
               onTap: (){},
             ),
 
             TeamOptionsWidget(
               leading: "Yakınındaki Maçlar",
-              iconImage: AssetImage("assets/images/map.png"),
+              iconImage: AssetImage("assets/icons/map.png"),
               onTap: (){},
             ),
             

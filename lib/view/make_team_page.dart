@@ -11,13 +11,13 @@ class MakeTeamPage extends StatefulWidget {
 }
 
 class _MakeTeamPageState extends State<MakeTeamPage> {
-  List<String>? items = ["Futbol", "Basketbol", "Voleybol"];
   String selectedSport = "Futbol";
+  String selectedSaloon = "Konya Selçuklu Spor Salonu";
+  String selectedDate = "07.11.2021";
+  String selectedTime= "10:00";
   
   @override
   Widget build(BuildContext context) {
-    //String dropdownValue = "Futbol";
-    //String _chosenValue = "Futbol";
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -41,7 +41,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
            color: Colors.black,
            image: DecorationImage(
              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
-           image: AssetImage("assets/images/logo.png"))
+           image: AssetImage("assets/logos/logo.png"))
            ),
           child: Container(
             height: deviceHeight(context)*0.85,
@@ -50,42 +50,41 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
               color: Color.fromRGBO(119, 119, 119, 0.15),
               borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
               child: Column(
-                //mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
 
                  //-----------------------------SPOR DALI SEÇİMİ---------------------------------------
                     Padding(
-                    padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding*2,),
+                    padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding*2),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Spor Dalı",style: TextStyle(color: Colors.white)))),
+                      child: Text("Spor Dalı Seç",style: TextStyle(color: Colors.white)))),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.all(defaultPadding),
                         child: SizedBox(
-                        width: deviceWidth(context)*0.8,
+                        width: deviceWidth(context)*0.9,
                         height: deviceHeight(context)*0.05,
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                            color: Colors.white,
+                            color: secondaryColor2,
                           ),
-                          child:  Align(
+                          child: Align(
                             alignment: Alignment.center,
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 isExpanded: true,
                                 isDense: true,
-                                iconEnabledColor: Colors.black,
+                                iconEnabledColor: Colors.white,
                                 iconSize: 30,
-                                dropdownColor: Colors.white,
+                                dropdownColor: secondaryColor2,
                                 value: selectedSport,
                                 // ignore: prefer_const_literals_to_create_immutables
                                 items: [
-                                  DropdownMenuItem(child: Center(child: Text("Futbol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Futbol"),
-                                  DropdownMenuItem(child: Center(child: Text("Basketbol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Basketbol"),
-                                  DropdownMenuItem(child: Center(child: Text("Voleybol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Voleybol"),
+                                  DropdownMenuItem(child: Center(child: Text("Futbol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Futbol"),
+                                  DropdownMenuItem(child: Center(child: Text("Basketbol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Basketbol"),
+                                  DropdownMenuItem(child: Center(child: Text("Voleybol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Voleybol"),
                                 ],
                                 onChanged: (value) {
                                  setState(() {
@@ -106,18 +105,18 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                     padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Spor Salonu",style: TextStyle(color: Colors.white)))),
+                      child: Text("Spor Salonu Seç",style: TextStyle(color: Colors.white)))),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.all(defaultPadding),
                         child: SizedBox(
-                        width: deviceWidth(context)*0.8,
+                        width: deviceWidth(context)*0.9,
                         height: deviceHeight(context)*0.05,
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                            color: Colors.white,
+                            color: secondaryColor2,
                           ),
                           child:  Align(
                             alignment: Alignment.center,
@@ -125,19 +124,19 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                               child: DropdownButton(
                                 isExpanded: true,
                                 isDense: true,
-                                iconEnabledColor: Colors.black,
+                                iconEnabledColor: Colors.white,
                                 iconSize: 30,
-                                dropdownColor: Colors.white,
-                                value: selectedSport,
+                                dropdownColor: secondaryColor2,
+                                value: selectedSaloon,
                                 // ignore: prefer_const_literals_to_create_immutables
                                 items: [
-                                  DropdownMenuItem(child: Center(child: Text("Futbol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Futbol"),
-                                  DropdownMenuItem(child: Center(child: Text("Basketbol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Basketbol"),
-                                  DropdownMenuItem(child: Center(child: Text("Voleybol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Voleybol"),
+                                  DropdownMenuItem(child: Center(child: Text("Konya Selçuklu Spor Salonu",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Konya Selçuklu Spor Salonu"),
+                                  DropdownMenuItem(child: Center(child: Text("Gençlik Merkezi Salonu",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Gençlik Merkezi Salonu"),
+                                  DropdownMenuItem(child: Center(child: Text("Voleybol2",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Voleybol2"),
                                 ],
                                 onChanged: (value) {
                                  setState(() {
-                                   selectedSport = value.toString();
+                                   selectedSaloon = value.toString();
                                  });
                                  },
                                 ),
@@ -154,18 +153,18 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                     padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Tarih",style: TextStyle(color: Colors.white)))),
+                      child: Text("Tarih Seç",style: TextStyle(color: Colors.white)))),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.all(defaultPadding),
                         child: SizedBox(
-                        width: deviceWidth(context)*0.8,
+                        width: deviceWidth(context)*0.9,
                         height: deviceHeight(context)*0.05,
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                            color: Colors.white,
+                            color: secondaryColor2,
                           ),
                           child:  Align(
                             alignment: Alignment.center,
@@ -173,19 +172,19 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                               child: DropdownButton(
                                 isExpanded: true,
                                 isDense: true,
-                                iconEnabledColor: Colors.black,
+                                iconEnabledColor: Colors.white,
                                 iconSize: 30,
-                                dropdownColor: Colors.white,
-                                value: selectedSport,
+                                dropdownColor: secondaryColor2,
+                                value: selectedDate,
                                 // ignore: prefer_const_literals_to_create_immutables
                                 items: [
-                                  DropdownMenuItem(child: Center(child: Text("Futbol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Futbol"),
-                                  DropdownMenuItem(child: Center(child: Text("Basketbol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Basketbol"),
-                                  DropdownMenuItem(child: Center(child: Text("Voleybol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Voleybol"),
+                                  DropdownMenuItem(child: Center(child: Text("07.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "07.11.2021"),
+                                  DropdownMenuItem(child: Center(child: Text("08.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "08.11.2021"),
+                                  DropdownMenuItem(child: Center(child: Text("09.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "09.11.2021"),
                                 ],
                                 onChanged: (value) {
                                  setState(() {
-                                   selectedSport = value.toString();
+                                   selectedDate = value.toString();
                                  });
                                  },
                                 ),
@@ -197,23 +196,23 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                     ),
                    //---------------------------------------------------------------------------------------------------
 
-                   //-----------------------------SAAT SALONU SEÇİMİ---------------------------------------
+                   //-----------------------------SAAT SEÇİMİ---------------------------------------
                     Padding(
                     padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Saat",style: TextStyle(color: Colors.white)))),
+                      child: Text("Saat Seç",style: TextStyle(color: Colors.white)))),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.all(defaultPadding),
                         child: SizedBox(
-                        width: deviceWidth(context)*0.8,
+                        width: deviceWidth(context)*0.9,
                         height: deviceHeight(context)*0.05,
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                            color: Colors.white,
+                            color: secondaryColor2,
                           ),
                           child:  Align(
                             alignment: Alignment.center,
@@ -221,19 +220,19 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                               child: DropdownButton(
                                 isExpanded: true,
                                 isDense: true,
-                                iconEnabledColor: Colors.black,
+                                iconEnabledColor: Colors.white,
                                 iconSize: 30,
-                                dropdownColor: Colors.white,
-                                value: selectedSport,
+                                dropdownColor: secondaryColor2,
+                                value: selectedTime,
                                 // ignore: prefer_const_literals_to_create_immutables
                                 items: [
-                                  DropdownMenuItem(child: Center(child: Text("Futbol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Futbol"),
-                                  DropdownMenuItem(child: Center(child: Text("Basketbol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Basketbol"),
-                                  DropdownMenuItem(child: Center(child: Text("Voleybol",style: TextStyle(color: Colors.black, fontSize: 14))),value: "Voleybol"),
+                                  DropdownMenuItem(child: Center(child: Text("10:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "10:00"),
+                                  DropdownMenuItem(child: Center(child: Text("11:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "11:00"),
+                                  DropdownMenuItem(child: Center(child: Text("12:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "12:00"),
                                 ],
                                 onChanged: (value) {
                                  setState(() {
-                                   selectedSport = value.toString();
+                                   selectedTime = value.toString();
                                  });
                                  },
                                 ),

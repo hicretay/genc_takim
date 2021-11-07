@@ -5,17 +5,10 @@ BoxDecoration boxDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(minCurved),
 );
 
-
-BoxDecoration reservationBoxDecoration = BoxDecoration(
-  color: tertiaryColor,
-  shape: BoxShape.rectangle,
-  borderRadius: BorderRadius.circular(minCurved),
-);
-
 const primaryColor = Color(0xff2F7327);
 const secondaryColor = Color(0x8c2A2D2E);
+const secondaryColor2 = Color(0xff2A2D2E);
 const bgColor = Color(0xFF1C1F1F);
-const tertiaryColor = Color(0xff62C6C7);
 
 const font = "RacingSansOne";
 
