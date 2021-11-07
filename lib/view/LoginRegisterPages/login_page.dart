@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
           //  image: AssetImage("assets/images/bakanlik_logo.png"))
            ),
           child: Container(
-            height: deviceHeight(context)*0.4,
+            height: deviceHeight(context)*0.45,
             alignment: Alignment.bottomCenter,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(119, 119, 119, 0.15),
@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   Padding(
                       padding: const EdgeInsets.only(right: defaultPadding,left: defaultPadding),
-                      child: Text("veya devam et",
+                      child: Text("ile devam et",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                       color: Colors.grey[700],

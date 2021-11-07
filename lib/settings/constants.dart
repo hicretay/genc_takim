@@ -13,8 +13,8 @@ BoxDecoration reservationBoxDecoration = BoxDecoration(
 );
 
 const primaryColor = Color(0xff2F7327);
-const secondaryColor = Color(0x4D2A2D2E);
-const bgColor = Color(0x40222525);
+const secondaryColor = Color(0x8c2A2D2E);
+const bgColor = Color(0xFF1C1F1F);
 const tertiaryColor = Color(0xff62C6C7);
 
 const font = "RacingSansOne";

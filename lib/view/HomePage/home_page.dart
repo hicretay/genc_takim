@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/view/HomePage/widgets/team_options_widget.dart';
+import 'package:genc_takim/view/make_team_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,38 +17,20 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-            Container(
-              width: deviceWidth(context)*0.45,
-              height: deviceHeight(context)*0.2,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(25)),
-                color: secondaryColor),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                  width: deviceWidth(context)*0.2,
-                  height: deviceHeight(context)*0.1,
-                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/makeTeam1.png")))),
-                  Text("Takım Kur",
-                  style: contentTextStyle,
-                  )])),
-  
-           Container(
-              width: deviceWidth(context)*0.45,
-              height: deviceHeight(context)*0.2,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(25)),
-                color: secondaryColor),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                  width: deviceWidth(context)*0.15,
-                  height: deviceHeight(context)*0.1,
-                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/addTeam1.png")))),
-                  Text("Takıma katıl",style: contentTextStyle,)]),),
-           
+
+            TeamOptionsWidget(
+              leading  : "Takım Kur",
+              iconImage: AssetImage("assets/images/makeTeam.png"),
+              onTap    : (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> MakeTeamPage()));
+              },
+            ),
+
+            TeamOptionsWidget(
+              leading  : "Takıma Katıl",
+              iconImage: AssetImage("assets/images/addPlayer.png"),
+              onTap    : (){},
+            ),
           ]),
 
           SizedBox(height: deviceHeight(context)*0.02),
@@ -54,40 +38,23 @@ class HomePage extends StatelessWidget {
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+
+              TeamOptionsWidget(
+              leading: "Yaklaşan Maçlar",
+              iconImage: AssetImage("assets/images/match.png"),
+              onTap: (){},
+            ),
+
+            TeamOptionsWidget(
+              leading: "Yakınındaki Maçlar",
+              iconImage: AssetImage("assets/images/map.png"),
+              onTap: (){},
+            ),
             
-             Container(
-              width: deviceWidth(context)*0.45,
-              height: deviceHeight(context)*0.2,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(25)),
-                color: secondaryColor),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                Container(
-                  width: deviceWidth(context)*0.2,
-                  height: deviceHeight(context)*0.1,
-                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/match.png")))),
-                   Text("Yaklaşan Maçlar",style: contentTextStyle)
-                ]),),
-  
-           Container(
-              width: deviceWidth(context)*0.45,
-              height: deviceHeight(context)*0.2,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(25)),
-                color: secondaryColor),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                  width: deviceWidth(context)*0.2,
-                  height: deviceHeight(context)*0.1,
-                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/map1.png")))),
-                  Text("Yakınındaki Maçlar",style: contentTextStyle,)])),
           ])
         ],
       ),
     );
   }
 }
+
