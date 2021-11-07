@@ -51,7 +51,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
               borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
               child: Column(
                 children: [
-
                  //-----------------------------SPOR DALI SEÇİMİ---------------------------------------
                     Padding(
                     padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding*2),

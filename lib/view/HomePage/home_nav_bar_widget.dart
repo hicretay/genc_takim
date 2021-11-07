@@ -31,7 +31,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
       length: 2,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: bgColor,
+          backgroundColor: Colors.black,
           body: _currentTab == 1 ? TabBarView(children: [
              ComingMatchesPage(),
              PassedMatchesPage()
