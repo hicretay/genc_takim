@@ -1,16 +1,26 @@
-// ignore_for_file: override_on_non_overriding_member, prefer_const_constructors
-
+// ignore_for_file: override_on_non_overriding_member, prefer_const_constructors, no_logic_in_create_state, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/view/FieldPages/widgets/full_empty_circle_widget.dart';
 
 class FootballFieldPage extends StatefulWidget {
-  const FootballFieldPage({Key? key}) : super(key: key);
+   final int numberOfPlayer;
+  const FootballFieldPage({Key? key, required this.numberOfPlayer}) : super(key: key);
 
   @override
-  _FootballFieldPageState createState() => _FootballFieldPageState();
+  _FootballFieldPageState createState() => _FootballFieldPageState(numberOfPlayer: numberOfPlayer);
 }
 
 class _FootballFieldPageState extends State<FootballFieldPage> {
+   late int numberOfPlayer;
+
+   _FootballFieldPageState({required this.numberOfPlayer});
+
+  @override
+  void initState() { 
+    super.initState();
+    //print(numberOfPlayer);
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,8 +42,32 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
        image: AssetImage("assets/images/futbol_sahasi.jpg"),fit: BoxFit.cover)
        ),
        // ignore: prefer_const_literals_to_create_immutables
-       child: Column(children: [
-         Center(child: Text("data")),
+       child: Column(
+         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+         children: [
+         Container(child: FullEmptyCircleWidget()),
+
+         Container(child:  Padding(
+           padding: const EdgeInsets.all(8.0),
+           child: GridView.builder(
+            itemCount: numberOfPlayer - 2,
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: (1 / .4),
+              crossAxisCount : 3,
+              mainAxisSpacing: defaultPadding,
+              crossAxisSpacing: defaultPadding,
+              ), 
+              itemBuilder: (BuildContext context, int index){
+                return FullEmptyCircleWidget();
+              }),
+         )),
+
+
+          Container(child: FullEmptyCircleWidget())
+
+
+       
          
        ],),
      )

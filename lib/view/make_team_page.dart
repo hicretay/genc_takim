@@ -1,9 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/view/FieldPages/basketball_field_page.dart';
 import 'package:genc_takim/view/FieldPages/football_field_page.dart';
+import 'package:genc_takim/view/FieldPages/tennis_field_page.dart';
+import 'package:genc_takim/view/FieldPages/volleyball_field_page.dart';
 
 class MakeTeamPage extends StatefulWidget {
+ 
   const MakeTeamPage({Key? key}) : super(key: key);
 
   @override
@@ -15,6 +19,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   String selectedSaloon = "Konya Selçuklu Spor Salonu";
   String selectedDate = "07.11.2021";
   String selectedTime= "10:00";
+  int selectedPlayerNumber = 10;
   
   @override
   Widget build(BuildContext context) {
@@ -84,6 +89,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                                   DropdownMenuItem(child: Center(child: Text("Futbol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Futbol"),
                                   DropdownMenuItem(child: Center(child: Text("Basketbol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Basketbol"),
                                   DropdownMenuItem(child: Center(child: Text("Voleybol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Voleybol"),
+                                  DropdownMenuItem(child: Center(child: Text("Tenis",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Tenis"),
                                 ],
                                 onChanged: (value) {
                                  setState(() {
@@ -243,6 +249,54 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                     ),
                    //---------------------------------------------------------------------------------------------------
 
+                 //-----------------------------OYUNCU SAYISI SEÇİMİ---------------------------------------
+                    Padding(
+                    padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(defaultPadding),
+                        child: SizedBox(
+                        width: deviceWidth(context)*0.9,
+                        height: deviceHeight(context)*0.05,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            color: secondaryColor2,
+                          ),
+                          child:  Align(
+                            alignment: Alignment.center,
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton<int>(
+                                isExpanded: true,
+                                isDense: true,
+                                iconEnabledColor: Colors.white,
+                                iconSize: 30,
+                                dropdownColor: secondaryColor2,
+                                value: selectedPlayerNumber,
+                                // ignore: prefer_const_literals_to_create_immutables
+                                items: [
+                                  DropdownMenuItem(child: Center(child: Text("10",style: TextStyle(color: Colors.white, fontSize: 14))),value: 10),
+                                  DropdownMenuItem(child: Center(child: Text("12",style: TextStyle(color: Colors.white, fontSize: 14))),value: 12),
+                                  DropdownMenuItem(child: Center(child: Text("14",style: TextStyle(color: Colors.white, fontSize: 14))),value: 14),
+                                ],
+                                onChanged: (value) {
+                                 setState(() {
+                                   selectedPlayerNumber = value!;
+                                 });
+                                 },
+                                ),
+                            ),
+                          ),
+                          ),
+                        ),
+                      ),
+                    ),
+                   //---------------------------------------------------------------------------------------------------
+
                   Padding(
                     padding: const EdgeInsets.all(defaultPadding*2),
                     child: SizedBox(
@@ -263,7 +317,10 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                         )),
                         onPressed: (){
                           Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => FootballFieldPage()));
+                          MaterialPageRoute(builder: (context) => 
+                          selectedSport=="Futbol" ?
+                          FootballFieldPage(numberOfPlayer: selectedPlayerNumber):
+                          selectedSport=="Basketbol" ? BasketballFieldPage() : selectedSport=="Tenis" ? TennisFieldPage() : VolleyballFieldPage()));
                         }),
                     ),
                   ),

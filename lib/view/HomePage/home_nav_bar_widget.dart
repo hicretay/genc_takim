@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors_in_immutables, file_names, prefer_const_literals_to_create_immutables, prefer_const_constructors, no_logic_in_create_state
 //import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -10,14 +10,18 @@ import 'package:genc_takim/view/HomePage/passed_matches_page.dart';
 import 'package:genc_takim/view/HomePage/profile_page.dart';
 
 class HomeNavBarWidget extends StatefulWidget {
-  HomeNavBarWidget({Key? key}) : super(key: key);
+  final int tabIndex; 
+  HomeNavBarWidget({Key? key, required this.tabIndex}) : super(key: key);
 
   @override
-  _HomeNavBarWidgetState createState() => _HomeNavBarWidgetState();
+  _HomeNavBarWidgetState createState() => _HomeNavBarWidgetState(tabIndex: tabIndex);
 }
 
 class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
-  int _currentTab = 0;
+  int tabIndex;
+  _HomeNavBarWidgetState({required this.tabIndex});
+  
+  //int _currentTab = 0;
   List<Widget> matchesTabItems =[
     const Tab(text: "Yaklaşan", icon: Icon(Icons.sports)),
     const Tab(text: "Geçmiş", icon: Icon(Icons.history))
@@ -32,11 +36,11 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.black,
-          body: _currentTab == 1 ? TabBarView(children: [
+          body: tabIndex == 1 ? TabBarView(children: [
              ComingMatchesPage(),
              PassedMatchesPage()
           ]) :
-          _pages[_currentTab],
+          _pages[tabIndex],
           extendBodyBehindAppBar: true,
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(100),
@@ -44,9 +48,9 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
               backgroundColor: primaryColor,
               centerTitle: true,
               flexibleSpace: 
-              _currentTab == 0 || _currentTab == 2 ?
+              tabIndex == 0 || tabIndex == 2 ?
               Container(             
-              decoration: _currentTab==0 ? 
+              decoration: tabIndex==0 ? 
               const BoxDecoration(
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
                 color: primaryColor,
@@ -65,7 +69,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
                           child: BorderedText(
                             strokeColor: Colors.black,
                             strokeWidth: 2.0,
-                            child: Text(_titles[_currentTab],
+                            child: Text(_titles[tabIndex],
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                             fontFamily: "RacingSansOne",
@@ -82,7 +86,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
                         child: BorderedText(
                           strokeColor: Colors.black,
                           strokeWidth: 2.0,
-                          child: Text(_titles[_currentTab],
+                          child: Text(_titles[tabIndex],
                           style: const TextStyle(
                             fontFamily: "RacingSansOne",
                             fontSize: 30, 
@@ -91,7 +95,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
                       )),
 
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight: Radius.circular(20))),
-            bottom: _currentTab == 1 ? TabBar(
+            bottom: tabIndex == 1 ? TabBar(
               indicatorColor: Colors.white,
               indicatorSize: TabBarIndicatorSize.label,
               tabs: matchesTabItems 
@@ -113,7 +117,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
           ],
             onTap: (index) {
                 setState(() {
-                  _currentTab = index;
+                  tabIndex = index;
                 });
           }),
         ),

@@ -4,7 +4,7 @@ import 'package:genc_takim/settings/constants.dart';
 
 class ProfileRowWidget extends StatelessWidget {
   final String text;
-  final Icon icon;
+  final Widget icon;
   
   const ProfileRowWidget({
     Key? key, required this.text, required this.icon,
@@ -17,7 +17,7 @@ class ProfileRowWidget extends StatelessWidget {
       child: Container(
         height: deviceHeight(context)*0.06,
         decoration: const BoxDecoration(
-          color: Color.fromRGBO(119, 119, 119, 0.15),
+          color: secondaryColor,
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,7 +32,6 @@ class ProfileRowWidget extends StatelessWidget {
           child: icon
         )
       ]),
-      
       ),
     );
   }

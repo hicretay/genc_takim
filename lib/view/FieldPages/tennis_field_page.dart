@@ -1,23 +1,23 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
 
-class BasketballFieldPage extends StatefulWidget {
-  const BasketballFieldPage({Key? key}) : super(key: key);
+class TennisFieldPage extends StatefulWidget {
+  TennisFieldPage({Key? key}) : super(key: key);
 
   @override
-  _BasketballFieldPageState createState() => _BasketballFieldPageState();
+  _TennisFieldPageState createState() => _TennisFieldPageState();
 }
 
-class _BasketballFieldPageState extends State<BasketballFieldPage> {
-   @override
+class _TennisFieldPageState extends State<TennisFieldPage> {
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
+        return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Basketbol Sahası",style: TextStyle(color: Colors.white,fontSize: 25,fontFamily: font)),
+          title: Text("Tenis Sahası",style: TextStyle(color: Colors.white,fontSize: 25,fontFamily: font)),
           backgroundColor: secondaryColor,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -29,7 +29,7 @@ class _BasketballFieldPageState extends State<BasketballFieldPage> {
       decoration: BoxDecoration(
        image: DecorationImage(
       // colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
-       image: AssetImage("assets/images/basketbol_sahasi.jpg"),fit: BoxFit.cover)
+       image: AssetImage("assets/images/tenis_sahasi.jpg"),fit: BoxFit.cover)
        ),
        // ignore: prefer_const_literals_to_create_immutables
        child: Column(children: [
