@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/view/FieldPages/widgets/full_empty_circle_widget.dart';
 
 class VolleyballFieldPage extends StatefulWidget {
   const VolleyballFieldPage({Key? key}) : super(key: key);
@@ -32,9 +33,51 @@ class _VolleyballFieldPageState extends State<VolleyballFieldPage> {
        image: AssetImage("assets/images/voleybol_sahasi.jpg"),fit: BoxFit.cover)
        ),
        // ignore: prefer_const_literals_to_create_immutables
-       child: Column(children: [
-         Center(child: Text("data")),
-         
+       child: Column(
+         children: [
+         Padding(
+           padding: EdgeInsets.only(left: defaultPadding*2,right: defaultPadding*2,top: deviceHeight(context)*0.15),
+           child: Row(
+             mainAxisAlignment: MainAxisAlignment.spaceAround,
+             children: const [
+             FullEmptyCircleWidget(),
+             FullEmptyCircleWidget(),
+             FullEmptyCircleWidget()
+           ],),
+         ),
+
+          Padding(
+           padding: EdgeInsets.only(left: defaultPadding,right: defaultPadding,top: deviceHeight(context)*0.15),
+           child: Row(
+             mainAxisAlignment: MainAxisAlignment.spaceAround,
+             children: const [
+             FullEmptyCircleWidget(),
+             FullEmptyCircleWidget(),
+             FullEmptyCircleWidget()
+           ],),
+         ),
+
+          Padding(
+           padding: EdgeInsets.only(left: defaultPadding,right: defaultPadding,top: deviceHeight(context)*0.1),
+           child: Row(
+             mainAxisAlignment: MainAxisAlignment.spaceAround,
+             children: const [
+             FullEmptyCircleWidget(),
+             FullEmptyCircleWidget(),
+              FullEmptyCircleWidget()
+           ],),
+         ),
+
+         Padding(
+           padding: EdgeInsets.only(left: defaultPadding,right: defaultPadding,top: deviceHeight(context)*0.1),
+           child: Row(
+             mainAxisAlignment: MainAxisAlignment.spaceAround,
+             children: const [
+             FullEmptyCircleWidget(),
+             FullEmptyCircleWidget(),
+             FullEmptyCircleWidget()
+           ],),
+         ),
        ],),
      )
       ));

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/view/FieldPages/widgets/full_empty_circle_widget.dart';
 
 class TennisFieldPage extends StatefulWidget {
   TennisFieldPage({Key? key}) : super(key: key);
@@ -32,10 +33,15 @@ class _TennisFieldPageState extends State<TennisFieldPage> {
        image: AssetImage("assets/images/tenis_sahasi.jpg"),fit: BoxFit.cover)
        ),
        // ignore: prefer_const_literals_to_create_immutables
-       child: Column(children: [
-         Center(child: Text("data")),
-         
-       ],),
+       child: Center(
+         child: Column(
+           mainAxisAlignment: MainAxisAlignment.spaceAround,
+           // ignore: prefer_const_literals_to_create_immutables
+           children: [
+           FullEmptyCircleWidget(),
+           FullEmptyCircleWidget()
+         ],),
+       ),
      )
       ));
   }

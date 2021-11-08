@@ -250,11 +250,13 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                    //---------------------------------------------------------------------------------------------------
 
                  //-----------------------------OYUNCU SAYISI SEÇİMİ---------------------------------------
+                    selectedSport=="Futbol"?
                     Padding(
                     padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))),
+                      child: Text("Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))) : Container(),
+                    selectedSport=="Futbol"? 
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -294,7 +296,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                           ),
                         ),
                       ),
-                    ),
+                    ):Container(),
                    //---------------------------------------------------------------------------------------------------
 
                   Padding(
@@ -329,6 +331,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
           ),
         ),
         ),
-        )));
+    )));
   }
 }
