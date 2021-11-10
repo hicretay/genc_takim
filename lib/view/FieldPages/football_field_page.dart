@@ -55,7 +55,7 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               childAspectRatio: (1 / .4),
               crossAxisCount : 3,
-              mainAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding*5,
               crossAxisSpacing: defaultPadding,
               ), 
               itemBuilder: (BuildContext context, int index){

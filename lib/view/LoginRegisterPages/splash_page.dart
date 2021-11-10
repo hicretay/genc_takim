@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, file_names
 import 'package:flutter/material.dart';
+import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/LoginRegisterPages/login_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -23,7 +24,15 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      width: deviceWidth(context),
+      height: deviceHeight(context)*0.1,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(defaultPadding*4),
+        child: Image.asset("assets/logos/logo.png"),
+      ),
     );
   }
 }

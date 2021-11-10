@@ -29,6 +29,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
 
   late final List<Widget> _pages = [const HomePage(),const ComingMatchesPage(),const ProfilePage()];
   final List<String> _titles = ["ANASAYFA","MAÇLAR", "PROFİL"];
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -105,6 +106,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
             ),
           ),
           bottomNavigationBar: CurvedNavigationBar(
+            key: _bottomNavigationKey,
             letIndexChange: (index) => true,
             height: 55,
             backgroundColor: Colors.transparent,

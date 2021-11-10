@@ -36,7 +36,7 @@ class _BasketballFieldPageState extends State<BasketballFieldPage> {
        child: Column(
          children: [
          Padding(
-           padding: EdgeInsets.only(left: defaultPadding,right: defaultPadding,top: deviceHeight(context)*0.15),
+           padding: EdgeInsets.only(left: defaultPadding,right: defaultPadding,top: deviceHeight(context)*0.17),
            child: Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: const [
@@ -47,7 +47,7 @@ class _BasketballFieldPageState extends State<BasketballFieldPage> {
          ),
 
           Padding(
-           padding: EdgeInsets.only(left: defaultPadding,right: defaultPadding,top: deviceHeight(context)*0.15),
+           padding: EdgeInsets.only(left: defaultPadding,right: defaultPadding,top: deviceHeight(context)*0.12),
            child: Row(
              mainAxisAlignment: MainAxisAlignment.spaceAround,
              children: const [

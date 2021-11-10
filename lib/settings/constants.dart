@@ -36,3 +36,4 @@ const maxSpace = 10.0;
 const iconSize = 25.0;
 
 var circularBasic = const Center(child: CircularProgressIndicator(backgroundColor: primaryColor,valueColor: AlwaysStoppedAnimation<Color>(secondaryColor)));
+
