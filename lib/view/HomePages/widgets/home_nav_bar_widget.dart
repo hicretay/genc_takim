@@ -4,10 +4,10 @@ import 'package:bordered_text/bordered_text.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
-import 'package:genc_takim/view/HomePage/home_page.dart';
-import 'package:genc_takim/view/HomePage/coming_matches_page.dart';
-import 'package:genc_takim/view/HomePage/passed_matches_page.dart';
-import 'package:genc_takim/view/HomePage/profile_page.dart';
+import 'package:genc_takim/view/HomePages/Matches/coming_matches_page.dart';
+import 'package:genc_takim/view/HomePages/Home/home_page.dart';
+import 'package:genc_takim/view/HomePages/Matches/passed_matches_page.dart';
+import 'package:genc_takim/view/HomePages/Profile/profile_page.dart';
 
 class HomeNavBarWidget extends StatefulWidget {
   final int tabIndex; 

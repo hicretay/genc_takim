@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, file_names, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
-import 'package:genc_takim/view/HomePage/home_nav_bar_widget.dart';
+import 'package:genc_takim/view/LoginRegisterPages/login_page.dart';
 import 'package:genc_takim/view/LoginRegisterPages/widgets/textFormField_widget.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -16,6 +16,10 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
         return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: primaryColor,
+          centerTitle: true,
+          title: Text("Kayıt Ol",style: TextStyle(fontFamily: font,fontSize: 25))),
         body: Container(
           alignment: Alignment.bottomCenter,
           decoration: BoxDecoration(
@@ -72,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontSize: 20
                         )),
                         onPressed: (){
-                          Navigator.pushAndRemoveUntil(context,MaterialPageRoute(builder: (context) => HomeNavBarWidget(tabIndex: 0)),(route) => false);
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()));
                         }),
                     ),
                   ),

@@ -46,7 +46,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
            color: Colors.black,
            image: DecorationImage(
              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
-           image: AssetImage("assets/logos/logo.png"))
+           image: AssetImage("assets/logos/logowhite.png"))
            ),
           child: Container(
             height: deviceHeight(context)*0.85,

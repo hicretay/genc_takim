@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
-import 'package:genc_takim/view/HomePage/widgets/team_options_widget.dart';
-import 'package:genc_takim/view/make_team_page.dart';
+import 'package:genc_takim/view/HomePages/widgets/team_options_widget.dart';
+import 'package:genc_takim/view/HomePages/Home/add_team_page.dart';
+import 'package:genc_takim/view/HomePages/Home/make_team_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,7 +30,9 @@ class HomePage extends StatelessWidget {
             TeamOptionsWidget(
               leading  : "Takıma Katıl",
               iconImage: AssetImage("assets/icons/addPlayer.png"),
-              onTap    : (){},
+              onTap    : (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> AddTeamPage()));
+              },
             ),
           ]),
 

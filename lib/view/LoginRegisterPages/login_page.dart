@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, file_names, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/view/HomePages/widgets/home_nav_bar_widget.dart';
 import 'package:genc_takim/view/LoginRegisterPages/register_page.dart';
+import 'package:genc_takim/view/LoginRegisterPages/widgets/textformfield_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -53,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                 //  image: AssetImage("assets/images/bakanlik_logo.png"))
                  ),
                 child: Container(
-                height: deviceHeight(context)*0.45,
+                height: deviceHeight(context)*0.6,
                 alignment: Alignment.bottomCenter,
                 decoration: const BoxDecoration(
                   color: Color.fromRGBO(119, 119, 119, 0.15),
@@ -70,44 +72,9 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: 25
                           )),
                         ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: defaultPadding,left: defaultPadding),
-                            child: Text("Telefon Numarası",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                            color: Colors.grey[700],
-                            
-                            )),
-                          ),
-                        ),
-              
-                         Padding(
-                         padding: const EdgeInsets.only(left: defaultPadding,right: defaultPadding),
-                         child: TextFormField(
-                         decoration: const InputDecoration(
-                        fillColor: Colors.amber,
-                         border: UnderlineInputBorder(
-                           borderSide: BorderSide(
-                             color: Colors.amber
-                           )
-                         ),
-                         enabledBorder: UnderlineInputBorder(
-                           borderSide: BorderSide(
-                             color: primaryColor
-                           )
-                         ),
-                         focusedBorder: UnderlineInputBorder(
-                           borderSide: BorderSide(
-                             color: primaryColor
-                           )
-                         ),
-                         labelText: "Telefon numaranızı giriniz",
-                         labelStyle: TextStyle(color: Colors.grey,fontSize: 16)
-                     ),
-                    ),
-                  ),
+
+                  TextFormFieldWidget(leading: "E - Posta", labelText: "E - Posta adresinizi giriniz"),
+                  TextFormFieldWidget(leading: "Şifre", labelText: "Şifrenizi giriniz"),
                         Padding(
                           padding: const EdgeInsets.all(defaultPadding*2),
                           child: SizedBox(
@@ -127,8 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                                 fontSize: 20
                               )),
                               onPressed: (){
-                                Navigator.pushAndRemoveUntil(context,
-                                MaterialPageRoute(builder: (context) => RegisterPage()),(route) => false);
+                               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeNavBarWidget(tabIndex: 0)), (route) => false);
                               }),
                           ),
                         ),
@@ -154,8 +120,18 @@ class _LoginPageState extends State<LoginPage> {
                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                              // ignore: prefer_const_literals_to_create_immutables
                              children: [
+                               GestureDetector(
+                                 child: Text("E - Posta",
+                                 style: TextStyle(
+                                 color: Colors.grey,
+                                 fontSize: 16)),
+                                 onTap: (){
+                                    Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => RegisterPage()));
+                                 }),
+                               Container(width: 0.5,height: deviceHeight(context)*0.04,color: Colors.white),
                                Text("Google",style: TextStyle(color: Colors.grey,fontSize: 16)),
-                               Container(width: 1,height: deviceHeight(context)*0.04,color: Colors.white),
+                               Container(width: 0.5,height: deviceHeight(context)*0.04,color: Colors.white),
                                Text("Facebook",style: TextStyle(color: Colors.grey,fontSize: 16)),
                              ],
                            ),
