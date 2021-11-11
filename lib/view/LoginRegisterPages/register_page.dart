@@ -20,70 +20,95 @@ class _RegisterPageState extends State<RegisterPage> {
           backgroundColor: primaryColor,
           centerTitle: true,
           title: Text("Kayıt Ol",style: TextStyle(fontFamily: font,fontSize: 25))),
-        body: Container(
-          alignment: Alignment.bottomCenter,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            // image: DecorationImage(
-            // image: AssetImage("assets/images/bakanlik_logo.png"))
-            ),
-            child: Container(
-          decoration: BoxDecoration(
-          color: Colors.black,
-          //  image: DecorationImage(
-          //    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
-          //  image: AssetImage("assets/images/bakanlik_logo.png"))
-          ),
-          child: Container(
-            height: deviceHeight(context)*0.8,
-            alignment: Alignment.bottomCenter,
-            decoration: const BoxDecoration(
-              color: secondaryColor,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(defaultPadding),
-                    child: const Text("Kayıt Ol",
-                    style: TextStyle(
-                      fontFamily: font,
-                      color: Colors.white,
-                      fontSize: 25
-                    )),
-                  ),
-                  TextFormFieldWidget(leading: "Ad Soyad",labelText: "Ad ve Soyadınızı giriniz"),
-                  TextFormFieldWidget(leading: "E - Posta",labelText: "E - Posta adresinizi giriniz"),
-                  TextFormFieldWidget(leading: "Telefon Numarası",labelText: "Telefon numaranızı giriniz"),
-                  TextFormFieldWidget(leading: "Doğum Tarihi",labelText: "Doğum Tarihinizi giriniz"),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: deviceHeight(context)*0.05),
+              child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                        SizedBox(
+                        width: deviceWidth(context)*0.3,
+                        height: deviceWidth(context)*0.3,
+                        child: Image.asset("assets/logos/logowhite.png")),
 
-                  Padding(
-                    padding: const EdgeInsets.all(defaultPadding*2),
-                    child: SizedBox(
-                      width: deviceWidth(context)*0.6,
-                      height: deviceHeight(context)*0.06,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          )
-                        ),
-                        child: Text("Devam",
+                        SizedBox(width: deviceWidth(context)*0.1),
+
+                        SizedBox(
+                        width: deviceWidth(context)*0.3,
+                        height: deviceWidth(context)*0.3,
+                        child: Image.asset("assets/logos/bakanlik_logo.png")),
+                      ],
+                  ),
+            ),
+              Container(
+              alignment: Alignment.bottomCenter,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                // image: DecorationImage(
+                // image: AssetImage("assets/images/bakanlik_logo.png"))
+                ),
+                child: Container(
+              decoration: BoxDecoration(
+              color: Colors.black,
+              //  image: DecorationImage(
+              //    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
+              //  image: AssetImage("assets/images/bakanlik_logo.png"))
+              ),
+              child: Container(
+                height: deviceHeight(context)*0.6,
+                alignment: Alignment.bottomCenter,
+                decoration: const BoxDecoration(
+                  color: secondaryColor,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(defaultPadding),
+                        child: const Text("Kayıt Ol",
                         style: TextStyle(
                           fontFamily: font,
                           color: Colors.white,
-                          fontSize: 20
+                          fontSize: 25
                         )),
-                        onPressed: (){
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()));
-                        }),
-                    ),
+                      ),
+                      TextFormFieldWidget(leading: "Ad Soyad",labelText: "Ad ve Soyadınızı giriniz"),
+                      TextFormFieldWidget(leading: "E - Posta",labelText: "E - Posta adresinizi giriniz"),
+                      TextFormFieldWidget(leading: "Telefon Numarası",labelText: "Telefon numaranızı giriniz"),
+                      TextFormFieldWidget(leading: "Doğum Tarihi",labelText: "Doğum Tarihinizi giriniz"),
+        
+                      Padding(
+                        padding: const EdgeInsets.all(defaultPadding*2),
+                        child: SizedBox(
+                          width: deviceWidth(context)*0.6,
+                          height: deviceHeight(context)*0.06,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              )
+                            ),
+                            child: Text("Devam",
+                            style: TextStyle(
+                              fontFamily: font,
+                              color: Colors.white,
+                              fontSize: 20
+                            )),
+                            onPressed: (){
+                              Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()));
+                            }),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
               ),
-          ),
-        ),
+            ),
+            ),
+          ],
         ),
       ),
     );

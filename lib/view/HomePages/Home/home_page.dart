@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/view/HomePages/Home/upcoming_matches_page.dart';
 import 'package:genc_takim/view/HomePages/widgets/team_options_widget.dart';
 import 'package:genc_takim/view/HomePages/Home/add_team_page.dart';
 import 'package:genc_takim/view/HomePages/Home/make_team_page.dart';
@@ -45,7 +46,9 @@ class HomePage extends StatelessWidget {
               TeamOptionsWidget(
               leading: "Yaklaşan Maçlar",
               iconImage: AssetImage("assets/icons/match.png"),
-              onTap: (){},
+              onTap: (){
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=> UpComingMatchesPage()));
+              },
             ),
 
             TeamOptionsWidget(

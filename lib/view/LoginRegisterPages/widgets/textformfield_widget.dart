@@ -17,17 +17,17 @@ class TextFormFieldWidget extends StatelessWidget {
       padding: const EdgeInsets.only(top: maxSpace),
       child: Column(
         children: [
-            Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(right: defaultPadding,left: defaultPadding),
-              child: Text(leading,
-              textAlign: TextAlign.left,
-              style: TextStyle(
-              color: Colors.white,
-              )),
-            ),
-          ),
+          //   Align(
+          //   alignment: Alignment.topLeft,
+          //   child: Padding(
+          //     padding: const EdgeInsets.only(right: defaultPadding,left: defaultPadding),
+          //     child: Text(leading,
+          //     textAlign: TextAlign.left,
+          //     style: TextStyle(
+          //     color: Colors.white,
+          //     )),
+          //   ),
+          // ),
           Padding(
           padding: const EdgeInsets.only(left: defaultPadding,right: defaultPadding),
           child: TextFormField(

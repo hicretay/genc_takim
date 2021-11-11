@@ -27,11 +27,11 @@ class _SplashPageState extends State<SplashPage> {
       width: deviceWidth(context),
       height: deviceHeight(context)*0.1,
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: secondaryColor2,
       ),
       child: Padding(
         padding: const EdgeInsets.all(defaultPadding*4),
-        child: Image.asset("assets/logos/logo.png"),
+        child: Image.asset("assets/logos/logowhite.png"),
       ),
     );
   }

@@ -35,15 +35,15 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                       SizedBox(
-                      width: deviceWidth(context)*0.4,
-                      height: deviceWidth(context)*0.4,
+                      width: deviceWidth(context)*0.3,
+                      height: deviceWidth(context)*0.3,
                       child: Image.asset("assets/logos/logowhite.png")),
 
                       SizedBox(width: deviceWidth(context)*0.1),
 
                       SizedBox(
-                      width: deviceWidth(context)*0.4,
-                      height: deviceWidth(context)*0.4,
+                      width: deviceWidth(context)*0.3,
+                      height: deviceWidth(context)*0.3,
                       child: Image.asset("assets/logos/bakanlik_logo.png")),
                     ],
                 ),
@@ -99,14 +99,19 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
               
-                        Padding(
-                            padding: const EdgeInsets.only(right: defaultPadding,left: defaultPadding),
-                            child: Text("ile devam et",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                            color: Colors.grey[700],
-                            )),
-                          ),
+                        GestureDetector(
+                          child: Padding(
+                              padding: const EdgeInsets.only(right: defaultPadding,left: defaultPadding),
+                              child: Text("Hesabınız yok mu",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                              color: Colors.grey[700],
+                              )),
+                            ),
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterPage()));
+                          },
+                        ),
               
                         Align(
                           alignment: Alignment.bottomCenter,

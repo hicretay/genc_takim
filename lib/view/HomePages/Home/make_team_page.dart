@@ -31,11 +31,11 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
           backgroundColor: primaryColor,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(25),
+            bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20)))
         ),
         body: Container(
-          color: secondaryColor,
+          color: secondaryColor2,
           child: Container(
           alignment: Alignment.bottomCenter,
           decoration: BoxDecoration(
@@ -45,7 +45,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
           decoration: BoxDecoration(
            color: Colors.black,
            image: DecorationImage(
-             colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
+             colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
            image: AssetImage("assets/logos/logowhite.png"))
            ),
           child: Container(
@@ -53,7 +53,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
             alignment: Alignment.bottomCenter,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(119, 119, 119, 0.15),
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(maxSpace))),
               child: Column(
                 children: [
                  //-----------------------------SPOR DALI SEÇİMİ---------------------------------------
@@ -67,11 +67,11 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(defaultPadding),
                         child: SizedBox(
-                        width: deviceWidth(context)*0.9,
+                        width: deviceWidth(context),
                         height: deviceHeight(context)*0.05,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
                             color: secondaryColor2,
                           ),
                           child: Align(
@@ -116,11 +116,11 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(defaultPadding),
                         child: SizedBox(
-                        width: deviceWidth(context)*0.9,
+                        width: deviceWidth(context),
                         height: deviceHeight(context)*0.05,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
                             color: secondaryColor2,
                           ),
                           child:  Align(
@@ -164,11 +164,11 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(defaultPadding),
                         child: SizedBox(
-                        width: deviceWidth(context)*0.9,
+                        width: deviceWidth(context),
                         height: deviceHeight(context)*0.05,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
                             color: secondaryColor2,
                           ),
                           child:  Align(
@@ -212,11 +212,11 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(defaultPadding),
                         child: SizedBox(
-                        width: deviceWidth(context)*0.9,
+                        width: deviceWidth(context),
                         height: deviceHeight(context)*0.05,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
                             color: secondaryColor2,
                           ),
                           child:  Align(
@@ -262,11 +262,11 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       child: Padding(
                         padding: const EdgeInsets.all(defaultPadding),
                         child: SizedBox(
-                        width: deviceWidth(context)*0.9,
+                        width: deviceWidth(context),
                         height: deviceHeight(context)*0.05,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
                             color: secondaryColor2,
                           ),
                           child:  Align(

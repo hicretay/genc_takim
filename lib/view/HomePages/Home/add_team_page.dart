@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/view/FieldPages/football_field_page.dart';
 import 'package:genc_takim/view/HomePages/Home/make_team_page.dart';
+import 'package:genc_takim/view/HomePages/Matches/coming_matches_page.dart';
 
 class AddTeamPage extends StatefulWidget {
   const AddTeamPage({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class _AddTeamPageState extends State<AddTeamPage> {
           decoration: BoxDecoration(
            color: Colors.black,
            image: DecorationImage(
-             colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
+             colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
            image: AssetImage("assets/logos/logowhite.png"))
            ),
           child: Container(
@@ -48,38 +48,14 @@ class _AddTeamPageState extends State<AddTeamPage> {
               borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
               child: Column(
               children: [
-            Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(      
-            height: deviceHeight(context)*0.15,       
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(25)),
-                image: DecorationImage(image: AssetImage("assets/images/football.png"),fit: BoxFit.cover)
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                 Flexible(child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                   children: [
-                   BorderedText(
-                     strokeWidth: 2.0,
-                     child: const Text("Yer:", style: TextStyle(color: Colors.white, fontFamily: "RacingSansOne",fontSize: 20))),
-                   BorderedText(
-                     strokeWidth: 2.0,
-                     child: const Text("Konya Belediyesi Kapalı Spor Salonu",textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: "RacingSansOne",fontSize: 20,)))])),
-                 Flexible(child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                   children: [
-                     BorderedText(
-                     strokeWidth: 2.0,
-                       child: const Text("Tarih / Saat:",textAlign: TextAlign.center,  style: TextStyle(color: Colors.white, fontFamily: "RacingSansOne",fontSize: 20))),
-                     BorderedText(
-                       strokeWidth: 2.0,
-                       child: const Text("03.11.2021\n12.30 - 13.40", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: "RacingSansOne",fontSize: 20)))]))]),
-            ),
-        ),
+                MatchContainerWidget(
+                  assetImage: AssetImage("assets/images/football.png"), 
+                  saloon: "Konya Belediyesi Kapalı Spor Salonu", 
+                  date: "03.11.2021", 
+                  time: "12.30 - 13.40", 
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> FootballFieldPage(numberOfPlayer: 12)));
+                  }),
 
                   Padding(
                     padding: const EdgeInsets.all(defaultPadding*2),
