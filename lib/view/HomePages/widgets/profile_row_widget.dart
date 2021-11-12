@@ -18,14 +18,14 @@ class ProfileRowWidget extends StatelessWidget {
         height: deviceHeight(context)*0.06,
         decoration: const BoxDecoration(
           color: secondaryColor,
-          borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          borderRadius: BorderRadius.all(Radius.circular(maxSpace))),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         // ignore: prefer_const_literals_to_create_immutables
         children: [
         Padding(
           padding: const EdgeInsets.only(left: defaultPadding),
-          child: Text(text,style: TextStyle(color: Colors.white,fontSize: 18)),
+          child: Text(text,style: TextStyle(color: Colors.white,fontSize: 21,fontFamily: contentFont)),
         ),
         Padding(
           padding: const EdgeInsets.only(right: defaultPadding),

@@ -35,302 +35,395 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
             bottomRight: Radius.circular(20)))
         ),
         body: Container(
-          color: secondaryColor2,
+        alignment: Alignment.bottomCenter,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          ),
           child: Container(
-          alignment: Alignment.bottomCenter,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            ),
-            child: Container(
-          decoration: BoxDecoration(
-           color: Colors.black,
-           image: DecorationImage(
-             colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
-           image: AssetImage("assets/logos/logowhite.png"))
-           ),
-          child: Container(
-            height: deviceHeight(context)*0.85,
-            alignment: Alignment.bottomCenter,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(119, 119, 119, 0.15),
-              borderRadius: BorderRadius.vertical(top: Radius.circular(maxSpace))),
-              child: Column(
-                children: [
-                 //-----------------------------SPOR DALI SEÇİMİ---------------------------------------
-                    Padding(
-                    padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding*2),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("Spor Dalı Seç",style: TextStyle(color: Colors.white)))),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(defaultPadding),
-                        child: SizedBox(
-                        width: deviceWidth(context),
-                        height: deviceHeight(context)*0.05,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                            color: secondaryColor2,
-                          ),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                isExpanded: true,
-                                isDense: true,
-                                iconEnabledColor: Colors.white,
-                                iconSize: 30,
-                                dropdownColor: secondaryColor2,
-                                value: selectedSport,
-                                // ignore: prefer_const_literals_to_create_immutables
-                                items: [
-                                  DropdownMenuItem(child: Center(child: Text("Futbol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Futbol"),
-                                  DropdownMenuItem(child: Center(child: Text("Basketbol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Basketbol"),
-                                  DropdownMenuItem(child: Center(child: Text("Voleybol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Voleybol"),
-                                  DropdownMenuItem(child: Center(child: Text("Tenis",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Tenis"),
-                                ],
-                                onChanged: (value) {
-                                 setState(() {
-                                   selectedSport = value.toString();
-                                 });
-                                 },
-                                ),
-                            ),
-                          ),
-                          ),
-                        ),
-                      ),
-                    ),
-                   //---------------------------------------------------------------------------------------------------
-
-                   //-----------------------------SPOR SALONU SEÇİMİ---------------------------------------
-                    Padding(
-                    padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("Spor Salonu Seç",style: TextStyle(color: Colors.white)))),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(defaultPadding),
-                        child: SizedBox(
-                        width: deviceWidth(context),
-                        height: deviceHeight(context)*0.05,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                            color: secondaryColor2,
-                          ),
-                          child:  Align(
-                            alignment: Alignment.center,
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                isExpanded: true,
-                                isDense: true,
-                                iconEnabledColor: Colors.white,
-                                iconSize: 30,
-                                dropdownColor: secondaryColor2,
-                                value: selectedSaloon,
-                                // ignore: prefer_const_literals_to_create_immutables
-                                items: [
-                                  DropdownMenuItem(child: Center(child: Text("Konya Selçuklu Spor Salonu",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Konya Selçuklu Spor Salonu"),
-                                  DropdownMenuItem(child: Center(child: Text("Gençlik Merkezi Salonu",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Gençlik Merkezi Salonu"),
-                                  DropdownMenuItem(child: Center(child: Text("Voleybol2",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Voleybol2"),
-                                ],
-                                onChanged: (value) {
-                                 setState(() {
-                                   selectedSaloon = value.toString();
-                                 });
-                                 },
-                                ),
-                            ),
-                          ),
-                          ),
-                        ),
-                      ),
-                    ),
-                   //---------------------------------------------------------------------------------------------------
-
-                  //-----------------------------TARİH SEÇİMİ---------------------------------------
-                    Padding(
-                    padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("Tarih Seç",style: TextStyle(color: Colors.white)))),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(defaultPadding),
-                        child: SizedBox(
-                        width: deviceWidth(context),
-                        height: deviceHeight(context)*0.05,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                            color: secondaryColor2,
-                          ),
-                          child:  Align(
-                            alignment: Alignment.center,
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                isExpanded: true,
-                                isDense: true,
-                                iconEnabledColor: Colors.white,
-                                iconSize: 30,
-                                dropdownColor: secondaryColor2,
-                                value: selectedDate,
-                                // ignore: prefer_const_literals_to_create_immutables
-                                items: [
-                                  DropdownMenuItem(child: Center(child: Text("07.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "07.11.2021"),
-                                  DropdownMenuItem(child: Center(child: Text("08.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "08.11.2021"),
-                                  DropdownMenuItem(child: Center(child: Text("09.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "09.11.2021"),
-                                ],
-                                onChanged: (value) {
-                                 setState(() {
-                                   selectedDate = value.toString();
-                                 });
-                                 },
-                                ),
-                            ),
-                          ),
-                          ),
-                        ),
-                      ),
-                    ),
-                   //---------------------------------------------------------------------------------------------------
-
-                   //-----------------------------SAAT SEÇİMİ---------------------------------------
-                    Padding(
-                    padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("Saat Seç",style: TextStyle(color: Colors.white)))),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(defaultPadding),
-                        child: SizedBox(
-                        width: deviceWidth(context),
-                        height: deviceHeight(context)*0.05,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                            color: secondaryColor2,
-                          ),
-                          child:  Align(
-                            alignment: Alignment.center,
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton(
-                                isExpanded: true,
-                                isDense: true,
-                                iconEnabledColor: Colors.white,
-                                iconSize: 30,
-                                dropdownColor: secondaryColor2,
-                                value: selectedTime,
-                                // ignore: prefer_const_literals_to_create_immutables
-                                items: [
-                                  DropdownMenuItem(child: Center(child: Text("10:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "10:00"),
-                                  DropdownMenuItem(child: Center(child: Text("11:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "11:00"),
-                                  DropdownMenuItem(child: Center(child: Text("12:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "12:00"),
-                                ],
-                                onChanged: (value) {
-                                 setState(() {
-                                   selectedTime = value.toString();
-                                 });
-                                 },
-                                ),
-                            ),
-                          ),
-                          ),
-                        ),
-                      ),
-                    ),
-                   //---------------------------------------------------------------------------------------------------
-
-                 //-----------------------------OYUNCU SAYISI SEÇİMİ---------------------------------------
-                    selectedSport=="Futbol"?
-                    Padding(
-                    padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))) : Container(),
-                    selectedSport=="Futbol"? 
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(defaultPadding),
-                        child: SizedBox(
-                        width: deviceWidth(context),
-                        height: deviceHeight(context)*0.05,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                            color: secondaryColor2,
-                          ),
-                          child:  Align(
-                            alignment: Alignment.center,
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton<int>(
-                                isExpanded: true,
-                                isDense: true,
-                                iconEnabledColor: Colors.white,
-                                iconSize: 30,
-                                dropdownColor: secondaryColor2,
-                                value: selectedPlayerNumber,
-                                // ignore: prefer_const_literals_to_create_immutables
-                                items: [
-                                  DropdownMenuItem(child: Center(child: Text("10",style: TextStyle(color: Colors.white, fontSize: 14))),value: 10),
-                                  DropdownMenuItem(child: Center(child: Text("12",style: TextStyle(color: Colors.white, fontSize: 14))),value: 12),
-                                  DropdownMenuItem(child: Center(child: Text("14",style: TextStyle(color: Colors.white, fontSize: 14))),value: 14),
-                                ],
-                                onChanged: (value) {
-                                 setState(() {
-                                   selectedPlayerNumber = value!;
-                                 });
-                                 },
-                                ),
-                            ),
-                          ),
-                          ),
-                        ),
-                      ),
-                    ):Container(),
-                   //---------------------------------------------------------------------------------------------------
-
+        decoration: BoxDecoration(
+         color: Colors.black,
+         image: DecorationImage(
+           colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
+         image: AssetImage("assets/logos/logowhite.png"))
+         ),
+        child: ListView(
+          children: [
+              Column(
+              children: [
+                 //-----------------------------SPOR SALONU SEÇİMİ---------------------------------------
                   Padding(
-                    padding: const EdgeInsets.all(defaultPadding*2),
-                    child: SizedBox(
-                      width: deviceWidth(context)*0.6,
-                      height: deviceHeight(context)*0.06,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          )
+                  padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding*2),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Spor Salonu Seç",style: TextStyle(color: Colors.white)))),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+                      child: SizedBox(
+                      width: deviceWidth(context),
+                      height: deviceHeight(context)*0.05,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+                          color: secondaryColor2,
                         ),
-                        child: Text("Sahadan Konum Seç",
-                        style: TextStyle(
-                          fontFamily: font,
-                          color: Colors.white,
-                          fontSize: 20
-                        )),
-                        onPressed: (){
-                          Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => 
-                          selectedSport=="Futbol" ?
-                          FootballFieldPage(numberOfPlayer: selectedPlayerNumber):
-                          selectedSport=="Basketbol" ? BasketballFieldPage() : selectedSport=="Tenis" ? TennisFieldPage() : VolleyballFieldPage()));
-                        }),
+                        child:  Align(
+                          alignment: Alignment.center,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              isExpanded: true,
+                              isDense: true,
+                              iconEnabledColor: Colors.white,
+                              iconSize: 30,
+                              dropdownColor: secondaryColor2,
+                              value: selectedSaloon,
+                              // ignore: prefer_const_literals_to_create_immutables
+                              items: [
+                                DropdownMenuItem(child: Center(child: Text("Konya Selçuklu Spor Salonu",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Konya Selçuklu Spor Salonu"),
+                                DropdownMenuItem(child: Center(child: Text("Gençlik Merkezi Salonu",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Gençlik Merkezi Salonu"),
+                                DropdownMenuItem(child: Center(child: Text("Voleybol2",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Voleybol2"),
+                              ],
+                              onChanged: (value) {
+                               setState(() {
+                                 selectedSaloon = value.toString();
+                               });
+                               },
+                              ),
+                          ),
+                        ),
+                        ),
+                      ),
                     ),
                   ),
-                ],
-              ),
+                 //---------------------------------------------------------------------------------------------------
+
+                                //-----------------------------SPOR DALI SEÇİMİ---------------------------------------
+                  Padding(
+                  padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Spor Dalı Seç",style: TextStyle(color: Colors.white)))),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+                      child: SizedBox(
+                      width: deviceWidth(context),
+                      height: deviceHeight(context)*0.05,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+                          color: secondaryColor2,
+                        ),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              isExpanded: true,
+                              isDense: true,
+                              iconEnabledColor: Colors.white,
+                              iconSize: 30,
+                              dropdownColor: secondaryColor2,
+                              value: selectedSport,
+                              // ignore: prefer_const_literals_to_create_immutables
+                              items: [
+                                DropdownMenuItem(child: Center(child: Text("Futbol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Futbol"),
+                                DropdownMenuItem(child: Center(child: Text("Basketbol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Basketbol"),
+                                DropdownMenuItem(child: Center(child: Text("Voleybol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Voleybol"),
+                                DropdownMenuItem(child: Center(child: Text("Tenis",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Tenis"),
+                              ],
+                              onChanged: (value) {
+                               setState(() {
+                                 selectedSport = value.toString();
+                               });
+                               },
+                              ),
+                          ),
+                        ),
+                        ),
+                      ),
+                    ),
+                  ),
+                 //---------------------------------------------------------------------------------------------------
+        
+                //-----------------------------TARİH SEÇİMİ---------------------------------------
+                  Padding(
+                  padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Tarih Seç",style: TextStyle(color: Colors.white)))),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+                      child: SizedBox(
+                      width: deviceWidth(context),
+                      height: deviceHeight(context)*0.05,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+                          color: secondaryColor2,
+                        ),
+                        child:  Align(
+                          alignment: Alignment.center,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              isExpanded: true,
+                              isDense: true,
+                              iconEnabledColor: Colors.white,
+                              iconSize: 30,
+                              dropdownColor: secondaryColor2,
+                              value: selectedDate,
+                              // ignore: prefer_const_literals_to_create_immutables
+                              items: [
+                                DropdownMenuItem(child: Center(child: Text("07.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "07.11.2021"),
+                                DropdownMenuItem(child: Center(child: Text("08.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "08.11.2021"),
+                                DropdownMenuItem(child: Center(child: Text("09.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "09.11.2021"),
+                              ],
+                              onChanged: (value) {
+                               setState(() {
+                                 selectedDate = value.toString();
+                               });
+                               },
+                              ),
+                          ),
+                        ),
+                        ),
+                      ),
+                    ),
+                  ),
+                 //---------------------------------------------------------------------------------------------------
+        
+                 //-----------------------------SAAT SEÇİMİ---------------------------------------
+                  Padding(
+                  padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Saat Seç",style: TextStyle(color: Colors.white)))),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+                      child: SizedBox(
+                      width: deviceWidth(context),
+                      height: deviceHeight(context)*0.05,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+                          color: secondaryColor2,
+                        ),
+                        child:  Align(
+                          alignment: Alignment.center,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton(
+                              isExpanded: true,
+                              isDense: true,
+                              iconEnabledColor: Colors.white,
+                              iconSize: 30,
+                              dropdownColor: secondaryColor2,
+                              value: selectedTime,
+                              // ignore: prefer_const_literals_to_create_immutables
+                              items: [
+                                DropdownMenuItem(child: Center(child: Text("10:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "10:00"),
+                                DropdownMenuItem(child: Center(child: Text("11:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "11:00"),
+                                DropdownMenuItem(child: Center(child: Text("12:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "12:00"),
+                              ],
+                              onChanged: (value) {
+                               setState(() {
+                                 selectedTime = value.toString();
+                               });
+                               },
+                              ),
+                          ),
+                        ),
+                        ),
+                      ),
+                    ),
+                  ),
+                 //---------------------------------------------------------------------------------------------------
+        
+               //-----------------------------OYUNCU SAYISI SEÇİMİ---------------------------------------
+                  selectedSport=="Futbol"?
+                  Padding(
+                  padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))) : Container(),
+                  selectedSport=="Futbol"? 
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+                      child: SizedBox(
+                      width: deviceWidth(context),
+                      height: deviceHeight(context)*0.05,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+                          color: secondaryColor2,
+                        ),
+                        child:  Align(
+                          alignment: Alignment.center,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<int>(
+                              isExpanded: true,
+                              isDense: true,
+                              iconEnabledColor: Colors.white,
+                              iconSize: 30,
+                              dropdownColor: secondaryColor2,
+                              value: selectedPlayerNumber,
+                              // ignore: prefer_const_literals_to_create_immutables
+                              items: [
+                                DropdownMenuItem(child: Center(child: Text("10",style: TextStyle(color: Colors.white, fontSize: 14))),value: 10),
+                                DropdownMenuItem(child: Center(child: Text("12",style: TextStyle(color: Colors.white, fontSize: 14))),value: 12),
+                                DropdownMenuItem(child: Center(child: Text("14",style: TextStyle(color: Colors.white, fontSize: 14))),value: 14),
+                              ],
+                              onChanged: (value) {
+                               setState(() {
+                                 selectedPlayerNumber = value!;
+                               });
+                               },
+                              ),
+                          ),
+                        ),
+                        ),
+                      ),
+                    ),
+                  ):Container(),
+                 //---------------------------------------------------------------------------------------------------
+        
+               //-----------------------------YEDEK OYUNCU SAYISI SEÇİMİ---------------------------------------
+                  selectedSport=="Futbol"?
+                  Padding(
+                  padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Yedek Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))) : Container(),
+                  selectedSport=="Futbol"? 
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+                      child: SizedBox(
+                      width: deviceWidth(context),
+                      height: deviceHeight(context)*0.05,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+                          color: secondaryColor2,
+                        ),
+                        child:  Align(
+                          alignment: Alignment.center,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton<int>(
+                              isExpanded: true,
+                              isDense: true,
+                              iconEnabledColor: Colors.white,
+                              iconSize: 30,
+                              dropdownColor: secondaryColor2,
+                              value: selectedPlayerNumber,
+                              // ignore: prefer_const_literals_to_create_immutables
+                              items: [
+                                DropdownMenuItem(child: Center(child: Text("10",style: TextStyle(color: Colors.white, fontSize: 14))),value: 10),
+                                DropdownMenuItem(child: Center(child: Text("12",style: TextStyle(color: Colors.white, fontSize: 14))),value: 12),
+                                DropdownMenuItem(child: Center(child: Text("14",style: TextStyle(color: Colors.white, fontSize: 14))),value: 14),
+                              ],
+                              onChanged: (value) {
+                               setState(() {
+                                 selectedPlayerNumber = value!;
+                               });
+                               },
+                              ),
+                          ),
+                        ),
+                        ),
+                      ),
+                    ),
+                  ):Container(),
+                 //---------------------------------------------------------------------------------------------------
+
+                 //-----------------------------OYUN KURUCU NOTU---------------------------------------
+                  MakeTeamDropWidget(selectedSport: selectedSport),
+                  
+                 //---------------------------------------------------------------------------------------------------
+        
+                Padding(
+                  padding: const EdgeInsets.all(defaultPadding*2),
+                  child: SizedBox(
+                    width: deviceWidth(context)*0.6,
+                    height: deviceHeight(context)*0.06,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        )
+                      ),
+                      child: Text("Sahadan Konum Seç",
+                      style: TextStyle(
+                        fontFamily: font,
+                        color: Colors.white,
+                        fontSize: 20
+                      )),
+                      onPressed: (){
+                        Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => 
+                        selectedSport=="Futbol" ?
+                        FootballFieldPage(numberOfPlayer: selectedPlayerNumber):
+                        selectedSport=="Basketbol" ? BasketballFieldPage() : selectedSport=="Tenis" ? TennisFieldPage() : VolleyballFieldPage()));
+                      }),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        ),
+        )));
+  }
+}
+
+class MakeTeamDropWidget extends StatelessWidget {
+  const MakeTeamDropWidget({
+    Key? key,
+    required this.selectedSport,
+  }) : super(key: key);
+
+  final String selectedSport;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: 
+          // ignore: prefer_const_literals_to_create_immutables
+          [Padding(
+      padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
+      child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Oyun Açıklamasını Giriniz *opsiyonel",style: TextStyle(color: Colors.white)))),
+          selectedSport=="Futbol"? 
+    Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+        child: SizedBox(
+        width: deviceWidth(context),
+        height: deviceHeight(context)*0.1,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+            color: secondaryColor2,
+          ),
+          child:  Align(
+            alignment: Alignment.center,
+            
+          ),
           ),
         ),
-        ),
-    )));
+      ),
+    ):Container(),
+        ],
+    );
   }
 }

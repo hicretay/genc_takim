@@ -22,7 +22,7 @@ class MatchContainerWidget extends StatelessWidget {
         child: Container(      
           height: deviceHeight(context)*0.15,       
             decoration: BoxDecoration(
-              color: secondaryColor2,
+              color: secondaryColor,
               borderRadius: BorderRadius.all(Radius.circular(25)),
               // image: DecorationImage(image: assetImage,fit: BoxFit.cover),
               

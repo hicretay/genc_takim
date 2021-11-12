@@ -49,7 +49,7 @@ class _AddTeamPageState extends State<AddTeamPage> {
               child: Column(
               children: [
                 MatchContainerWidget(
-                  imageName: "voleyball",
+                  imageName: "volleyball",
                   sportName: "Voleybol",
                   saloon: "Konya Belediyesi Kapalı Spor Salonu", 
                   date: "03.11.2021", 

@@ -23,8 +23,8 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
   
   //int _currentTab = 0;
   List<Widget> matchesTabItems =[
-    const Tab(text: "Yaklaşan", icon: Icon(Icons.sports)),
-    const Tab(text: "Geçmiş", icon: Icon(Icons.history))
+    const Tab(text: "Yaklaşan Maçlar"),
+    const Tab(text: "Geçmiş Maçlar")
   ];
 
   late final List<Widget> _pages = [const HomePage(),const ComingMatchesPage(),const ProfilePage()];
@@ -97,7 +97,9 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
 
             shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25),bottomRight: Radius.circular(20))),
             bottom: tabIndex == 1 ? TabBar(
+              padding: EdgeInsets.all(0),
               indicatorColor: Colors.white,
+              labelStyle: TextStyle(color: Colors.white, fontFamily:contentFont,fontSize: 23),
               indicatorSize: TabBarIndicatorSize.label,
               tabs: matchesTabItems 
             ) 
