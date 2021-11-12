@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/FieldPages/football_field_page.dart';
 import 'package:genc_takim/view/HomePages/Home/make_team_page.dart';
-import 'package:genc_takim/view/HomePages/Matches/coming_matches_page.dart';
+import 'package:genc_takim/view/HomePages/widgets/match_container_widget.dart';
 
 class UpComingMatchesPage extends StatefulWidget {
   UpComingMatchesPage({Key? key}) : super(key: key);
@@ -49,7 +49,8 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
               child: Column(
               children: [
                 MatchContainerWidget(
-                  assetImage: AssetImage("assets/images/football.png"), 
+                  sportName: "Futbol",
+                  icon: Icon(Icons.sports_soccer, color: Colors.white,size: 50),
                   saloon: "Konya Belediyesi Kapalı Spor Salonu", 
                   date: "03.11.2021", 
                   time: "12.30 - 13.40", 
