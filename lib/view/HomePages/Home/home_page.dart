@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
               leading: "Yaklaşan Maçlar",
               iconImage: AssetImage("assets/icons/match.png"),
               onTap: (){
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=> UpComingMatchesPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> UpComingMatchesPage()));
               },
             ),
 

@@ -13,8 +13,8 @@ class PassedMatchesPage extends StatelessWidget {
         const SizedBox(height: 120),
         
           MatchContainerWidget(
+          imageName: "football",
           sportName: "Futbol",
-          icon: Icon(Icons.sports_soccer,color: Colors.white,size: 50),
           saloon: "Konya Belediyesi Kapalı Spor Salonu",
           date: "12.11.2021",
           time: "12.30 - 13.40",
@@ -24,8 +24,8 @@ class PassedMatchesPage extends StatelessWidget {
           ),
 
           MatchContainerWidget(
+          imageName: "volleyball",
           sportName: "Voleybol",
-          icon: Icon(Icons.sports_volleyball, color: Colors.white,size: 50),
           saloon: "Konya Belediyesi Kapalı Spor Salonu",
           date: "12.11.2021",
           time: "12.30 - 13.40",

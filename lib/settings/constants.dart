@@ -11,6 +11,7 @@ const secondaryColor2 = Color(0xff2A2D2E);
 const bgColor = Color(0xFF1C1F1F);
 
 const font = "RacingSansOne";
+const contentFont = "TekoRegular";
 
 TextStyle contentTextStyle = const TextStyle(
   fontFamily: font,

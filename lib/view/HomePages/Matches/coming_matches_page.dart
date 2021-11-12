@@ -12,8 +12,8 @@ class ComingMatchesPage extends StatelessWidget {
       children: [
         const SizedBox(height: 110),
         MatchContainerWidget(
+          imageName: "basketball",
           sportName: "Basketbol",
-          icon: Icon(Icons.sports_basketball, color: Colors.white,size: 50),
           saloon: "Konya Belediyesi Kapalı Spor Salonu",
           date: "12.11.2021",
           time: "12.30 - 13.40",
@@ -23,8 +23,8 @@ class ComingMatchesPage extends StatelessWidget {
           ),
 
           MatchContainerWidget(
+          imageName: "volleyball",
           sportName: "Voleybol",
-          icon: Icon(Icons.sports_volleyball, color: Colors.white,size: 50),
           saloon: "Konya Belediyesi Kapalı Spor Salonu",
           date: "12.11.2021",
           time: "12.30 - 13.40",
@@ -34,8 +34,19 @@ class ComingMatchesPage extends StatelessWidget {
           ),
 
           MatchContainerWidget(
+          imageName: "football",
           sportName: "Futbol",
-          icon: Icon(Icons.sports_soccer, color: Colors.white,size: 50),
+          saloon: "Konya Belediyesi Kapalı Spor Salonu",
+          date: "12.11.2021",
+          time: "12.30 - 13.40",
+          onTap: (){
+            //Navigator.push(context, MaterialPageRoute(builder: (context)=> FootballFieldPage(numberOfPlayer: 12)));
+          },
+          ),
+
+          MatchContainerWidget(
+          imageName: "tennis",
+          sportName: "Tenis",
           saloon: "Konya Belediyesi Kapalı Spor Salonu",
           date: "12.11.2021",
           time: "12.30 - 13.40",

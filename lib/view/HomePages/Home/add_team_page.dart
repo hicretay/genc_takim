@@ -49,8 +49,8 @@ class _AddTeamPageState extends State<AddTeamPage> {
               child: Column(
               children: [
                 MatchContainerWidget(
+                  imageName: "voleyball",
                   sportName: "Voleybol",
-                  icon: Icon(Icons.sports_volleyball, color: Colors.white,size: 50),
                   saloon: "Konya Belediyesi Kapalı Spor Salonu", 
                   date: "03.11.2021", 
                   time: "12.30 - 13.40", 

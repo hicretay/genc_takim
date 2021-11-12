@@ -40,3 +40,7 @@ flutter:
     - family: RacingSansOne
       fonts:
         - asset: assets/fonts/RacingSansOne-Regular.ttf
+
+    - family: TekoRegular
+      fonts:
+        - asset: assets/fonts/Teko-Regular.ttf
