@@ -13,6 +13,7 @@ class AddTeamPage extends StatefulWidget {
 }
 
 class _AddTeamPageState extends State<AddTeamPage> {
+  bool checked = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -27,65 +28,65 @@ class _AddTeamPageState extends State<AddTeamPage> {
             bottomRight: Radius.circular(20)))
         ),
         body: Container(
-          color: secondaryColor,
-          child: Container(
-          alignment: Alignment.bottomCenter,
-          decoration: BoxDecoration(
-            color: Colors.black,
-            ),
-            child: Container(
-          decoration: BoxDecoration(
-           color: Colors.black,
-           image: DecorationImage(
-             colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
-           image: AssetImage("assets/logos/logowhite.png"))
-           ),
-          child: Container(
-            height: deviceHeight(context)*0.85,
-            alignment: Alignment.bottomCenter,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(119, 119, 119, 0.15),
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
-              child: Column(
-              children: [
-                MatchContainerWidget(
-                  imageName: "volleyball",
-                  sportName: "Voleybol",
-                  saloon: "Konya Belediyesi Kapalı Spor Salonu", 
-                  date: "03.11.2021", 
-                  time: "12.30 - 13.40", 
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> FootballFieldPage(numberOfPlayer: 12)));
-                  }),
-
-                  Padding(
-                    padding: const EdgeInsets.all(defaultPadding*2),
-                    child: SizedBox(
-                      width: deviceWidth(context)*0.6,
-                      height: deviceHeight(context)*0.06,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          )
-                        ),
-                        child: Text("Yeni Oyun Kur",
-                        style: TextStyle(
-                          fontFamily: font,
-                          color: Colors.white,
-                          fontSize: 20
-                        )),
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> MakeTeamPage()));
-                        }),
-                    ),
-                  ),
-                ],
+        decoration: BoxDecoration(
+         color: Colors.black,
+         image: DecorationImage(
+         colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
+         image: AssetImage("assets/logos/logowhite.png"))
+         ),
+        child: Container(
+        height: deviceHeight(context)*0.85,
+        alignment: Alignment.bottomCenter,
+        decoration: const BoxDecoration(
+          color: Color.fromRGBO(119, 119, 119, 0.15),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
+          child: Column(
+          children: [
+            MatchContainerWidget(
+              fullEmptyIcon: Icon(Icons.check,color: primaryColor,size: 20),
+              fullEmpty: "Kontenjan var",
+              imageName: "volleyball",
+              sportName: "Voleybol",
+              saloon: "Konya Belediyesi Kapalı Spor Salonu", 
+              date: "03.11.2021", 
+              time: "12.30 - 13.40", 
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> FootballFieldPage(numberOfPlayer: 12)));
+              },
+             expandedonTap: ()
+           {
+             setState(() {
+               checked=!checked;
+             });
+           },
               ),
+
+              Padding(
+                padding: const EdgeInsets.all(defaultPadding*2),
+                child: SizedBox(
+                  width: deviceWidth(context)*0.6,
+                  height: deviceHeight(context)*0.06,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      )
+                    ),
+                    child: Text("Yeni Oyun Kur",
+                    style: TextStyle(
+                      fontFamily: font,
+                      color: Colors.white,
+                      fontSize: 20
+                    )),
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> MakeTeamPage()));
+                    }),
+                ),
+              ),
+            ],
           ),
         ),
-        ),
-    )));
+        )));
   }
 }

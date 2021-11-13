@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
 
-class MatchContainerWidget extends StatefulWidget {
+class ExpandedMatchContainerWidget extends StatefulWidget {
   final String saloon;
   final String date;
   final String time;
@@ -13,7 +13,7 @@ class MatchContainerWidget extends StatefulWidget {
   final Icon fullEmptyIcon;
 
   
-  const MatchContainerWidget({
+  const ExpandedMatchContainerWidget({
     Key? key, 
     required this.saloon, 
     required this.date, 
@@ -22,25 +22,28 @@ class MatchContainerWidget extends StatefulWidget {
     required this.sportName, 
     required this.imageName, 
     required this.fullEmpty, 
-    required this.fullEmptyIcon,
+    required this.fullEmptyIcon, 
     required this.expandedonTap,
   }) : super(key: key);
 
   @override
-  State<MatchContainerWidget> createState() => _MatchContainerWidgetState();
+  State<ExpandedMatchContainerWidget> createState() => _ExpandedMatchContainerWidgetState();
 }
 
-class _MatchContainerWidgetState extends State<MatchContainerWidget> {
+class _ExpandedMatchContainerWidgetState extends State<ExpandedMatchContainerWidget> {
   @override
   Widget build(BuildContext context) {
+    bool isChecked=false;
     return GestureDetector(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(      
-          height: deviceHeight(context)*0.15,       
+          height: deviceHeight(context)*0.35,       
             decoration: BoxDecoration(
               color: secondaryColor,
               borderRadius: BorderRadius.all(Radius.circular(25)),
+              // image: DecorationImage(image: assetImage,fit: BoxFit.cover),
+              
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -68,7 +71,23 @@ class _MatchContainerWidgetState extends State<MatchContainerWidget> {
                    children: [
                        const Text("Tarih / Saat:",textAlign: TextAlign.center,  style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 20)),
                        Text("${widget.date}\n${widget.time}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily:contentFont,fontSize: 20))]))]),
+                 Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                   children: [
+                   Column(
+                     // ignore: prefer_const_literals_to_create_immutables
+                     children: [
+                     Text("Oyuncu Sayısı:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
+                     Text("12",textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20))]),
 
+                   Column(
+                     // ignore: prefer_const_literals_to_create_immutables
+                     children: [
+                     Text("Yedek Oyuncu Sayısı:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
+                     Text("4",textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))]),
+                 ]),
+
+                  Text("Oyun Konya Anadolu Lisesi öğrencileri arasında oynanacaktır. ",textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -79,7 +98,7 @@ class _MatchContainerWidgetState extends State<MatchContainerWidget> {
                           Text(widget.fullEmpty,style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16))]),
                       ),
                       GestureDetector(
-                        child: Icon(Icons.expand_more_outlined,color: primaryColor,size: 30),
+                        child: Icon(isChecked==false ? Icons.expand_less_outlined : Icons.expand_less_outlined,color: primaryColor,size: 30),
                         onTap: widget.expandedonTap
                       ),
                       Padding(

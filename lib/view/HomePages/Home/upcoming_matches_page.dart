@@ -13,6 +13,7 @@ class UpComingMatchesPage extends StatefulWidget {
 }
 
 class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
+  bool checked = false;
   @override
   Widget build(BuildContext context) {
         return SafeArea(
@@ -49,6 +50,8 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
               child: Column(
               children: [
                 MatchContainerWidget(
+                  fullEmptyIcon: Icon(Icons.check,color: primaryColor,size: 20),
+                  fullEmpty: "Kontenjan var",
                   imageName: "football",
                   sportName: "Futbol",
                   saloon: "Konya Belediyesi Kapalı Spor Salonu", 
@@ -56,7 +59,13 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
                   time: "12.30 - 13.40", 
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context)=> FootballFieldPage(numberOfPlayer: 12)));
-                  }),
+                  },
+                  expandedonTap: ()
+                  {
+                    setState(() {
+                      checked=!checked;
+                    });
+                  },),
 
                   Padding(
                     padding: const EdgeInsets.all(defaultPadding*2),

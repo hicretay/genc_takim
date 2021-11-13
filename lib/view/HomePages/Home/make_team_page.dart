@@ -20,6 +20,8 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   String selectedDate = "07.11.2021";
   String selectedTime= "10:00";
   int selectedPlayerNumber = 10;
+
+  TextEditingController teNote = TextEditingController();
   
   @override
   Widget build(BuildContext context) {
@@ -344,7 +346,52 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                  //---------------------------------------------------------------------------------------------------
 
                  //-----------------------------OYUN KURUCU NOTU---------------------------------------
-                  MakeTeamDropWidget(selectedSport: selectedSport),
+                  Column(
+                  children: 
+                      // ignore: prefer_const_literals_to_create_immutables
+                      [Padding(
+                  padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
+                  child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Oyun Açıklamasını Giriniz *opsiyonel",style: TextStyle(color: Colors.white)))),
+                      selectedSport=="Futbol"? 
+                  Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+                    child: SizedBox(
+                    width: deviceWidth(context),
+                    height: deviceHeight(context)*0.1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+                        color: secondaryColor2,
+                      ),
+                      child:  Align(
+                        alignment: Alignment.center,
+                        child:  TextField(
+                                  keyboardType: TextInputType.multiline,
+                                  maxLines: null,
+                                  controller: teNote,
+                                  cursorColor: primaryColor,
+                                  style: TextStyle(color: Colors.white, fontSize: 18),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        width: 0,
+                                        style: BorderStyle.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                        
+                      ),
+                      ),
+                    ),
+                  ),
+                ):Container(),
+                    ],
+                ),
                   
                  //---------------------------------------------------------------------------------------------------
         
@@ -384,46 +431,3 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   }
 }
 
-class MakeTeamDropWidget extends StatelessWidget {
-  const MakeTeamDropWidget({
-    Key? key,
-    required this.selectedSport,
-  }) : super(key: key);
-
-  final String selectedSport;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: 
-          // ignore: prefer_const_literals_to_create_immutables
-          [Padding(
-      padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
-      child: Align(
-          alignment: Alignment.centerLeft,
-          child: Text("Oyun Açıklamasını Giriniz *opsiyonel",style: TextStyle(color: Colors.white)))),
-          selectedSport=="Futbol"? 
-    Align(
-      alignment: Alignment.centerLeft,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
-        child: SizedBox(
-        width: deviceWidth(context),
-        height: deviceHeight(context)*0.1,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-            color: secondaryColor2,
-          ),
-          child:  Align(
-            alignment: Alignment.center,
-            
-          ),
-          ),
-        ),
-      ),
-    ):Container(),
-        ],
-    );
-  }
-}
