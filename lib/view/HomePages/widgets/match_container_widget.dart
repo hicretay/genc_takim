@@ -11,8 +11,8 @@ class MatchContainerWidget extends StatefulWidget {
   final VoidCallback onTap, expandedonTap;
   final String fullEmpty;
   final Icon fullEmptyIcon;
+  final Widget exitTeamRow;
 
-  
   const MatchContainerWidget({
     Key? key, 
     required this.saloon, 
@@ -23,7 +23,8 @@ class MatchContainerWidget extends StatefulWidget {
     required this.imageName, 
     required this.fullEmpty, 
     required this.fullEmptyIcon,
-    required this.expandedonTap,
+    required this.expandedonTap, 
+    required this.exitTeamRow,
   }) : super(key: key);
 
   @override
@@ -61,12 +62,12 @@ class _MatchContainerWidgetState extends State<MatchContainerWidget> {
                  Flexible(child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
-                   const Text("Yer:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 20)),
+                   const Text("Yer:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
                    Text(widget.saloon,textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))])),
                  Flexible(child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
-                       const Text("Tarih / Saat:",textAlign: TextAlign.center,  style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 20)),
+                       const Text("Tarih / Saat:",textAlign: TextAlign.center,  style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
                        Text("${widget.date}\n${widget.time}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily:contentFont,fontSize: 20))]))]),
 
                   Row(
@@ -83,10 +84,10 @@ class _MatchContainerWidgetState extends State<MatchContainerWidget> {
                         onTap: widget.expandedonTap
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: maxSpace),
-                        child: Row(children: [
-                          Icon(Icons.check,color: Colors.transparent,size: 20),
-                          Text(widget.fullEmpty,style: TextStyle(color: Colors.transparent,fontFamily: contentFont,fontSize: 16))]),
+                        padding: const EdgeInsets.only(right: maxSpace),
+                        // ignore: prefer_const_literals_to_create_immutables
+                        child: widget.exitTeamRow
+                        
                       ),
                     ],
                   )

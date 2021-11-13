@@ -37,6 +37,9 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
                checked=!checked;
              });
            },
+           exitTeamRow: Row(children: [
+            Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
+            Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
           ):
           ExpandedMatchContainerWidget(
           fullEmptyIcon: Icon(Icons.cancel_outlined,color: Colors.red,size: 20),
@@ -73,6 +76,9 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
             //    checked=!checked;
             //  });
            },
+           exitTeamRow: Row(children: [
+            Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
+            Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
           ),
 
           MatchContainerWidget(
@@ -92,6 +98,9 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
             //    checked=!checked;
             //  });
            },
+            exitTeamRow: Row(children: [
+            Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
+            Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
           ),
 
           MatchContainerWidget(
@@ -111,6 +120,9 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
             //    checked=!checked;
             //  });
            },
+            exitTeamRow: Row(children: [
+            Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
+            Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
           ),
       ],
     );

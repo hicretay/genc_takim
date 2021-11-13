@@ -64,12 +64,12 @@ class _ExpandedMatchContainerWidgetState extends State<ExpandedMatchContainerWid
                  Flexible(child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
-                   const Text("Yer:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 20)),
+                   const Text("Yer:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
                    Text(widget.saloon,textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))])),
                  Flexible(child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
-                       const Text("Tarih / Saat:",textAlign: TextAlign.center,  style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 20)),
+                       const Text("Tarih / Saat:",textAlign: TextAlign.center,  style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
                        Text("${widget.date}\n${widget.time}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily:contentFont,fontSize: 20))]))]),
                  Row(
                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -102,10 +102,11 @@ class _ExpandedMatchContainerWidgetState extends State<ExpandedMatchContainerWid
                         onTap: widget.expandedonTap
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: maxSpace),
+                        padding: const EdgeInsets.only(right: maxSpace),
+                        // ignore: prefer_const_literals_to_create_immutables
                         child: Row(children: [
-                          Icon(Icons.check,color: Colors.transparent,size: 20),
-                          Text(widget.fullEmpty,style: TextStyle(color: Colors.transparent,fontFamily: contentFont,fontSize: 16))]),
+                          Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
+                          Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
                       ),
                     ],
                   )

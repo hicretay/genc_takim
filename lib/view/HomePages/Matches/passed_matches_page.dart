@@ -36,6 +36,7 @@ class _PassedMatchesPageState extends State<PassedMatchesPage> {
                checked=!checked;
              });
            },
+            exitTeamRow: Container()
           ),
 
           MatchContainerWidget(
@@ -55,6 +56,7 @@ class _PassedMatchesPageState extends State<PassedMatchesPage> {
                checked=!checked;
              });
            },
+            exitTeamRow: Container()
           ),
       ],
     );
