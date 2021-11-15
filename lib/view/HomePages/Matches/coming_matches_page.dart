@@ -25,9 +25,9 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
           fullEmpty: "Kontenjan yok",
           imageName: "basketball",
           sportName: "Basketbol",
-          saloon: "Konya Belediyesi Kapalı Spor Salonu",
-          date: "12.11.2021",
-          time: "12.30 - 13.40",
+          saloon: "Selçuk Üniversitesi 19 Mayıs Spor Salonu",
+          date: "14.11.2021",
+          time: "10.30 - 11.40",
           onTap: (){
            // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
           },
@@ -46,9 +46,9 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
           fullEmpty: "Kontenjan yok",
           imageName: "basketball",
           sportName: "Basketbol",
-          saloon: "Konya Belediyesi Kapalı Spor Salonu",
-          date: "12.11.2021",
-          time: "12.30 - 13.40",
+          saloon: "Selçuk Üniversitesi 19 Mayıs Spor Salonu",
+          date: "14.11.2021",
+          time: "10.30 - 11.40",
           onTap: (){
            // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
           },
@@ -64,18 +64,13 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
           fullEmpty: "Kontenjan var",
           imageName: "volleyball",
           sportName: "Voleybol",
-          saloon: "Konya Belediyesi Kapalı Spor Salonu",
-          date: "12.11.2021",
-          time: "12.30 - 13.40",
+          saloon: "Meram Belediyesi Spor Kompleksi",
+          date: "15.11.2021",
+          time: "09.00 - 10.10",
           onTap: (){
             //Navigator.push(context, MaterialPageRoute(builder: (context)=> VolleyballFieldPage()));
           },
-                    expandedonTap: ()
-           {
-            //  setState(() {
-            //    checked=!checked;
-            //  });
-           },
+          expandedonTap: (){},
            exitTeamRow: Row(children: [
             Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
             Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
@@ -86,18 +81,13 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
           fullEmpty: "Kontenjan var",
           imageName: "football",
           sportName: "Futbol",
-          saloon: "Konya Belediyesi Kapalı Spor Salonu",
+          saloon: "Büyükşehir Belediyesi Spor Kompleksi",
           date: "12.11.2021",
           time: "12.30 - 13.40",
           onTap: (){
             //Navigator.push(context, MaterialPageRoute(builder: (context)=> FootballFieldPage(numberOfPlayer: 12)));
           },
-            expandedonTap: ()
-           {
-            //  setState(() {
-            //    checked=!checked;
-            //  });
-           },
+            expandedonTap: (){},
             exitTeamRow: Row(children: [
             Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
             Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
@@ -108,22 +98,19 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
           fullEmpty: "Kontenjan yok",
           imageName: "tennis",
           sportName: "Tenis",
-          saloon: "Konya Belediyesi Kapalı Spor Salonu",
+          saloon: "Selçuklu Belediyesi Uluslararası Spor Salonu",
           date: "12.11.2021",
-          time: "12.30 - 13.40",
+          time: "15.30 - 16.40",
           onTap: (){
             //Navigator.push(context, MaterialPageRoute(builder: (context)=> FootballFieldPage(numberOfPlayer: 12)));
           },
-                    expandedonTap: ()
-           {
-            //  setState(() {
-            //    checked=!checked;
-            //  });
-           },
+            expandedonTap: (){},
             exitTeamRow: Row(children: [
             Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
             Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
           ),
+
+          SizedBox(height: defaultPadding)
       ],
     );
   }

@@ -38,7 +38,7 @@ class _MatchContainerWidgetState extends State<MatchContainerWidget> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(      
-          height: deviceHeight(context)*0.15,       
+          height: deviceHeight(context)*0.18,       
             decoration: BoxDecoration(
               color: secondaryColor,
               borderRadius: BorderRadius.all(Radius.circular(25)),
@@ -63,12 +63,12 @@ class _MatchContainerWidgetState extends State<MatchContainerWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
                    const Text("Yer:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
-                   Text(widget.saloon,textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))])),
+                   Text(widget.saloon,textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 18,))])),
                  Flexible(child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
                        const Text("Tarih / Saat:",textAlign: TextAlign.center,  style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
-                       Text("${widget.date}\n${widget.time}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily:contentFont,fontSize: 20))]))]),
+                       Text("${widget.date}\n${widget.time}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily:contentFont,fontSize: 18))]))]),
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

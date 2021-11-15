@@ -24,8 +24,8 @@ class _PassedMatchesPageState extends State<PassedMatchesPage> {
           fullEmpty: "Kontenjan var",
           imageName: "football",
           sportName: "Futbol",
-          saloon: "Konya Belediyesi Kapalı Spor Salonu",
-          date: "12.11.2021",
+          saloon: "Selçuklu Belediyesi Uluslararası Spor Salonu",
+          date: "09.11.2021",
           time: "12.30 - 13.40",
           onTap: (){
             //Navigator.push(context, MaterialPageRoute(builder: (context)=> VolleyballFieldPage()));
@@ -44,9 +44,9 @@ class _PassedMatchesPageState extends State<PassedMatchesPage> {
           fullEmpty: "Kontenjan yok",
           imageName: "volleyball",
           sportName: "Voleybol",
-          saloon: "Konya Belediyesi Kapalı Spor Salonu",
-          date: "12.11.2021",
-          time: "12.30 - 13.40",
+          saloon: "Meram Belediyesi Spor Kompleksi",
+          date: "05.11.2021",
+          time: "10.30 - 11.40",
           onTap: (){
            // Navigator.push(context, MaterialPageRoute(builder: (context)=> FootballFieldPage(numberOfPlayer: 12)));
           },
@@ -58,6 +58,8 @@ class _PassedMatchesPageState extends State<PassedMatchesPage> {
            },
             exitTeamRow: Container()
           ),
+
+          SizedBox(height: defaultPadding)
       ],
     );
   }

@@ -32,54 +32,58 @@ class _VolleyballFieldPageState extends State<VolleyballFieldPage> {
        image: AssetImage("assets/images/voleybol_sahasi.jpg"),fit: BoxFit.cover)
        ),
        // ignore: prefer_const_literals_to_create_immutables
-       child: Column(
-         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-         crossAxisAlignment: CrossAxisAlignment.center,
-         children: [
-         Padding(
-           padding: EdgeInsets.only(left: deviceWidth(context)*0.15, right: deviceWidth(context)*0.17, top: deviceWidth(context)*0.28,bottom: deviceWidth(context)*0.35),
-           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-             children: const [
-             FullEmptyCircleWidget(),
-             FullEmptyCircleWidget(),
-             FullEmptyCircleWidget()
+       child: Stack(
+         children: 
+           [Column(
+             //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+             crossAxisAlignment: CrossAxisAlignment.center,
+             children: [
+             Padding(
+               padding: EdgeInsets.only(left: deviceWidth(context)*0.15, right: deviceWidth(context)*0.17, top: deviceWidth(context)*0.2,bottom: deviceWidth(context)*0.35),
+               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 children: const [
+                 FullEmptyCircleWidget(),
+                 FullEmptyCircleWidget(),
+                 FullEmptyCircleWidget()
+               ],),
+             ),
+       
+              Padding(
+                 padding: EdgeInsets.only(left: deviceWidth(context)*0.15, right: deviceWidth(context)*0.17,bottom: deviceWidth(context)*0.1),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                  FullEmptyCircleWidget(),
+                  FullEmptyCircleWidget(),
+                  FullEmptyCircleWidget()
+                ],),
+              ),
+       
+              Padding(
+                 padding: EdgeInsets.only(left: deviceWidth(context)*0.15, right: deviceWidth(context)*0.17,bottom: deviceWidth(context)*0.35),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                  FullEmptyCircleWidget(),
+                  FullEmptyCircleWidget(),
+                  FullEmptyCircleWidget()
+                ],),
+              ),
+       
+             Padding(
+                padding: EdgeInsets.only(left: deviceWidth(context)*0.15, right: deviceWidth(context)*0.17),
+               child: Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 children: const [
+                 FullEmptyCircleWidget(),
+                 FullEmptyCircleWidget(),
+                 FullEmptyCircleWidget()
+               ],),
+             ),
            ],),
-         ),
-
-          Padding(
-             padding: EdgeInsets.only(left: deviceWidth(context)*0.15, right: deviceWidth(context)*0.17,bottom: deviceWidth(context)*0.1),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-              FullEmptyCircleWidget(),
-              FullEmptyCircleWidget(),
-              FullEmptyCircleWidget()
-            ],),
-          ),
-
-          Padding(
-             padding: EdgeInsets.only(left: deviceWidth(context)*0.15, right: deviceWidth(context)*0.17,bottom: deviceWidth(context)*0.35),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-              FullEmptyCircleWidget(),
-              FullEmptyCircleWidget(),
-              FullEmptyCircleWidget()
-            ],),
-          ),
-
-         Padding(
-            padding: EdgeInsets.only(left: deviceWidth(context)*0.15, right: deviceWidth(context)*0.17),
-           child: Row(
-             mainAxisAlignment: MainAxisAlignment.spaceAround,
-             children: const [
-             FullEmptyCircleWidget(),
-             FullEmptyCircleWidget(),
-             FullEmptyCircleWidget()
-           ],),
-         ),
-       ],),
+         ],
+       ),
      )
       ));
   }

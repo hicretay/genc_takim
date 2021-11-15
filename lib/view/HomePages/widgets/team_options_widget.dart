@@ -15,7 +15,7 @@ class TeamOptionsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        width: deviceWidth(context)*0.45,
+        width: deviceWidth(context)*0.46,
         height: deviceHeight(context)*0.2,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(25)),
