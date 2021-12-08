@@ -5,10 +5,11 @@ import 'package:genc_takim/settings/constants.dart';
 class TextFormFieldWidget extends StatelessWidget {
   final String leading;
   final String labelText;
+  final TextEditingController controller;
   
 
   const TextFormFieldWidget({
-    Key? key, required this.leading, required this.labelText,
+    Key? key, required this.leading, required this.labelText, required this.controller,
   }) : super(key: key);
 
   @override
@@ -31,6 +32,8 @@ class TextFormFieldWidget extends StatelessWidget {
           Padding(
           padding: const EdgeInsets.only(left: defaultPadding,right: defaultPadding),
           child: TextFormField(
+          controller: controller,
+          validator: (value) => value!.length > 3 ? null : "3 ten küçük",
           decoration: InputDecoration(
           fillColor: Colors.amber,
           border: UnderlineInputBorder(

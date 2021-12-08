@@ -1,8 +1,10 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, file_names, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors_in_immutables, file_names, prefer_const_constructors, implementation_imports
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/LoginRegisterPages/login_page.dart';
 import 'package:genc_takim/view/LoginRegisterPages/widgets/textFormField_widget.dart';
+import 'package:genc_takim/viewmodel/login_cubit.dart';
+import 'package:provider/src/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -75,10 +77,22 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontSize: 25
                         )),
                       ),
-                      TextFormFieldWidget(leading: "Ad Soyad",labelText: "Ad ve Soyadınızı giriniz"),
-                      TextFormFieldWidget(leading: "E - Posta",labelText: "E - Posta adresinizi giriniz"),
-                      TextFormFieldWidget(leading: "Telefon Numarası",labelText: "Telefon numaranızı giriniz"),
-                      TextFormFieldWidget(leading: "Doğum Tarihi",labelText: "Doğum Tarihinizi giriniz"),
+                      TextFormFieldWidget(
+                        leading: "Ad Soyad",
+                        labelText: "Ad ve Soyadınızı giriniz",
+                        controller: context.read<LoginCubit>().emailController),
+                      TextFormFieldWidget(
+                        leading: "E - Posta",
+                        labelText: "E - Posta adresinizi giriniz",
+                        controller: context.read<LoginCubit>().emailController),
+                      TextFormFieldWidget(
+                        leading: "Telefon Numarası",
+                        labelText: "Telefon numaranızı giriniz",
+                        controller: context.read<LoginCubit>().emailController),
+                      TextFormFieldWidget(
+                        leading: "Doğum Tarihi",
+                        labelText: "Doğum Tarihinizi giriniz",
+                        controller: context.read<LoginCubit>().emailController),
         
                       Padding(
                         padding: const EdgeInsets.all(defaultPadding*2),

@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-BoxDecoration boxDecoration = BoxDecoration(
-  shape: BoxShape.rectangle,
-  borderRadius: BorderRadius.circular(minCurved),
-);
-
 const primaryColor = Color(0xff2F7327);
 const secondaryColor = Color(0x8c2A2D2E);
 const secondaryColor2 = Color(0xff2A2D2E);

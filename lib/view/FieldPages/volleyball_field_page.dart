@@ -39,7 +39,7 @@ class _VolleyballFieldPageState extends State<VolleyballFieldPage> {
              crossAxisAlignment: CrossAxisAlignment.center,
              children: [
              Padding(
-               padding: EdgeInsets.only(left: deviceWidth(context)*0.15, right: deviceWidth(context)*0.17, top: deviceWidth(context)*0.2,bottom: deviceWidth(context)*0.35),
+               padding: EdgeInsets.only(left: deviceWidth(context)*0.15, right: deviceWidth(context)*0.17, top: deviceWidth(context)*0.28,bottom: deviceWidth(context)*0.35),
                child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                  children: const [
