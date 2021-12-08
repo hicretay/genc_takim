@@ -32,8 +32,9 @@ class TextFormFieldWidget extends StatelessWidget {
           Padding(
           padding: const EdgeInsets.only(left: defaultPadding,right: defaultPadding),
           child: TextFormField(
+          cursorColor: primaryColor,
           controller: controller,
-          validator: (value) => value!.length > 3 ? null : "3 ten küçük",
+          //validator: (value) => value!.length > 0 ? null : "3 ten küçük olmamalı",
           decoration: InputDecoration(
           fillColor: Colors.amber,
           border: UnderlineInputBorder(

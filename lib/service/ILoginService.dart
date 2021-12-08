@@ -1,5 +1,4 @@
 // ignore_for_file: file_names, constant_identifier_names
-
 import 'package:dio/dio.dart';
 import 'package:genc_takim/model/login_request_model.dart';
 import 'package:genc_takim/model/login_response_model.dart';
@@ -21,8 +20,7 @@ extension ILoginServicePathExtension on ILoginServicePath{
   String get rawValue{
     switch (this) {
       case ILoginServicePath.LOGIN:
-      return "/login";
-        //return "User/Login";
+      return "User/Login";
     } 
   }
 }

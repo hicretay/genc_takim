@@ -21,8 +21,8 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> formKey = GlobalKey(); 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  //final String baseUrl = "http://localhost/genctakim/";
-  final String baseUrl = "https://reqres.in/api";
+  final String baseUrl = "https://172.24.46.42/genctakim/";
+  //final String baseUrl = "https://reqres.in/api";
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +31,13 @@ class _LoginPageState extends State<LoginPage> {
         formKey, 
         emailController, 
         passwordController, 
-        service: LoginService(Dio(BaseOptions(baseUrl: baseUrl)))),
+        service: LoginService(Dio(BaseOptions(baseUrl: baseUrl,)))),
 
       child: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) {
           if(state is LoginComplete){
             // ignore: avoid_print
-            print(state.model.token);
+            //print(state.model.token);
             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
             builder: (context)=>HomeNavBarWidget(tabIndex: 0, model: state.model)), (route) => false);
           }

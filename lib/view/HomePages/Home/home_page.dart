@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
               TeamOptionsWidget(
-                leading  : model.token ?? "",//"Takım Kur",
+                leading  : model.birthdate.toString(),//"Takım Kur",
                 iconImage: AssetImage("assets/icons/makeTeam.png"),
                 onTap    : (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> MakeTeamPage()));
