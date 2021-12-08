@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/LoginRegisterPages/login_page.dart';
 import 'package:genc_takim/view/LoginRegisterPages/widgets/textFormField_widget.dart';
-import 'package:genc_takim/viewmodel/login_cubit.dart';
-import 'package:provider/src/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -14,6 +12,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController nameSurnameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
         return SafeArea(
@@ -26,7 +27,7 @@ class _RegisterPageState extends State<RegisterPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: deviceHeight(context)*0.05),
+              padding: EdgeInsets.only(top: deviceHeight(context)*0.08,bottom: deviceHeight(context)*0.05),
               child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -35,9 +36,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         width: deviceWidth(context)*0.3,
                         height: deviceWidth(context)*0.3,
                         child: Image.asset("assets/logos/logowhite.png")),
-
+        
                         SizedBox(width: deviceWidth(context)*0.1),
-
+        
                         SizedBox(
                         width: deviceWidth(context)*0.3,
                         height: deviceWidth(context)*0.3,
@@ -45,83 +46,75 @@ class _RegisterPageState extends State<RegisterPage> {
                       ],
                   ),
             ),
-              Container(
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                color: Colors.black,
-                // image: DecorationImage(
-                // image: AssetImage("assets/images/bakanlik_logo.png"))
-                ),
+              Expanded(
                 child: Container(
-              decoration: BoxDecoration(
-              color: Colors.black,
-              //  image: DecorationImage(
-              //    colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
-              //  image: AssetImage("assets/images/bakanlik_logo.png"))
-              ),
-              child: Container(
-                height: deviceHeight(context)*0.6,
+                height: deviceHeight(context)*0.5,
                 alignment: Alignment.bottomCenter,
                 decoration: const BoxDecoration(
                   color: secondaryColor,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(defaultPadding),
-                        child: const Text("Kayıt Ol",
-                        style: TextStyle(
-                          fontFamily: font,
-                          color: Colors.white,
-                          fontSize: 25
-                        )),
-                      ),
-                      TextFormFieldWidget(
-                        leading: "Ad Soyad",
-                        labelText: "Ad ve Soyadınızı giriniz",
-                        controller: context.read<LoginCubit>().emailController),
-                      TextFormFieldWidget(
-                        leading: "E - Posta",
-                        labelText: "E - Posta adresinizi giriniz",
-                        controller: context.read<LoginCubit>().emailController),
-                      TextFormFieldWidget(
-                        leading: "Telefon Numarası",
-                        labelText: "Telefon numaranızı giriniz",
-                        controller: context.read<LoginCubit>().emailController),
-                      TextFormFieldWidget(
-                        leading: "Doğum Tarihi",
-                        labelText: "Doğum Tarihinizi giriniz",
-                        controller: context.read<LoginCubit>().emailController),
-        
-                      Padding(
-                        padding: const EdgeInsets.all(defaultPadding*2),
-                        child: SizedBox(
-                          width: deviceWidth(context)*0.6,
-                          height: deviceHeight(context)*0.06,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: primaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              )
-                            ),
-                            child: Text("Devam",
-                            style: TextStyle(
-                              fontFamily: font,
-                              color: Colors.white,
-                              fontSize: 20
-                            )),
-                            onPressed: (){
-                              Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()));
-                            }),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(defaultPadding),
+                          child: const Text("Kayıt Ol",
+                          style: TextStyle(
+                            fontFamily: font,
+                            color: Colors.white,
+                            fontSize: 25
+                          )),
                         ),
-                      ),
-                    ],
+                        TextFormFieldWidget(
+                          leading: "Ad Soyad",
+                          labelText: "Ad ve Soyadınızı giriniz",
+                          controller: nameSurnameController),
+                        TextFormFieldWidget(
+                          leading: "E - Posta",
+                          labelText: "E - Posta adresinizi giriniz",
+                          controller: nameSurnameController),
+                        TextFormFieldWidget(
+                          leading: "Telefon Numarası",
+                          labelText: "Telefon numaranızı giriniz",
+                          controller: nameSurnameController),
+                        TextFormFieldWidget(
+                          leading: "Doğum Tarihi",
+                          labelText: "Doğum Tarihinizi giriniz",
+                          controller: nameSurnameController),
+                        TextFormFieldWidget(
+                          leading: "Şifre",
+                          labelText: "Şifrenizi giriniz",
+                          controller: nameSurnameController),
+                          
+                        Padding(
+                          padding: const EdgeInsets.all(defaultPadding*2),
+                          child: SizedBox(
+                            width: deviceWidth(context)*0.6,
+                            height: deviceHeight(context)*0.06,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: primaryColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                )
+                              ),
+                              child: Text("Devam",
+                              style: TextStyle(
+                                fontFamily: font,
+                                color: Colors.white,
+                                fontSize: 20
+                              )),
+                              onPressed: (){
+                                Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()));
+                              }),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
+                ),
               ),
-            ),
-            ),
           ],
         ),
       ),

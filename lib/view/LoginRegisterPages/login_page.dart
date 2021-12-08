@@ -40,6 +40,9 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
             builder: (context)=>HomeNavBarWidget(tabIndex: 0, model: state.model)), (route) => false);
           }
+          else{
+           // showAlert(context, "Bir hata oluştu !");
+          }
         },
         builder: (context, state) {
           return buildScaffold(context, state);
@@ -75,8 +78,6 @@ class _LoginPageState extends State<LoginPage> {
       ? null : (){
         context.read<LoginCubit>().postUserModel();
       },
-     //Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-     //builder: (context)=>HomeNavBarWidget(tabIndex: 0)), (route) => false);
     );
       },
     );
@@ -85,15 +86,15 @@ class _LoginPageState extends State<LoginPage> {
   Widget buildScaffold(BuildContext context, LoginState state) {
     return SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            leading: Visibility(
-            visible: context.watch<LoginCubit>().isLoginLoading,
-            child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: CircularProgressIndicator(color: Colors.white,),
-          ))
-        ),
+        //   appBar: AppBar(
+        //     backgroundColor: Colors.transparent,
+        //     leading: Visibility(
+        //     visible: context.watch<LoginCubit>().isLoginLoading,
+        //     child: Padding(
+        //     padding: EdgeInsets.all(8.0),
+        //     child: Center(child: CircularProgressIndicator(color: Colors.white)),
+        //   ))
+        // ),
         resizeToAvoidBottomInset: false,
         body: Form(
           key: formKey,
@@ -101,93 +102,85 @@ class _LoginPageState extends State<LoginPage> {
           // onUserInteraction: kullanıcı etkileşime geçer geçmez aktifleşir
           child: Container(
             alignment: Alignment.bottomCenter,
-            child: SingleChildScrollView(
-              reverse: true,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                      Container(
-                        alignment: Alignment.center,
-                        height: deviceHeight(context)*0.3,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                              SizedBox(
-                              width: deviceWidth(context)*0.3,
-                              height: deviceWidth(context)*0.3,
-                              child: Image.asset("assets/logos/logowhite.png")),
-                              SizedBox(width: deviceWidth(context)*0.1),
-                              SizedBox(
-                              width: deviceWidth(context)*0.3,
-                              height: deviceWidth(context)*0.3,
-                              child: Image.asset("assets/logos/bakanlik_logo.png")),
-                            ],
-                        ),
-                      ),
-                      Container(
-                      decoration: BoxDecoration(
-                      color: Colors.black,
-                      ),
-                      child: Container(
-                      height: deviceHeight(context)*0.6,
-                      alignment: Alignment.bottomCenter,
-                      decoration: const BoxDecoration(
-                        color: secondaryColor,
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                              Padding(
-                                padding: const EdgeInsets.all(defaultPadding),
-                                child: const Text("Haydi Başlayalım",
-                                style: TextStyle(
-                                  fontFamily: font,
-                                  color: Colors.white,
-                                  fontSize: 25
-                                )),
-                              ),
-                        TextFormFieldWidget(
-                          leading: "E - Posta", 
-                          labelText: "E - Posta adresinizi giriniz",
-                          controller: emailController),
-                        TextFormFieldWidget(
-                          leading: "Şifre", 
-                          labelText: "Şifrenizi giriniz",
-                          controller: passwordController),
-                              Padding(
-                                padding: const EdgeInsets.all(defaultPadding*2),
-                                child: SizedBox(
-                                  width: deviceWidth(context)*0.6,
-                                  height: deviceHeight(context)*0.06,
-                                  child: buildElevatedButton(context),
-                                ),
-                              ),
-                              GestureDetector(
-                                child: Padding(
-                                    padding: const EdgeInsets.only(right: defaultPadding,left: defaultPadding),
-                                    child: Text("Hesabınız yok mu",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                    color: Colors.grey[700],
-                                    )),
-                                  ),
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterPage()));
-                                },
-                              ),
-                          ],
-                        ),
-                      ),
-                      ),
-                    ],
-                    ),
+            child: Padding(
+              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                Container(
+                  alignment: Alignment.center,
+                  height: deviceHeight(context)*0.3,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                        SizedBox(
+                        width: deviceWidth(context)*0.3,
+                        height: deviceWidth(context)*0.3,
+                        child: Image.asset("assets/logos/logowhite.png")),
+                        SizedBox(width: deviceWidth(context)*0.1),
+                        SizedBox(
+                        width: deviceWidth(context)*0.3,
+                        height: deviceWidth(context)*0.3,
+                        child: Image.asset("assets/logos/bakanlik_logo.png")),
+                      ],
+                  ),
                 ),
+                Expanded(
+                  child: Container(
+                  //height: deviceHeight(context)*0.1,
+                  alignment: Alignment.bottomCenter,
+                  decoration: const BoxDecoration(
+                    color: secondaryColor,
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                      Padding(
+                        padding: const EdgeInsets.all(defaultPadding),
+                        child: const Text("Haydi Başlayalım",
+                        style: TextStyle(
+                          fontFamily: font,
+                          color: Colors.white,
+                          fontSize: 27
+                        )),
+                      ),
+                      TextFormFieldWidget(
+                        leading: "E - Posta", 
+                        labelText: "E - Posta adresinizi giriniz",
+                        controller: emailController),
+                      SizedBox(height: deviceHeight(context)*0.03),
+                      TextFormFieldWidget(
+                        leading: "Şifre", 
+                        labelText: "Şifrenizi giriniz",
+                        controller: passwordController),
+                            Padding(
+                              padding: const EdgeInsets.all(defaultPadding*4),
+                              child: SizedBox(
+                                width: deviceWidth(context)*0.6,
+                                height: deviceHeight(context)*0.06,
+                                child: buildElevatedButton(context),
+                              ),
+                            ),
+                            GestureDetector(
+                              child: Padding(
+                                  padding: const EdgeInsets.only(right: defaultPadding,left: defaultPadding,bottom: defaultPadding),
+                                  child: Text("Hesabınız yok mu",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                  color: Colors.grey[700],
+                                  )),
+                                ),
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterPage()));
+                              },
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
               ),
             ),
           ),

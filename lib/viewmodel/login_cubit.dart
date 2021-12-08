@@ -19,9 +19,9 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> postUserModel() async {
     if(formKey.currentState != null && formKey.currentState!.validate()){
-     // changeUserLoadingView();
+      changeUserLoadingView();
       final data = await service.postUserLogin(LoginRequestModel(userEmail: emailController.text.trim(),userPassword: passwordController.text.trim()));
-      //changeUserLoadingView();
+      changeUserLoadingView();
 
       if(data is LoginResponseModel){
         emit(LoginComplete(data));
