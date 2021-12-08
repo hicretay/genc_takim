@@ -22,6 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ProfileRowWidget(text: "Lisans Bilgileri",icon: SvgPicture.asset("assets/icons/lisans_bilgileri.svg",height: 25,width: 25)),
             ProfileRowWidget(text: "Kullanıcı Sözleşmesi",icon: SvgPicture.asset("assets/icons/kullanici_sozlesmesi.svg",height: 25,width: 25)),
             ProfileRowWidget(text: "Gizlilik Bildirimi",icon:SvgPicture.asset("assets/icons/gizlilik_bildirimi.svg",height: 25,width: 25)),
+            ProfileRowWidget(text: "Uygulamadan Çıkış Yap",icon:Image.asset("assets/icons/logout.png",height: 25,width: 25)),
           ],
         )));
   }

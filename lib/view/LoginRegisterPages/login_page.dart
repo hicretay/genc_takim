@@ -22,7 +22,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final String baseUrl = "https://172.24.46.42/genctakim/";
-  //final String baseUrl = "https://reqres.in/api";
 
   @override
   Widget build(BuildContext context) {

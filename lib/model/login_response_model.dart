@@ -1,4 +1,5 @@
 // // ignore_for_file: prefer_collection_literals
+// ignore_for_file: prefer_collection_literals
 
 class LoginResponseModel {
   int? id;
@@ -44,22 +45,3 @@ class LoginResponseModel {
     return data;
   }
 }
-
-
-// ignore_for_file: unnecessary_this, prefer_collection_literals
-
-// class LoginResponseModel {
-//   String? token;
-
-//   LoginResponseModel({this.token});
-
-//   LoginResponseModel.fromJson(Map<String, dynamic> json) {
-//     token = json['token'];
-//   }
-
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = Map<String, dynamic>();
-//     data['token'] = this.token;
-//     return data;
-//   }
-// }

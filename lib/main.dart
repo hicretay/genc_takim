@@ -35,7 +35,6 @@ class MyHttpOverrides extends HttpOverrides{
   }
 }
 
-// more example: https://github.com/flutterchina/dio/tree/master/example
 void getHttp() async {
   Dio dio =  Dio();
   Response response;

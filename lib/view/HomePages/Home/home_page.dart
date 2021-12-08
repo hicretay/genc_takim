@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
               TeamOptionsWidget(
-                leading  : model.birthdate.toString(),//"Takım Kur",
+                leading  : "Takım Kur", //model.birthdate.toString(),
                 iconImage: AssetImage("assets/icons/makeTeam.png"),
                 onTap    : (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> MakeTeamPage()));
@@ -43,10 +43,9 @@ class HomePage extends StatelessWidget {
       
             SizedBox(height: deviceHeight(context)*0.02),
       
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-      
                 TeamOptionsWidget(
                 leading: "Yaklaşan Maçlar",
                 iconImage: AssetImage("assets/icons/match.png"),
@@ -62,7 +61,6 @@ class HomePage extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> NearMatchesPage()));
                 },
               ),
-              
             ])
           ],
         ),
