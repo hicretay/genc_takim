@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genc_takim/service/login_service.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/settings/functions.dart';
 import 'package:genc_takim/view/HomePages/widgets/home_nav_bar_widget.dart';
 import 'package:genc_takim/view/LoginRegisterPages/register_page.dart';
 import 'package:genc_takim/view/LoginRegisterPages/widgets/textformfield_widget.dart';
 import 'package:genc_takim/viewmodel/login_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -18,10 +20,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   
-  final GlobalKey<FormState> formKey = GlobalKey(); 
+  
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final String baseUrl = "https://172.24.46.42/genctakim/";
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +39,10 @@ class _LoginPageState extends State<LoginPage> {
             // ignore: avoid_print
             //print(state.model.token);
             Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-            builder: (context)=>HomeNavBarWidget(tabIndex: 0, model: state.model)), (route) => false);
+            builder: (context)=>HomeNavBarWidget(tabIndex: 0)), (route) => false);
           }
           else{
-           // showAlert(context, "Bir hata oluştu !");
+            showAlert(context, "Bir hata oluştu !");
           }
         },
         builder: (context, state) {
@@ -75,8 +76,10 @@ class _LoginPageState extends State<LoginPage> {
     )),
     onPressed: 
       context.watch<LoginCubit>().isLoginLoading 
-      ? null : (){
+      ? null : () async {
         context.read<LoginCubit>().postUserModel();
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+        preferences.setString("email", emailController.text);
       },
     );
       },

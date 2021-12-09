@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:genc_takim/model/login_response_model.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/HomePages/Home/near_matches.dart';
 import 'package:genc_takim/view/HomePages/Home/upcoming_matches_page.dart';
@@ -9,9 +8,9 @@ import 'package:genc_takim/view/HomePages/Home/add_team_page.dart';
 import 'package:genc_takim/view/HomePages/Home/make_team_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key, required this.model}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
-  final LoginResponseModel model;
+  //final LoginResponseModel model;
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,6 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:genc_takim/model/login_response_model.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/HomePages/Matches/coming_matches_page.dart';
 import 'package:genc_takim/view/HomePages/Home/home_page.dart';
@@ -12,8 +11,8 @@ import 'package:genc_takim/view/HomePages/Profile/profile_page.dart';
 
 class HomeNavBarWidget extends StatefulWidget {
   final int tabIndex; 
-  final LoginResponseModel model;
-  HomeNavBarWidget({Key? key, required this.tabIndex, required this.model}) : super(key: key);
+  //final LoginResponseModel model;
+  HomeNavBarWidget({Key? key, required this.tabIndex,}) : super(key: key);
 
   @override
   _HomeNavBarWidgetState createState() => _HomeNavBarWidgetState(tabIndex: tabIndex);
@@ -29,7 +28,7 @@ class _HomeNavBarWidgetState extends State<HomeNavBarWidget> {
     const Tab(text: "Geçmiş Maçlar")
   ];
 
-  late final List<Widget> _pages = [HomePage(model: widget.model,),const ComingMatchesPage(),const ProfilePage()];
+  late final List<Widget> _pages = [HomePage(),const ComingMatchesPage(),const ProfilePage()];
   final List<String> _titles = ["ANASAYFA","MAÇLAR", "PROFİL"];
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   @override
