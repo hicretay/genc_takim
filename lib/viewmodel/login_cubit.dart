@@ -29,7 +29,8 @@ class LoginCubit extends Cubit<LoginState> {
     }
     else{
       isLoginFail = true;
-      emit(LoginValidateState(isLoginFail)); // sayfaya haber verilmesini sağlar
+      emit(LoginValidateState(isLoginFail)); 
+      // sayfaya haber verilmesini sağlar
     }
 
   }
@@ -40,9 +41,9 @@ class LoginCubit extends Cubit<LoginState> {
   }
 }
 
-abstract class LoginState{}
+abstract class LoginState{} // boş bir abstract class 
 
-class LoginInitial extends LoginState{}
+class LoginInitial extends LoginState{} // initial state'den türeyerek özelliklerini kullanır
 
 class LoginComplete extends LoginState{
   final LoginResponseModel model;
