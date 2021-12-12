@@ -7,7 +7,7 @@ const bgColor = Color(0xFF1C1F1F);
 
 const font = "RacingSansOne";
 const contentFont = "TekoRegular";
-const baseUrl = "https://192.168.1.6/genctakim/";
+const baseUrl = "https://172.24.46.42/genctakim/";
 final GlobalKey<FormState> formKey = GlobalKey(); 
 
 TextStyle contentTextStyle = const TextStyle(
@@ -15,6 +15,15 @@ TextStyle contentTextStyle = const TextStyle(
   fontSize: 20,
   color: primaryColor
 );
+
+Map<String, String> header = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Credentials": true.toString(),
+  "Access-Control-Allow-Headers":
+  "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+  "Access-Control-Allow-Methods": "POST, OPTIONS"
+};
 
 deviceHeight(BuildContext context)=>
  MediaQuery.of(context).size.height;
