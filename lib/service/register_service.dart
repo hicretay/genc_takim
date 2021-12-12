@@ -3,9 +3,8 @@ import 'package:genc_takim/model/register_model.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:http/http.dart' as http;
 
-Future<RegisterModel?> userRegister(int id, String userName, String userEmail, String userPassword, String userTelephone, String birthdate) async{
+Future<RegisterModel?> userRegister(String userName, String userEmail, String userPassword, String userTelephone, String birthdate) async{
   var bodys ={};
-  bodys["id"]           = id;
   bodys["userName"]     = userName;
   bodys["userEmail"]    = userEmail;
   bodys["userPassword"] = userPassword;

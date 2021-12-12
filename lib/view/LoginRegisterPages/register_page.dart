@@ -110,7 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               )),
                               onPressed: ()async{
                                 final registerData = await userRegister(
-                                  0, 
+                        
                                   nameSurnameController.text, 
                                   emailController.text, 
                                   passwordController.text, 
