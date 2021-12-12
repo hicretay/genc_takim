@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:genc_takim/model/game_list_model.dart';
+import 'package:genc_takim/service/game_list_service.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/HomePages/widgets/expanded_match_container_widget.dart';
 import 'package:genc_takim/view/HomePages/widgets/match_container_widget.dart';
@@ -13,18 +15,32 @@ class ComingMatchesPage extends StatefulWidget {
 
 class _ComingMatchesPageState extends State<ComingMatchesPage> {
   bool checked = false;
+  List gameListData = [];
+
+  Future getGamesList() async{
+    final List<GameListModel?>? games = await gameList(1);
+    setState(() {
+      gameListData = games!;
+    });
+  }
+
+  @override
+  void initState() {
+    getGamesList();
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.all(0),
-      children: [
-        const SizedBox(height: 110),
-        checked == false ? 
+    return ListView.builder(
+      itemCount: gameListData.length,
+      itemBuilder: (context, index){
+      return checked == false ? 
         MatchContainerWidget(
           fullEmptyIcon: Icon(Icons.cancel_outlined,color: Colors.red,size: 20),
           fullEmpty: "Kontenjan yok",
           imageName: "basketball",
-          sportName: "Basketbol",
+          sportName: gameListData[index].sportId == 1 ? "Futbol" : gameListData[index].sportId == 2 ? "Basketbol" : gameListData[index].sportId == 3 ? "Voleybol" : "Tenis",
           saloon: "Selçuk Üniversitesi 19 Mayıs Spor Salonu",
           date: "14.11.2021",
           time: "10.30 - 11.40",
@@ -45,10 +61,13 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
           fullEmptyIcon: Icon(Icons.cancel_outlined,color: Colors.red,size: 20),
           fullEmpty: "Kontenjan yok",
           imageName: "basketball",
-          sportName: "Basketbol",
+          sportName: gameListData[index].sportId == 1 ? "Futbol" : gameListData[index].sportId == 2 ? "Basketbol" : gameListData[index].sportId == 3 ? "Voleybol" : "Tenis",
           saloon: "Selçuk Üniversitesi 19 Mayıs Spor Salonu",
-          date: "14.11.2021",
+          date: gameListData[index].gameTime.toString(),
           time: "10.30 - 11.40",
+          gameNote: gameListData[index].gameNote,
+          gamerCount: gameListData[index].gamePlayerCount,
+          substituteCount: gameListData[index].gameSubstituteCount,
           onTap: (){
            // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
           },
@@ -57,61 +76,8 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
                checked=!checked;
              });
            },
-          ),
-
-          MatchContainerWidget(
-          fullEmptyIcon: Icon(Icons.check_circle_outline,color: primaryColor,size: 20),
-          fullEmpty: "Kontenjan var",
-          imageName: "volleyball",
-          sportName: "Voleybol",
-          saloon: "Meram Belediyesi Spor Kompleksi",
-          date: "15.11.2021",
-          time: "09.00 - 10.10",
-          onTap: (){
-            //Navigator.push(context, MaterialPageRoute(builder: (context)=> VolleyballFieldPage()));
-          },
-          expandedonTap: (){},
-           exitTeamRow: Row(children: [
-            Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
-            Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
-          ),
-
-          MatchContainerWidget(
-          fullEmptyIcon: Icon(Icons.check_circle_outline,color: primaryColor,size: 20),
-          fullEmpty: "Kontenjan var",
-          imageName: "football",
-          sportName: "Futbol",
-          saloon: "Büyükşehir Belediyesi Spor Kompleksi",
-          date: "12.11.2021",
-          time: "12.30 - 13.40",
-          onTap: (){
-            //Navigator.push(context, MaterialPageRoute(builder: (context)=> FootballFieldPage(numberOfPlayer: 12)));
-          },
-            expandedonTap: (){},
-            exitTeamRow: Row(children: [
-            Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
-            Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
-          ),
-
-          MatchContainerWidget(
-          fullEmptyIcon: Icon(Icons.cancel_outlined,color: Colors.red,size: 20),
-          fullEmpty: "Kontenjan yok",
-          imageName: "tennis",
-          sportName: "Tenis",
-          saloon: "Selçuklu Belediyesi Uluslararası Spor Salonu",
-          date: "12.11.2021",
-          time: "15.30 - 16.40",
-          onTap: (){
-            //Navigator.push(context, MaterialPageRoute(builder: (context)=> FootballFieldPage(numberOfPlayer: 12)));
-          },
-            expandedonTap: (){},
-            exitTeamRow: Row(children: [
-            Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
-            Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
-          ),
-
-          SizedBox(height: defaultPadding)
-      ],
-    );
+          );
+         // SizedBox(height: defaultPadding)
+    });
   }
 }

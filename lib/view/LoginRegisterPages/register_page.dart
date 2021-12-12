@@ -109,6 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 fontSize: 20
                               )),
                               onPressed: ()async{
+                                // ignore: unused_local_variable
                                 final registerData = await userRegister(
                         
                                   nameSurnameController.text, 

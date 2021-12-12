@@ -5,13 +5,14 @@ import 'package:http/http.dart' as http;
 Future<List<GameListModel?>?> gameList(int id) async {
   final response = await http.post(
     Uri.parse(baseUrl + "Games/List"),
-    body: '{"id":' + id.toString() + '}',
+    body: '{"userId":' + id.toString() + '}',
     headers: header
   );
 
   if (response.statusCode == 200) {
     final String responseString = response.body;
     return gameListModelFromJson(responseString);
+    
   } else {
     return null;
   }

@@ -8,9 +8,11 @@ class ExpandedMatchContainerWidget extends StatefulWidget {
   final String time;
   final String sportName;
   final String imageName;
+  final String gameNote;
   final VoidCallback onTap, expandedonTap;
   final String fullEmpty;
   final Icon fullEmptyIcon;
+  final int gamerCount, substituteCount;
 
   
   const ExpandedMatchContainerWidget({
@@ -23,7 +25,10 @@ class ExpandedMatchContainerWidget extends StatefulWidget {
     required this.imageName, 
     required this.fullEmpty, 
     required this.fullEmptyIcon, 
-    required this.expandedonTap,
+    required this.expandedonTap, 
+    required this.gameNote, 
+    required this.gamerCount, 
+    required this.substituteCount,
   }) : super(key: key);
 
   @override
@@ -78,16 +83,16 @@ class _ExpandedMatchContainerWidgetState extends State<ExpandedMatchContainerWid
                      // ignore: prefer_const_literals_to_create_immutables
                      children: [
                      Text("Oyuncu Sayısı:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
-                     Text("12",textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20))]),
+                     Text(widget.gamerCount.toString(),textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20))]),
 
                    Column(
                      // ignore: prefer_const_literals_to_create_immutables
                      children: [
                      Text("Yedek Oyuncu Sayısı:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
-                     Text("4",textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))]),
+                     Text(widget.substituteCount.toString(),textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))]),
                  ]),
 
-                  Text("Oyun Konya Anadolu Lisesi öğrencileri arasında oynanacaktır. ",textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20)),
+                  Text(widget.gameNote,textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
