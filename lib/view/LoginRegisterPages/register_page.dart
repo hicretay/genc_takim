@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, file_names, prefer_const_constructors, implementation_imports
 import 'package:flutter/material.dart';
+import 'package:genc_takim/service/register_service.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/LoginRegisterPages/login_page.dart';
 import 'package:genc_takim/view/LoginRegisterPages/widgets/textFormField_widget.dart';
@@ -13,7 +14,11 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController nameSurnameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController telephoneController = TextEditingController();
+  final TextEditingController birthdateController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         width: deviceWidth(context)*0.3,
                         height: deviceWidth(context)*0.3,
                         child: Image.asset("assets/logos/logowhite.png")),
-        
                         SizedBox(width: deviceWidth(context)*0.1),
-        
                         SizedBox(
                         width: deviceWidth(context)*0.3,
                         height: deviceWidth(context)*0.3,
@@ -73,20 +76,20 @@ class _RegisterPageState extends State<RegisterPage> {
                         TextFormFieldWidget(
                           leading: "E - Posta",
                           labelText: "E - Posta adresinizi giriniz",
-                          controller: nameSurnameController),
+                          controller: emailController),
+                        TextFormFieldWidget(
+                          leading: "Şifre",
+                          labelText: "Şifrenizi oluşturunuz",
+                          controller: passwordController),
                         TextFormFieldWidget(
                           leading: "Telefon Numarası",
                           labelText: "Telefon numaranızı giriniz",
-                          controller: nameSurnameController),
+                          controller: telephoneController),
                         TextFormFieldWidget(
                           leading: "Doğum Tarihi",
                           labelText: "Doğum Tarihinizi giriniz",
-                          controller: nameSurnameController),
-                        TextFormFieldWidget(
-                          leading: "Şifre",
-                          labelText: "Şifrenizi giriniz",
-                          controller: nameSurnameController),
-                          
+                          controller: birthdateController),
+                        
                         Padding(
                           padding: const EdgeInsets.all(defaultPadding*2),
                           child: SizedBox(
@@ -99,13 +102,24 @@ class _RegisterPageState extends State<RegisterPage> {
                                   borderRadius: BorderRadius.circular(12),
                                 )
                               ),
-                              child: Text("Devam",
+                              child: Text("Kayıt Ol",
                               style: TextStyle(
                                 fontFamily: font,
                                 color: Colors.white,
                                 fontSize: 20
                               )),
-                              onPressed: (){
+                              onPressed: ()async{
+                                final registerData = await userRegister(
+                                  0, 
+                                  nameSurnameController.text, 
+                                  emailController.text, 
+                                  passwordController.text, 
+                                  telephoneController.text, 
+                                  birthdateController.text);
+
+                                ///////////////////////////////
+                                ///kontrol eklenecek
+                                //registerData.
                                 Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()));
                               }),
                           ),

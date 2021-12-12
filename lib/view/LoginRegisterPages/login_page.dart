@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, file_names, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors_in_immutables, file_names, prefer_const_constructors, unnecessary_null_comparison
 import 'package:flutter/material.dart';
 import 'package:genc_takim/model/login_model.dart';
 import 'package:genc_takim/service/login_service.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/settings/functions.dart';
 import 'package:genc_takim/view/HomePages/widgets/home_nav_bar_widget.dart';
 import 'package:genc_takim/view/LoginRegisterPages/register_page.dart';
 import 'package:genc_takim/view/LoginRegisterPages/widgets/textformfield_widget.dart';
@@ -106,16 +107,23 @@ class _LoginPageState extends State<LoginPage> {
                                     fontSize: 20
                                   )),
                                   onPressed: () async{
-                                     final LoginJsn? userData = await loginJsnFunc(emailController.text, passwordController.text); 
+                                   if(emailController.text != null && passwordController.text != null){
+
+                                     final LoginModel? userData = await userLogin(emailController.text, passwordController.text); 
                                      if(userData!.id != null){
                                        SharedPreferences preferences = await SharedPreferences.getInstance();
                                        preferences.setString("email", emailController.text);
                                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeNavBarWidget(tabIndex: 0)), (route) => false);
                                      }
                                      else{
+                                       showAlert(context, "Hatalı giriş!");
                                        // ignore: avoid_print
                                        print("hata oluştu");
                                      }
+                                   }
+                                   else{
+                                     showAlert(context, "Lütfen E-Posta ve şifrenizi giriniz");
+                                   }
                                     
                                   }),
                               ),
