@@ -108,7 +108,6 @@ class _LoginPageState extends State<LoginPage> {
                                   )),
                                   onPressed: () async{
                                    if(emailController.text != null && passwordController.text != null){
-
                                      final LoginModel? userData = await userLogin(emailController.text, passwordController.text); 
                                      if(userData!.succes == true){ 
                                        showToast(context, "Giriş başarılı");
@@ -125,7 +124,6 @@ class _LoginPageState extends State<LoginPage> {
                                    else{
                                      showAlert(context, "Lütfen E-Posta ve şifrenizi giriniz");
                                    }
-                                    
                                   }),
                               ),
                             ),

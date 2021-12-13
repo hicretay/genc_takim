@@ -18,9 +18,9 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
   List gameListData = [];
 
   Future getGamesList() async{
-    final List<GameListModel?>? games = await gameList(1);
+    final GameListModel? games = await gameList(1);
     setState(() {
-      gameListData = games!;
+      gameListData = games!.result!;
     });
   }
 
@@ -39,10 +39,10 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
         MatchContainerWidget(
           fullEmptyIcon: Icon(Icons.cancel_outlined,color: Colors.red,size: 20),
           fullEmpty: "Kontenjan yok",
-          imageName: "basketball",
-          sportName: gameListData[index].sportId == 1 ? "Futbol" : gameListData[index].sportId == 2 ? "Basketbol" : gameListData[index].sportId == 3 ? "Voleybol" : "Tenis",
-          saloon: "Selçuk Üniversitesi 19 Mayıs Spor Salonu",
-          date: "14.11.2021",
+          imageName: gameListData[index].sportName,
+          sportName: gameListData[index].sportName,
+          saloon: gameListData[index].saloonName,
+          date: gameListData[index].gameTime.toString(),
           time: "10.30 - 11.40",
           onTap: (){
            // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
@@ -60,9 +60,9 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
           ExpandedMatchContainerWidget(
           fullEmptyIcon: Icon(Icons.cancel_outlined,color: Colors.red,size: 20),
           fullEmpty: "Kontenjan yok",
-          imageName: "basketball",
-          sportName: gameListData[index].sportId == 1 ? "Futbol" : gameListData[index].sportId == 2 ? "Basketbol" : gameListData[index].sportId == 3 ? "Voleybol" : "Tenis",
-          saloon: "Selçuk Üniversitesi 19 Mayıs Spor Salonu",
+          imageName: gameListData[index].sportName,
+          sportName: gameListData[index].sportName,
+          saloon: gameListData[index].saloonName,
           date: gameListData[index].gameTime.toString(),
           time: "10.30 - 11.40",
           gameNote: gameListData[index].gameNote,

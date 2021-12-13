@@ -1,53 +1,93 @@
+// To parse this JSON data, do
+//
+//     final gameListModel = gameListModelFromJson(jsonString);
+
 import 'dart:convert';
 
-List<GameListModel> gameListModelFromJson(String str) => List<GameListModel>.from(json.decode(str).map((x) => GameListModel.fromJson(x)));
+GameListModel gameListModelFromJson(String str) => GameListModel.fromJson(json.decode(str));
 
-String gameListModelToJson(List<GameListModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String gameListModelToJson(GameListModel data) => json.encode(data.toJson());
 
 class GameListModel {
     GameListModel({
+        this.succes,
+        this.result,
+    });
+
+    bool? succes;
+    List<Result>? result;
+
+    factory GameListModel.fromJson(Map<String, dynamic> json) => GameListModel(
+        succes: json["succes"],
+        result: List<Result>.from(json["result"].map((x) => Result.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "succes": succes,
+        "result": List<dynamic>.from(result!.map((x) => x.toJson())),
+    };
+}
+
+class Result {
+    Result({
         this.id,
-        this.sportId,
-        this.userId,
-        this.saloonId,
         this.gameNote,
-        this.gamePassed,
-        this.gameTime,
         this.gamePlayerCount,
         this.gameSubstituteCount,
+        this.gameTime,
+        this.saloonId,
+        this.userId,
+        this.maxPlayerCount,
+        this.maxSubstituteCount,
+        this.sportName,
+        this.saloonAddress,
+        this.saloonFeature,
+        this.saloonName,
     });
 
     int? id;
-    int? sportId;
-    int? userId;
-    int? saloonId;
     String? gameNote;
-    bool? gamePassed;
-    DateTime? gameTime;
     int? gamePlayerCount;
     int? gameSubstituteCount;
+    DateTime? gameTime;
+    int? saloonId;
+    int? userId;
+    int? maxPlayerCount;
+    int? maxSubstituteCount;
+    String? sportName;
+    String? saloonAddress;
+    String? saloonFeature;
+    String? saloonName;
 
-    factory GameListModel.fromJson(Map<String, dynamic> json) => GameListModel(
+    factory Result.fromJson(Map<String, dynamic> json) => Result(
         id: json["id"],
-        sportId: json["sportId"],
-        userId: json["userId"],
-        saloonId: json["saloonId"],
         gameNote: json["gameNote"],
-        gamePassed: json["gamePassed"],
-        gameTime: DateTime.parse(json["gameTime"]),
         gamePlayerCount: json["gamePlayerCount"],
         gameSubstituteCount: json["gameSubstituteCount"],
+        gameTime: DateTime.parse(json["gameTime"]),
+        saloonId: json["saloonId"],
+        userId: json["userId"],
+        maxPlayerCount: json["maxPlayerCount"],
+        maxSubstituteCount: json["maxSubstituteCount"],
+        sportName: json["sportName"],
+        saloonAddress: json["saloonAddress"],
+        saloonFeature: json["saloonFeature"],
+        saloonName: json["saloonName"],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "sportId": sportId,
-        "userId": userId,
-        "saloonId": saloonId,
         "gameNote": gameNote,
-        "gamePassed": gamePassed,
-        "gameTime": gameTime.toString(),
         "gamePlayerCount": gamePlayerCount,
         "gameSubstituteCount": gameSubstituteCount,
+        "gameTime": gameTime.toString(),
+        "saloonId": saloonId,
+        "userId": userId,
+        "maxPlayerCount": maxPlayerCount,
+        "maxSubstituteCount": maxSubstituteCount,
+        "sportName": sportName,
+        "saloonAddress": saloonAddress,
+        "saloonFeature": saloonFeature,
+        "saloonName": saloonName,
     };
 }
