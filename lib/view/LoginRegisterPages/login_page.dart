@@ -110,7 +110,8 @@ class _LoginPageState extends State<LoginPage> {
                                    if(emailController.text != null && passwordController.text != null){
 
                                      final LoginModel? userData = await userLogin(emailController.text, passwordController.text); 
-                                     if(userData!.id != null){
+                                     if(userData!.succes == true){ 
+                                       showToast(context, "Giriş başarılı");
                                        SharedPreferences preferences = await SharedPreferences.getInstance();
                                        preferences.setString("email", emailController.text);
                                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeNavBarWidget(tabIndex: 0)), (route) => false);

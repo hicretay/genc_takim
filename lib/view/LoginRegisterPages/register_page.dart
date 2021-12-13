@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:genc_takim/service/register_service.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/settings/functions.dart';
 import 'package:genc_takim/view/LoginRegisterPages/login_page.dart';
 import 'package:genc_takim/view/LoginRegisterPages/widgets/textFormField_widget.dart';
 
@@ -120,8 +121,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
                                 ///////////////////////////////
                                 ///kontrol eklenecek
-                                //registerData.
-                                Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()));
+                                if(registerData!.succes == true){
+                                  showToast(context, "Kayıt Başarılı");
+                                  Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()));
+                                }
                               }),
                           ),
                         ),

@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final loginModel = loginModelFromJson(jsonString);
+
 import 'dart:convert';
 
 LoginModel loginModelFromJson(String str) => LoginModel.fromJson(json.decode(str));
@@ -6,6 +10,26 @@ String loginModelToJson(LoginModel data) => json.encode(data.toJson());
 
 class LoginModel {
     LoginModel({
+        this.succes,
+        this.result,
+    });
+
+    bool? succes;
+    Result? result;
+
+    factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
+        succes: json["succes"],
+        result: Result.fromJson(json["result"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "succes": succes,
+        "result": result!.toJson(),
+    };
+}
+
+class Result {
+    Result({
         this.id,
         this.userName,
         this.userEmail,
@@ -25,7 +49,7 @@ class LoginModel {
     int? birthdate;
     dynamic registrationTime;
 
-    factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
+    factory Result.fromJson(Map<String, dynamic> json) => Result(
         id: json["id"],
         userName: json["userName"],
         userEmail: json["userEmail"],
