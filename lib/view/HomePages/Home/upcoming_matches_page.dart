@@ -49,11 +49,11 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
           color: secondaryColor,
           child: Container(
           decoration: BoxDecoration(
-           color: Colors.black,
-           image: DecorationImage(
-           colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
-           image: AssetImage("assets/logos/logowhite.png"))
-           ),
+          color: Colors.black,
+          image: DecorationImage(
+          colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
+          image: AssetImage("assets/logos/logowhite.png"))
+          ),
           child: Column(
           children: [
             Padding(
