@@ -16,9 +16,10 @@ class ComingMatchesPage extends StatefulWidget {
 class _ComingMatchesPageState extends State<ComingMatchesPage> {
   bool checked = false;
   List gameListData = [];
+  DateTime today = DateTime.now();
 
   Future getGamesList() async{
-    final GameListModel? games = await gameList(1);
+    final GameListModel? games = await gameList(1,false);
     setState(() {
       gameListData = games!.result!;
     });
@@ -35,10 +36,12 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
     return ListView.builder(
       itemCount: gameListData.length,
       itemBuilder: (context, index){
+
+      bool isFull = (gameListData[index].gamePlayerCount == gameListData[index].maxPlayerCount) || (gameListData[index].gameSubstituteCount == gameListData[index].maxSubstituteCount)  ? true : false;
       return checked == false ? 
         MatchContainerWidget(
-          fullEmptyIcon: Icon(Icons.cancel_outlined,color: Colors.red,size: 20),
-          fullEmpty: "Kontenjan yok",
+          fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
+          fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
           imageName: gameListData[index].sportName,
           sportName: gameListData[index].sportName,
           saloon: gameListData[index].saloonName,
@@ -55,11 +58,11 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
            },
            exitTeamRow: Row(children: [
             Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
-            Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
+            Icon(Icons.exit_to_app,color: Colors.white,size: 20)]),
           ):
           ExpandedMatchContainerWidget(
-          fullEmptyIcon: Icon(Icons.cancel_outlined,color: Colors.red,size: 20),
-          fullEmpty: "Kontenjan yok",
+          fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
+          fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
           imageName: gameListData[index].sportName,
           sportName: gameListData[index].sportName,
           saloon: gameListData[index].saloonName,

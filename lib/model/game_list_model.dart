@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final gameListModel = gameListModelFromJson(jsonString);
-
 import 'dart:convert';
 
 GameListModel gameListModelFromJson(String str) => GameListModel.fromJson(json.decode(str));
@@ -43,6 +39,7 @@ class Result {
         this.saloonAddress,
         this.saloonFeature,
         this.saloonName,
+        this.isPassed,
     });
 
     int? id;
@@ -58,6 +55,7 @@ class Result {
     String? saloonAddress;
     String? saloonFeature;
     String? saloonName;
+    bool? isPassed;
 
     factory Result.fromJson(Map<String, dynamic> json) => Result(
         id: json["id"],
@@ -73,6 +71,7 @@ class Result {
         saloonAddress: json["saloonAddress"],
         saloonFeature: json["saloonFeature"],
         saloonName: json["saloonName"],
+        isPassed: json["isPassed"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -89,5 +88,6 @@ class Result {
         "saloonAddress": saloonAddress,
         "saloonFeature": saloonFeature,
         "saloonName": saloonName,
+        "isPassed": isPassed,
     };
 }
