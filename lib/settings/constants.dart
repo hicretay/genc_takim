@@ -8,7 +8,6 @@ const bgColor = Color(0xFF1C1F1F);
 const font = "RacingSansOne";
 const contentFont = "TekoRegular";
 const baseUrl = "https://172.24.47.160/genctakim/"; //yurt: 172.24.47.160 ofis: 192.168.1.6
-final GlobalKey<FormState> formKey = GlobalKey(); 
 
 TextStyle contentTextStyle = const TextStyle(
   fontFamily: font,

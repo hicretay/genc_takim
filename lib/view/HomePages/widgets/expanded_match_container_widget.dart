@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
 import 'package:genc_takim/settings/constants.dart';
 
@@ -46,9 +46,7 @@ class _ExpandedMatchContainerWidgetState extends State<ExpandedMatchContainerWid
           height: deviceHeight(context)*0.35,       
             decoration: BoxDecoration(
               color: secondaryColor,
-              borderRadius: BorderRadius.all(Radius.circular(25)),
-              // image: DecorationImage(image: assetImage,fit: BoxFit.cover),
-              
+              borderRadius: BorderRadius.all(Radius.circular(25)),              
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -63,7 +61,6 @@ class _ExpandedMatchContainerWidgetState extends State<ExpandedMatchContainerWid
                      children: [
                      Text(widget.sportName,style: TextStyle(color: primaryColor,fontFamily: font,fontSize: 18)),
                      Container(width: 50,height: 50,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/icons/${widget.imageName}.png")))),
-                     //Text(widget.fullEmpty,style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16))
                      ]),
                  ),
                  Flexible(child: Column(
@@ -80,13 +77,11 @@ class _ExpandedMatchContainerWidgetState extends State<ExpandedMatchContainerWid
                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                    children: [
                    Column(
-                     // ignore: prefer_const_literals_to_create_immutables
                      children: [
                      Text("Oyuncu Sayısı:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
                      Text(widget.gamerCount.toString(),textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20))]),
 
                    Column(
-                     // ignore: prefer_const_literals_to_create_immutables
                      children: [
                      Text("Yedek Oyuncu Sayısı:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
                      Text(widget.substituteCount.toString(),textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))]),
@@ -108,7 +103,6 @@ class _ExpandedMatchContainerWidgetState extends State<ExpandedMatchContainerWid
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: maxSpace),
-                        // ignore: prefer_const_literals_to_create_immutables
                         child: Row(children: [
                           Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
                           Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),

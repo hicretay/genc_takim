@@ -16,10 +16,9 @@ class ComingMatchesPage extends StatefulWidget {
 class _ComingMatchesPageState extends State<ComingMatchesPage> {
   bool checked = false;
   List gameListData = [];
-  DateTime today = DateTime.now();
 
   Future getGamesList() async{
-    final GameListModel? games = await gameList(1,false);
+    final GameListModel? games = await userGameList(1,false);
     setState(() {
       gameListData = games!.result!;
     });
@@ -37,7 +36,17 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
       itemCount: gameListData.length,
       itemBuilder: (context, index){
 
-      bool isFull = (gameListData[index].gamePlayerCount == gameListData[index].maxPlayerCount) || (gameListData[index].gameSubstituteCount == gameListData[index].maxSubstituteCount)  ? true : false;
+      DateTime gameDate = gameListData[index].gameTime;
+      String date = (gameDate.day <= 9 ? "0"+ gameDate.day.toString() :  
+                     gameDate.day.toString()) +"."+ (gameDate.month <= 9 ? "0" + gameDate.month.toString() :  
+                     gameDate.month.toString()) +"."+ gameDate.year.toString();
+
+      String time = gameDate.hour <= 9 ? "0"+ gameDate.hour.toString() :  
+                        gameDate.hour.toString() + ":" + (gameDate.minute <= 9 ? "0" + gameDate.minute.toString() : gameDate.minute.toString());
+
+      bool isFull = (gameListData[index].gamePlayerCount == gameListData[index].maxPlayerCount) || 
+                    (gameListData[index].gameSubstituteCount == gameListData[index].maxSubstituteCount)  ? true : false;
+
       return checked == false ? 
         MatchContainerWidget(
           fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
@@ -45,8 +54,8 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
           imageName: gameListData[index].sportName,
           sportName: gameListData[index].sportName,
           saloon: gameListData[index].saloonName,
-          date: gameListData[index].gameTime.toString(),
-          time: "10.30 - 11.40",
+          date: date,
+          time: time,
           onTap: (){
            // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
           },
@@ -66,8 +75,8 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
           imageName: gameListData[index].sportName,
           sportName: gameListData[index].sportName,
           saloon: gameListData[index].saloonName,
-          date: gameListData[index].gameTime.toString(),
-          time: "10.30 - 11.40",
+          date: date,
+          time: time,
           gameNote: gameListData[index].gameNote,
           gamerCount: gameListData[index].gamePlayerCount,
           substituteCount: gameListData[index].gameSubstituteCount,
