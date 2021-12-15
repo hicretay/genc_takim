@@ -163,7 +163,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                                   builder: (context, snapshot) {
                                     return DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        //hint: Text("Spor salonu seçiniz"),
+                                        //hint: Text("Spor dalı seçiniz"),
                                         isExpanded: true,
                                         isDense: true,
                                         iconEnabledColor: Colors.white,
@@ -288,13 +288,13 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                  //---------------------------------------------------------------------------------------------------
         
                //-----------------------------OYUNCU SAYISI SEÇİMİ---------------------------------------
-                  selectedSport=="Futbol"?
+                  selectedSport != "Tenis"?
                   Padding(
                   padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text("Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))) : Container(),
-                  selectedSport=="Futbol"? 
+                  selectedSport != "Tenis"?
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -338,13 +338,13 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                  //---------------------------------------------------------------------------------------------------
         
                //-----------------------------YEDEK OYUNCU SAYISI SEÇİMİ---------------------------------------
-                  selectedSport=="Futbol"?
+                  selectedSport != "Tenis"?
                   Padding(
                   padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text("Yedek Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))) : Container(),
-                  selectedSport=="Futbol"? 
+                  selectedSport != "Tenis"?
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -396,7 +396,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text("Oyun Açıklamasını Giriniz *opsiyonel",style: TextStyle(color: Colors.white)))),
-                      selectedSport=="Futbol"? 
+                  selectedSport != "Tenis"?
                   Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
