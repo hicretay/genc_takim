@@ -1,5 +1,9 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_renaming_method_parameters, annotate_overrides, hash_and_equals
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:genc_takim/model/saloons_list_model.dart';
+import 'package:genc_takim/service/saloons_list_service.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/FieldPages/basketball_field_page.dart';
 import 'package:genc_takim/view/FieldPages/football_field_page.dart';
@@ -16,15 +20,35 @@ class MakeTeamPage extends StatefulWidget {
 
 class _MakeTeamPageState extends State<MakeTeamPage> {
   String selectedSport = "Futbol";
-  String selectedSaloon = "Konya Selçuklu Spor Salonu";
+   
   String selectedDate = "07.11.2021";
   String selectedTime= "10:00";
   int selectedPlayerNumber = 10;
 
   TextEditingController teNote = TextEditingController();
+
+  List saloonsListData = [];
+
+  Future getSaloonsList() async{
+    final SaloonsListModel? saloons = await allSaloonsList();
+    setState(() {
+      saloonsListData = saloons!.result!;
+    });
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      getSaloonsList();
+    });
+    super.initState();
+  }
+
   
   @override
   Widget build(BuildContext context) {
+    String selectedSaloon = "Konya Büyükşehir Belediyesi Spor Kompleksi";
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -74,18 +98,19 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                           alignment: Alignment.center,
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton(
+                              //hint: Text("Spor salonu seçiniz"),
                               isExpanded: true,
                               isDense: true,
                               iconEnabledColor: Colors.white,
                               iconSize: 30,
                               dropdownColor: secondaryColor2,
-                              value: selectedSaloon,
-                              // ignore: prefer_const_literals_to_create_immutables
-                              items: [
-                                DropdownMenuItem(child: Center(child: Text("Konya Selçuklu Spor Salonu",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Konya Selçuklu Spor Salonu"),
-                                DropdownMenuItem(child: Center(child: Text("Gençlik Merkezi Salonu",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Gençlik Merkezi Salonu"),
-                                DropdownMenuItem(child: Center(child: Text("Voleybol2",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Voleybol2"),
-                              ],
+                              value: selectedSaloon,                              
+                              items: saloonsListData.map((e){
+                                return DropdownMenuItem(
+                                  child: Center(child: Text(e.saloonName, style: TextStyle(color: Colors.white))),
+                                  value: e.saloonName);
+                              }).toList(),
+                              
                               onChanged: (value) {
                                setState(() {
                                  selectedSaloon = value.toString();
@@ -431,3 +456,11 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   }
 }
 
+class Saloon{
+  String? saloonName;
+  int? id;
+
+  Saloon(this.saloonName, this.id);
+
+  bool operator == (o) => o is Saloon && o.saloonName == saloonName && o.id == id;
+}
