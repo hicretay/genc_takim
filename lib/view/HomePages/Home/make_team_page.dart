@@ -1,4 +1,5 @@
-// ignore_for_file: prefer_const_constructors, avoid_renaming_method_parameters, annotate_overrides, hash_and_equals
+// ignore_for_file: prefer_const_constructors, avoid_renaming_method_parameters, annotate_overrides, hash_and_equals, prefer_const_literals_to_create_immutables
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:genc_takim/model/saloons_list_model.dart';
 import 'package:genc_takim/model/sports_list_model.dart';
@@ -23,13 +24,14 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   String selectedSaloon = "Konya Büyükşehir Belediyesi Spor Kompleksi";
   String selectedDate = "07.11.2021";
   String selectedTime= "10:00";
-
   int selectedPlayerNumber = 10;
 
   TextEditingController teNote = TextEditingController();
 
   List saloonsListData = [];
   List sportsListData = [];
+
+  DateTime date = DateTime.now();
 
   Future getSaloonsList() async{
     final SaloonsListModel? saloons = await allSaloonsList();
@@ -49,15 +51,13 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   void initState() {
     setState(() {
       getSaloonsList();
+      getSportsList();
     });
     super.initState();
   }
 
-  
   @override
   Widget build(BuildContext context) {
-
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -76,11 +76,11 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
           ),
           child: Container(
         decoration: BoxDecoration(
-         color: Colors.black,
-         image: DecorationImage(
-           colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
-         image: AssetImage("assets/logos/logowhite.png"))
-         ),
+        color: Colors.black,
+        image: DecorationImage(
+        colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
+        image: AssetImage("assets/logos/logowhite.png"))
+        ),
         child: ListView(
           children: [
               Column(
@@ -105,11 +105,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                         ),
                         child:  Align(
                           alignment: Alignment.center,
-                          child: FutureBuilder(
-                            future: getSaloonsList(),
-                            builder: (context, snapshot) {
-                              
-                              return DropdownButtonHideUnderline(
+                          child: DropdownButtonHideUnderline(
                                 child: DropdownButton(
                                   //hint: Text("Spor salonu seçiniz"),
                                   isExpanded: true,
@@ -130,14 +126,14 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                                   },
                                   value: selectedSaloon, 
                                   ),
-                              );
-                            }
+                              ),
+                      
                           ),
                         ),
                         ),
                       ),
                     ),
-                  ),
+
                  //---------------------------------------------------------------------------------------------------
 
                   //-----------------------------SPOR DALI SEÇİMİ---------------------------------------
@@ -158,33 +154,27 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                             ),
                           child: Align(
                                 alignment: Alignment.center,
-                                child: FutureBuilder(
-                                  future: getSportsList(),
-                                  builder: (context, snapshot) {
-                                    return DropdownButtonHideUnderline(
+                                child: DropdownButtonHideUnderline(
                                       child: DropdownButton(
-                                        //hint: Text("Spor dalı seçiniz"),
-                                        isExpanded: true,
-                                        isDense: true,
-                                        iconEnabledColor: Colors.white,
-                                        iconSize: 30,
-                                        dropdownColor: secondaryColor2,
-                                        items: sportsListData.map((e){
-                                          return DropdownMenuItem(
-                                            child: Center(child: Text(e.sportName, style: TextStyle(color: Colors.white))),
-                                            value: e.sportName);
-                                        }).toList(),
-                                        
-                                        onChanged: (value) {
-                                        setState(() {
-                                          selectedSport = value.toString();
-                                        });
-                                        },
-                                        value: selectedSport, 
-                                        ),
-                                    );
-                                  }
-                                ),
+                                      isExpanded: true,
+                                      isDense: true,
+                                      iconEnabledColor: Colors.white,
+                                      iconSize: 30,
+                                      dropdownColor: secondaryColor2,
+                                      items: sportsListData.map((e){
+                                        return DropdownMenuItem(
+                                          child: Center(child: Text(e.sportName, style: TextStyle(color: Colors.white))),
+                                          value: e.sportName);
+                                      }).toList(),
+                                      
+                                      onChanged: (value) {
+                                      setState(() {
+                                        selectedSport = value.toString();
+                                      });
+                                      },
+                                      value: selectedSport, 
+                                      ),
+                                    ),
                               ),
                         ),
                       ),
@@ -211,27 +201,18 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                         ),
                         child:  Align(
                           alignment: Alignment.center,
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton(
-                              isExpanded: true,
-                              isDense: true,
-                              iconEnabledColor: Colors.white,
-                              iconSize: 30,
-                              dropdownColor: secondaryColor2,
-                              value: selectedDate,
-                              // ignore: prefer_const_literals_to_create_immutables
-                              items: [
-                                DropdownMenuItem(child: Center(child: Text("07.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "07.11.2021"),
-                                DropdownMenuItem(child: Center(child: Text("08.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "08.11.2021"),
-                                DropdownMenuItem(child: Center(child: Text("09.11.2021",style: TextStyle(color: Colors.white, fontSize: 14))),value: "09.11.2021"),
-                              ],
-                              onChanged: (value) {
-                               setState(() {
-                                 selectedDate = value.toString();
-                               });
-                               },
-                              ),
-                          ),
+                          child: SizedBox(
+                          //height: 150,
+                          child: CupertinoDatePicker(
+                            mode: CupertinoDatePickerMode.dateAndTime,
+                            use24hFormat: true,
+                            initialDateTime: DateTime.now(),
+                            onDateTimeChanged: (value){
+                            setState(() {
+                              date = value;
+                            });
+                          }),
+                        )
                         ),
                         ),
                       ),
@@ -267,7 +248,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                               iconSize: 30,
                               dropdownColor: secondaryColor2,
                               value: selectedTime,
-                              // ignore: prefer_const_literals_to_create_immutables
                               items: [
                                 DropdownMenuItem(child: Center(child: Text("10:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "10:00"),
                                 DropdownMenuItem(child: Center(child: Text("11:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "11:00"),
@@ -317,7 +297,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                               iconSize: 30,
                               dropdownColor: secondaryColor2,
                               value: selectedPlayerNumber,
-                              // ignore: prefer_const_literals_to_create_immutables
                               items: [
                                 DropdownMenuItem(child: Center(child: Text("10",style: TextStyle(color: Colors.white, fontSize: 14))),value: 10),
                                 DropdownMenuItem(child: Center(child: Text("12",style: TextStyle(color: Colors.white, fontSize: 14))),value: 12),
@@ -367,7 +346,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                               iconSize: 30,
                               dropdownColor: secondaryColor2,
                               value: selectedPlayerNumber,
-                              // ignore: prefer_const_literals_to_create_immutables
                               items: [
                                 DropdownMenuItem(child: Center(child: Text("10",style: TextStyle(color: Colors.white, fontSize: 14))),value: 10),
                                 DropdownMenuItem(child: Center(child: Text("12",style: TextStyle(color: Colors.white, fontSize: 14))),value: 12),
@@ -390,8 +368,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                  //-----------------------------OYUN KURUCU NOTU---------------------------------------
                   Column(
                   children: 
-                      // ignore: prefer_const_literals_to_create_immutables
-                      [Padding(
+                  [Padding(
                   padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
                   child: Align(
                       alignment: Alignment.centerLeft,
