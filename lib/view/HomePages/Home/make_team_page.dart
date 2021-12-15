@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, avoid_renaming_method_parameters, annotate_overrides, hash_and_equals
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:genc_takim/model/saloons_list_model.dart';
+import 'package:genc_takim/model/sports_list_model.dart';
 import 'package:genc_takim/service/saloons_list_service.dart';
+import 'package:genc_takim/service/sports_list_service.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/FieldPages/basketball_field_page.dart';
 import 'package:genc_takim/view/FieldPages/football_field_page.dart';
@@ -20,19 +20,28 @@ class MakeTeamPage extends StatefulWidget {
 
 class _MakeTeamPageState extends State<MakeTeamPage> {
   String selectedSport = "Futbol";
-   
+  String selectedSaloon = "Konya Büyükşehir Belediyesi Spor Kompleksi";
   String selectedDate = "07.11.2021";
   String selectedTime= "10:00";
+
   int selectedPlayerNumber = 10;
 
   TextEditingController teNote = TextEditingController();
 
   List saloonsListData = [];
+  List sportsListData = [];
 
   Future getSaloonsList() async{
     final SaloonsListModel? saloons = await allSaloonsList();
     setState(() {
       saloonsListData = saloons!.result!;
+    });
+  }
+
+  Future getSportsList() async{
+    final SportsListModel? sports = await allSportsList();
+    setState(() {
+      sportsListData = sports!.result!;
     });
   }
 
@@ -47,7 +56,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   
   @override
   Widget build(BuildContext context) {
-    String selectedSaloon = "Konya Büyükşehir Belediyesi Spor Kompleksi";
+
 
     return SafeArea(
       child: Scaffold(
@@ -96,27 +105,33 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                         ),
                         child:  Align(
                           alignment: Alignment.center,
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton(
-                              //hint: Text("Spor salonu seçiniz"),
-                              isExpanded: true,
-                              isDense: true,
-                              iconEnabledColor: Colors.white,
-                              iconSize: 30,
-                              dropdownColor: secondaryColor2,
-                              value: selectedSaloon,                              
-                              items: saloonsListData.map((e){
-                                return DropdownMenuItem(
-                                  child: Center(child: Text(e.saloonName, style: TextStyle(color: Colors.white))),
-                                  value: e.saloonName);
-                              }).toList(),
+                          child: FutureBuilder(
+                            future: getSaloonsList(),
+                            builder: (context, snapshot) {
                               
-                              onChanged: (value) {
-                               setState(() {
-                                 selectedSaloon = value.toString();
-                               });
-                               },
-                              ),
+                              return DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  //hint: Text("Spor salonu seçiniz"),
+                                  isExpanded: true,
+                                  isDense: true,
+                                  iconEnabledColor: Colors.white,
+                                  iconSize: 30,
+                                  dropdownColor: secondaryColor2,
+                                  items: saloonsListData.map((e){
+                                    return DropdownMenuItem(
+                                      child: Center(child: Text(e.saloonName, style: TextStyle(color: Colors.white))),
+                                      value: e.saloonName);
+                                  }).toList(),
+                                  
+                                  onChanged: (value) {
+                                  setState(() {
+                                    selectedSaloon = value.toString();
+                                  });
+                                  },
+                                  value: selectedSaloon, 
+                                  ),
+                              );
+                            }
                           ),
                         ),
                         ),
@@ -125,53 +140,55 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                   ),
                  //---------------------------------------------------------------------------------------------------
 
-                                //-----------------------------SPOR DALI SEÇİMİ---------------------------------------
+                  //-----------------------------SPOR DALI SEÇİMİ---------------------------------------
                   Padding(
                   padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text("Spor Dalı Seç",style: TextStyle(color: Colors.white)))),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
+                    Padding(
                       padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
                       child: SizedBox(
-                      width: deviceWidth(context),
-                      height: deviceHeight(context)*0.05,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                          color: secondaryColor2,
-                        ),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton(
-                              isExpanded: true,
-                              isDense: true,
-                              iconEnabledColor: Colors.white,
-                              iconSize: 30,
-                              dropdownColor: secondaryColor2,
-                              value: selectedSport,
-                              // ignore: prefer_const_literals_to_create_immutables
-                              items: [
-                                DropdownMenuItem(child: Center(child: Text("Futbol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Futbol"),
-                                DropdownMenuItem(child: Center(child: Text("Basketbol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Basketbol"),
-                                DropdownMenuItem(child: Center(child: Text("Voleybol",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Voleybol"),
-                                DropdownMenuItem(child: Center(child: Text("Tenis",style: TextStyle(color: Colors.white, fontSize: 14))),value: "Tenis"),
-                              ],
-                              onChanged: (value) {
-                               setState(() {
-                                 selectedSport = value.toString();
-                               });
-                               },
+                        width: deviceWidth(context),
+                        height: deviceHeight(context)*0.05,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+                              color: secondaryColor2,
+                            ),
+                          child: Align(
+                                alignment: Alignment.center,
+                                child: FutureBuilder(
+                                  future: getSportsList(),
+                                  builder: (context, snapshot) {
+                                    return DropdownButtonHideUnderline(
+                                      child: DropdownButton(
+                                        //hint: Text("Spor salonu seçiniz"),
+                                        isExpanded: true,
+                                        isDense: true,
+                                        iconEnabledColor: Colors.white,
+                                        iconSize: 30,
+                                        dropdownColor: secondaryColor2,
+                                        items: sportsListData.map((e){
+                                          return DropdownMenuItem(
+                                            child: Center(child: Text(e.sportName, style: TextStyle(color: Colors.white))),
+                                            value: e.sportName);
+                                        }).toList(),
+                                        
+                                        onChanged: (value) {
+                                        setState(() {
+                                          selectedSport = value.toString();
+                                        });
+                                        },
+                                        value: selectedSport, 
+                                        ),
+                                    );
+                                  }
+                                ),
                               ),
-                          ),
-                        ),
                         ),
                       ),
                     ),
-                  ),
                  //---------------------------------------------------------------------------------------------------
         
                 //-----------------------------TARİH SEÇİMİ---------------------------------------
