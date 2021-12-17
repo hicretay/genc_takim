@@ -3,9 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:genc_takim/model/saloons_list_model.dart';
 import 'package:genc_takim/model/sports_list_model.dart';
+import 'package:genc_takim/service/game_save_service.dart';
 import 'package:genc_takim/service/saloons_list_service.dart';
 import 'package:genc_takim/service/sports_list_service.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/settings/functions.dart';
 import 'package:genc_takim/view/FieldPages/basketball_field_page.dart';
 import 'package:genc_takim/view/FieldPages/football_field_page.dart';
 import 'package:genc_takim/view/FieldPages/tennis_field_page.dart';
@@ -25,6 +27,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   String selectedDate = "07.11.2021";
   String selectedTime= "10:00";
   int selectedPlayerNumber = 10;
+  int selectedSubstituteNumber = 4;
 
   TextEditingController teNote = TextEditingController();
 
@@ -32,6 +35,8 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   List sportsListData = [];
 
   DateTime date = DateTime.now();
+    var newdate = DateTime.now().toString().substring(0,10);
+
 
   Future getSaloonsList() async{
     final SaloonsListModel? saloons = await allSaloonsList();
@@ -186,24 +191,25 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                   padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("Tarih Seç",style: TextStyle(color: Colors.white)))),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
-                      child: SizedBox(
-                      width: deviceWidth(context),
-                      height: deviceHeight(context)*0.05,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                          color: secondaryColor2,
+                    child: Text("Tarih Saat Seç",style: TextStyle(color: Colors.white)))),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+                    child: SizedBox(
+                    width: deviceWidth(context),
+                    height: deviceHeight(context)*0.05,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: CupertinoTheme(
+                        data: CupertinoThemeData(
+                          textTheme: CupertinoTextThemeData(
+                          textStyle: TextStyle(color: Colors.white,fontSize: 18))
                         ),
-                        child:  Align(
-                          alignment: Alignment.center,
-                          child: SizedBox(
-                          //height: 150,
+                        child: Container(
+                          decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+                      ),
                           child: CupertinoDatePicker(
+                            backgroundColor: secondaryColor2,
                             mode: CupertinoDatePickerMode.dateAndTime,
                             use24hFormat: true,
                             initialDateTime: DateTime.now(),
@@ -212,60 +218,59 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                               date = value;
                             });
                           }),
-                        )
                         ),
-                        ),
-                      ),
+                      )
+                    ),
                     ),
                   ),
                  //---------------------------------------------------------------------------------------------------
         
                  //-----------------------------SAAT SEÇİMİ---------------------------------------
-                  Padding(
-                  padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("Saat Seç",style: TextStyle(color: Colors.white)))),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
-                      child: SizedBox(
-                      width: deviceWidth(context),
-                      height: deviceHeight(context)*0.05,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                          color: secondaryColor2,
-                        ),
-                        child:  Align(
-                          alignment: Alignment.center,
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton(
-                              isExpanded: true,
-                              isDense: true,
-                              iconEnabledColor: Colors.white,
-                              iconSize: 30,
-                              dropdownColor: secondaryColor2,
-                              value: selectedTime,
-                              items: [
-                                DropdownMenuItem(child: Center(child: Text("10:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "10:00"),
-                                DropdownMenuItem(child: Center(child: Text("11:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "11:00"),
-                                DropdownMenuItem(child: Center(child: Text("12:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "12:00"),
-                              ],
-                              onChanged: (value) {
-                               setState(() {
-                                 selectedTime = value.toString();
-                               });
-                               },
-                              ),
-                          ),
-                        ),
-                        ),
-                      ),
-                    ),
-                  ),
-                 //---------------------------------------------------------------------------------------------------
+                //   Padding(
+                //   padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
+                //   child: Align(
+                //     alignment: Alignment.centerLeft,
+                //     child: Text("Saat Seç",style: TextStyle(color: Colors.white)))),
+                //   Align(
+                //     alignment: Alignment.centerLeft,
+                //     child: Padding(
+                //       padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+                //       child: SizedBox(
+                //       width: deviceWidth(context),
+                //       height: deviceHeight(context)*0.05,
+                //       child: Container(
+                //         decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+                //           color: secondaryColor2,
+                //         ),
+                //         child:  Align(
+                //           alignment: Alignment.center,
+                //           child: DropdownButtonHideUnderline(
+                //             child: DropdownButton(
+                //               isExpanded: true,
+                //               isDense: true,
+                //               iconEnabledColor: Colors.white,
+                //               iconSize: 30,
+                //               dropdownColor: secondaryColor2,
+                //               value: selectedTime,
+                //               items: [
+                //                 DropdownMenuItem(child: Center(child: Text("10:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "10:00"),
+                //                 DropdownMenuItem(child: Center(child: Text("11:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "11:00"),
+                //                 DropdownMenuItem(child: Center(child: Text("12:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "12:00"),
+                //               ],
+                //               onChanged: (value) {
+                //                setState(() {
+                //                  selectedTime = value.toString();
+                //                });
+                //                },
+                //               ),
+                //           ),
+                //         ),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                //  //---------------------------------------------------------------------------------------------------
         
                //-----------------------------OYUNCU SAYISI SEÇİMİ---------------------------------------
                   selectedSport != "Tenis"?
@@ -345,18 +350,18 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                               iconEnabledColor: Colors.white,
                               iconSize: 30,
                               dropdownColor: secondaryColor2,
-                              value: selectedPlayerNumber,
+                              value: selectedSubstituteNumber,
                               items: [
-                                DropdownMenuItem(child: Center(child: Text("10",style: TextStyle(color: Colors.white, fontSize: 14))),value: 10),
-                                DropdownMenuItem(child: Center(child: Text("12",style: TextStyle(color: Colors.white, fontSize: 14))),value: 12),
-                                DropdownMenuItem(child: Center(child: Text("14",style: TextStyle(color: Colors.white, fontSize: 14))),value: 14),
+                                DropdownMenuItem(child: Center(child: Text("4",style: TextStyle(color: Colors.white, fontSize: 14))),value: 4),
+                                DropdownMenuItem(child: Center(child: Text("5",style: TextStyle(color: Colors.white, fontSize: 14))),value: 5),
+                                DropdownMenuItem(child: Center(child: Text("6",style: TextStyle(color: Colors.white, fontSize: 14))),value: 6),
                               ],
                               onChanged: (value) {
-                               setState(() {
-                                 selectedPlayerNumber = value!;
-                               });
-                               },
-                              ),
+                              setState(() {
+                                selectedSubstituteNumber = value!;
+                              });
+                              },
+                            ),
                           ),
                         ),
                         ),
@@ -413,7 +418,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                 ),
                   
                  //---------------------------------------------------------------------------------------------------
-        
                 Padding(
                   padding: const EdgeInsets.all(defaultPadding*2),
                   child: SizedBox(
@@ -426,20 +430,47 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                           borderRadius: BorderRadius.circular(12),
                         )
                       ),
-                      child: Text("Sahadan Konum Seç",
+                      child: Text("Oyunu Kaydet",
                       style: TextStyle(
                         fontFamily: font,
                         color: Colors.white,
                         fontSize: 20
                       )),
-                      onPressed: (){
-                        Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => 
-                        selectedSport=="Futbol" ?
-                        FootballFieldPage(numberOfPlayer: selectedPlayerNumber):
-                        selectedSport=="Basketbol" ? BasketballFieldPage() : selectedSport=="Tenis" ? TennisFieldPage() : VolleyballFieldPage()));
+                      onPressed: () async{
+                        final saveGameData = await gameSave(2, 1, 3, teNote.text, false, date, selectedPlayerNumber, selectedSubstituteNumber);
+                        if(saveGameData!.succes == true){
+                          showToast(context, "Oyun başarıyla kaydedildi !");
+                        }
+                        else{
+                          showToast(context, "Oyun kaydı başarısız !");
+                        }
                       }),
                   ),
+                ),
+
+                SizedBox(
+                  width: deviceWidth(context)*0.6,
+                  height: deviceHeight(context)*0.06,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      )
+                    ),
+                    child: Text("Sahadan Konum Seç",
+                    style: TextStyle(
+                      fontFamily: font,
+                      color: Colors.white,
+                      fontSize: 20
+                    )),
+                    onPressed: (){
+                      Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => 
+                      selectedSport=="Futbol" ?
+                      FootballFieldPage(numberOfPlayer: selectedPlayerNumber):
+                      selectedSport=="Basketbol" ? BasketballFieldPage() : selectedSport=="Tenis" ? TennisFieldPage() : VolleyballFieldPage()));
+                    }),
                 ),
               ],
             ),
@@ -448,13 +479,4 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
         ),
         )));
   }
-}
-
-class Saloon{
-  String? saloonName;
-  int? id;
-
-  Saloon(this.saloonName, this.id);
-
-  bool operator == (o) => o is Saloon && o.saloonName == saloonName && o.id == id;
 }

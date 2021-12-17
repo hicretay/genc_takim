@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, curly_braces_in_flow_control_structures
 import 'package:flutter/material.dart';
 import 'package:genc_takim/model/game_list_model.dart';
 import 'package:genc_takim/service/game_list_service.dart';
@@ -19,6 +19,8 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
 
   Future getGamesList() async{
     final GameListModel? games = await userGameList(1,false);
+    if(!mounted)
+    return;
     setState(() {
       gameListData = games!.result!;
     });
