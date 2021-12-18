@@ -10,7 +10,7 @@ Future<GameSaveModel?> gameSave(int sportId, int userId, int saloonId, String ga
   bodys["saloonId"]           = saloonId;
   bodys["gameNote"]           = gameNote;
   bodys["gamePassed"]         = gamePassed;
-  bodys["gameTime"]           = gameTime;
+  bodys["gameTime"]           = gameTime.toUtc().toIso8601String();
   bodys["gamePlayerCount"]    = gamePlayerCount;
   bodys["gameSubstituteCount"]= gameSubstituteCount;
 

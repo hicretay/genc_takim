@@ -8,10 +8,6 @@ import 'package:genc_takim/service/saloons_list_service.dart';
 import 'package:genc_takim/service/sports_list_service.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/settings/functions.dart';
-import 'package:genc_takim/view/FieldPages/basketball_field_page.dart';
-import 'package:genc_takim/view/FieldPages/football_field_page.dart';
-import 'package:genc_takim/view/FieldPages/tennis_field_page.dart';
-import 'package:genc_takim/view/FieldPages/volleyball_field_page.dart';
 
 class MakeTeamPage extends StatefulWidget {
  
@@ -24,10 +20,10 @@ class MakeTeamPage extends StatefulWidget {
 class _MakeTeamPageState extends State<MakeTeamPage> {
   String selectedSport = "Futbol";
   String selectedSaloon = "Konya Büyükşehir Belediyesi Spor Kompleksi";
-  String selectedDate = "07.11.2021";
-  String selectedTime= "10:00";
   int selectedPlayerNumber = 10;
   int selectedSubstituteNumber = 4;
+  int selectedSportId = 1;
+  int selectedSaloonId = 1;
 
   TextEditingController teNote = TextEditingController();
 
@@ -35,8 +31,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   List sportsListData = [];
 
   DateTime date = DateTime.now();
-    var newdate = DateTime.now().toString().substring(0,10);
-
 
   Future getSaloonsList() async{
     final SaloonsListModel? saloons = await allSaloonsList();
@@ -112,7 +106,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                           alignment: Alignment.center,
                           child: DropdownButtonHideUnderline(
                                 child: DropdownButton(
-                                  //hint: Text("Spor salonu seçiniz"),
                                   isExpanded: true,
                                   isDense: true,
                                   iconEnabledColor: Colors.white,
@@ -127,6 +120,12 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                                   onChanged: (value) {
                                   setState(() {
                                     selectedSaloon = value.toString();
+                                    for (var item in saloonsListData) {
+                                          if(item.saloonName == value)
+                                          {
+                                            selectedSaloonId = item.id;
+                                          }
+                                        }
                                   });
                                   },
                                   value: selectedSaloon, 
@@ -175,6 +174,12 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                                       onChanged: (value) {
                                       setState(() {
                                         selectedSport = value.toString();
+                                        for (var item in sportsListData) {
+                                          if(item.sportName == value)
+                                          {
+                                            selectedSportId = item.id;
+                                          }
+                                        }
                                       });
                                       },
                                       value: selectedSport, 
@@ -224,53 +229,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                     ),
                   ),
                  //---------------------------------------------------------------------------------------------------
-        
-                 //-----------------------------SAAT SEÇİMİ---------------------------------------
-                //   Padding(
-                //   padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
-                //   child: Align(
-                //     alignment: Alignment.centerLeft,
-                //     child: Text("Saat Seç",style: TextStyle(color: Colors.white)))),
-                //   Align(
-                //     alignment: Alignment.centerLeft,
-                //     child: Padding(
-                //       padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
-                //       child: SizedBox(
-                //       width: deviceWidth(context),
-                //       height: deviceHeight(context)*0.05,
-                //       child: Container(
-                //         decoration: BoxDecoration(
-                //           borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                //           color: secondaryColor2,
-                //         ),
-                //         child:  Align(
-                //           alignment: Alignment.center,
-                //           child: DropdownButtonHideUnderline(
-                //             child: DropdownButton(
-                //               isExpanded: true,
-                //               isDense: true,
-                //               iconEnabledColor: Colors.white,
-                //               iconSize: 30,
-                //               dropdownColor: secondaryColor2,
-                //               value: selectedTime,
-                //               items: [
-                //                 DropdownMenuItem(child: Center(child: Text("10:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "10:00"),
-                //                 DropdownMenuItem(child: Center(child: Text("11:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "11:00"),
-                //                 DropdownMenuItem(child: Center(child: Text("12:00",style: TextStyle(color: Colors.white, fontSize: 14))),value: "12:00"),
-                //               ],
-                //               onChanged: (value) {
-                //                setState(() {
-                //                  selectedTime = value.toString();
-                //                });
-                //                },
-                //               ),
-                //           ),
-                //         ),
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                //  //---------------------------------------------------------------------------------------------------
         
                //-----------------------------OYUNCU SAYISI SEÇİMİ---------------------------------------
                   selectedSport != "Tenis"?
@@ -437,7 +395,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                         fontSize: 20
                       )),
                       onPressed: () async{
-                        final saveGameData = await gameSave(2, 1, 3, teNote.text, false, date, selectedPlayerNumber, selectedSubstituteNumber);
+                        final saveGameData = await gameSave(selectedSportId, 1, selectedSaloonId, teNote.text, false, date, selectedPlayerNumber, selectedSubstituteNumber);
                         if(saveGameData!.succes == true){
                           showToast(context, "Oyun başarıyla kaydedildi !");
                         }
@@ -465,11 +423,11 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       fontSize: 20
                     )),
                     onPressed: (){
-                      Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => 
-                      selectedSport=="Futbol" ?
-                      FootballFieldPage(numberOfPlayer: selectedPlayerNumber):
-                      selectedSport=="Basketbol" ? BasketballFieldPage() : selectedSport=="Tenis" ? TennisFieldPage() : VolleyballFieldPage()));
+                      // Navigator.push(context,
+                      // MaterialPageRoute(builder: (context) => 
+                      // selectedSport=="Futbol" ?
+                      // FootballFieldPage(numberOfPlayer: selectedPlayerNumber):
+                      // selectedSport=="Basketbol" ? BasketballFieldPage() : selectedSport=="Tenis" ? TennisFieldPage() : VolleyballFieldPage()));
                     }),
                 ),
               ],
@@ -480,3 +438,5 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
         )));
   }
 }
+
+//2021-12-30 20:00:00.000

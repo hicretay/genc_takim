@@ -119,11 +119,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                   telephoneController.text, 
                                   birthdateController.text);
 
-                                ///////////////////////////////
-                                ///kontrol eklenecek
                                 if(registerData!.succes == true){
                                   showToast(context, "Kayıt Başarılı");
                                   Navigator.push(context,MaterialPageRoute(builder: (context) => LoginPage()));
+                                }
+                                else{
+                                  showToast(context, "Bir Hata Oluştu !");
                                 }
                               }),
                           ),
