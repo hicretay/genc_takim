@@ -5,6 +5,7 @@ import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/settings/functions.dart';
 import 'package:genc_takim/view/LoginRegisterPages/login_page.dart';
 import 'package:genc_takim/view/LoginRegisterPages/widgets/textFormField_widget.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -20,6 +21,11 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController birthdateController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  var birthdateMaskFormatter = MaskTextInputFormatter(mask: "####");
+  var telephoneMaskFormatter  = MaskTextInputFormatter(
+    mask: '+90 (###) ### ## ##', 
+    filter: { "#": RegExp(r'[0-9]')},
+    initialText: "+90");
 
   @override
   Widget build(BuildContext context) {
@@ -80,17 +86,21 @@ class _RegisterPageState extends State<RegisterPage> {
                           controller: emailController),
                         TextFormFieldWidget(
                           leading: "Şifre",
-                          labelText: "Şifrenizi oluşturunuz",
-                          controller: passwordController),
+                          labelText: "Şifrenizi oluşturunuz (min. 3 karakter)",
+                          controller: passwordController,
+                          validator: (value) => (value ?? "").length > 2 ? null : "3 'ten küçük olmamalı"),
                         TextFormFieldWidget(
                           leading: "Telefon Numarası",
-                          labelText: "Telefon numaranızı giriniz",
-                          controller: telephoneController),
+                          labelText: "Telefon numaranızı giriniz (5xxx)",
+                          controller: telephoneController,
+                          inputFormatters: [telephoneMaskFormatter],
+                          ),
                         TextFormFieldWidget(
                           leading: "Doğum Tarihi",
-                          labelText: "Doğum Tarihinizi giriniz",
-                          controller: birthdateController),
-                        
+                          labelText: "Doğum Tarihinizi giriniz (Yalnızca Yıl)",
+                          controller: birthdateController,
+                          inputFormatters: [birthdateMaskFormatter],
+                          validator: (value) => (value ?? "").length > 3 ? null : "Doğum yılı 4 karakter olmalı"),                       
                         Padding(
                           padding: const EdgeInsets.all(defaultPadding*2),
                           child: SizedBox(
@@ -111,8 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               )),
                               onPressed: ()async{
                                 // ignore: unused_local_variable
-                                final registerData = await userRegister(
-                        
+                                final registerData = await userRegister(                       
                                   nameSurnameController.text, 
                                   emailController.text, 
                                   passwordController.text, 

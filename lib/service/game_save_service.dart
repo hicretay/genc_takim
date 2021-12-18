@@ -17,7 +17,7 @@ Future<GameSaveModel?> gameSave(int sportId, int userId, int saloonId, String ga
   String body = json.encode(bodys);
 
   final response = await http.post(
-    Uri.parse(baseUrl + "Match/Save"),
+    Uri.parse(baseUrl + "Game/Save"),
     body: body,
     headers: header
   );

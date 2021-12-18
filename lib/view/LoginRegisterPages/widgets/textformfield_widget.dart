@@ -1,15 +1,17 @@
 // ignore_for_file: prefer_const_constructors, file_names
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:genc_takim/settings/constants.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
   final String leading;
   final String labelText;
   final TextEditingController controller;
-  
+  final List<TextInputFormatter>? inputFormatters;
+  final String? Function(String?)? validator;
 
   const TextFormFieldWidget({
-    Key? key, required this.leading, required this.labelText, required this.controller,
+    Key? key, required this.leading, required this.labelText, required this.controller, this.inputFormatters, this.validator,
   }) : super(key: key);
 
   @override
@@ -21,6 +23,9 @@ class TextFormFieldWidget extends StatelessWidget {
           Padding(
           padding: const EdgeInsets.only(left: defaultPadding,right: defaultPadding),
           child: TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: validator,  
+          inputFormatters: inputFormatters, 
           style: TextStyle(color: Colors.white),
           cursorColor: primaryColor,
           controller: controller,
