@@ -7,7 +7,7 @@ const bgColor = Color(0xFF1C1F1F);
 
 const font = "RacingSansOne";
 const contentFont = "TekoRegular";
-const baseUrl = "https://172.24.47.160/genctakim/"; //yurt: 172.24.47.160 ofis: 192.168.1.6
+const baseUrl = "https://172.24.42.62/genctakim/"; //yurt: 172.24.47.160 ofis: 192.168.1.6
 
 TextStyle contentTextStyle = const TextStyle(
   fontFamily: font,
@@ -24,12 +24,10 @@ Map<String, String> header = {
   "Access-Control-Allow-Methods": "POST, OPTIONS"
 };
 
-deviceHeight(BuildContext context)=>
- MediaQuery.of(context).size.height;
+deviceHeight(BuildContext context)=> MediaQuery.of(context).size.height;
 // Cihaz ekran yüksekliği
 
-deviceWidth(BuildContext context)=>
- MediaQuery.of(context).size.width; 
+deviceWidth(BuildContext context)=> MediaQuery.of(context).size.width; 
 //Cihaz ekran genişliği
 
 const defaultPadding = 16.0;

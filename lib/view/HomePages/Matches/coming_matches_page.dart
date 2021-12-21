@@ -24,6 +24,7 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
     setState(() {
       gameListData = games!.result!;
     });
+    return gameListData;
   }
 
   @override
@@ -34,64 +35,79 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
   
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: gameListData.length,
-      itemBuilder: (context, index){
-
-      DateTime gameDate = gameListData[index].gameTime;
-      String date = (gameDate.day <= 9 ? "0"+ gameDate.day.toString() :  
-                     gameDate.day.toString()) +"."+ (gameDate.month <= 9 ? "0" + gameDate.month.toString() :  
-                     gameDate.month.toString()) +"."+ gameDate.year.toString();
-
-      String time = gameDate.hour <= 9 ? "0"+ gameDate.hour.toString() :  
-                        gameDate.hour.toString() + ":" + (gameDate.minute <= 9 ? "0" + gameDate.minute.toString() : gameDate.minute.toString());
-
-      bool isFull = (gameListData[index].gamePlayerCount == gameListData[index].maxPlayerCount) || 
-                    (gameListData[index].gameSubstituteCount == gameListData[index].maxSubstituteCount)  ? true : false;
-
-      return checked == false ? 
-        MatchContainerWidget(
-          fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
-          fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
-          imageName: gameListData[index].sportName,
-          sportName: gameListData[index].sportName,
-          saloon: gameListData[index].saloonName,
-          date: date,
-          time: time,
-          onTap: (){
-           // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
-          },
-          expandedonTap: ()
-           {
-             setState(() {
-               checked=!checked;
-             });
-           },
-           exitTeamRow: Row(children: [
-            Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
-            Icon(Icons.exit_to_app,color: Colors.white,size: 20)]),
-          ):
-          ExpandedMatchContainerWidget(
-          fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
-          fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
-          imageName: gameListData[index].sportName,
-          sportName: gameListData[index].sportName,
-          saloon: gameListData[index].saloonName,
-          date: date,
-          time: time,
-          gameNote: gameListData[index].gameNote,
-          gamerCount: gameListData[index].gamePlayerCount,
-          substituteCount: gameListData[index].gameSubstituteCount,
-          onTap: (){
-           // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
-          },
-          expandedonTap: (){
-             setState(() {
-               checked=!checked;
-             });
-           },
-          );
-         // SizedBox(height: defaultPadding)
-    });
+    return FutureBuilder<dynamic>(
+      future: getGamesList(),
+      builder: (context, snapshot) {
+      if(snapshot.hasError){
+        return Center(child: Text("Hata Oluştu"));
+      }
+      else{
+        if(snapshot.hasData){
+        dynamic gamedata = snapshot.requireData;
+        return ListView.builder(
+          itemCount: gameListData.length,
+          itemBuilder: (context, index){    
+          DateTime gameDate = gamedata[index].gameTime;
+          String date = (gameDate.day <= 9 ? "0"+ gameDate.day.toString() :  
+                         gameDate.day.toString()) +"."+ (gameDate.month <= 9 ? "0" + gameDate.month.toString() :  
+                         gameDate.month.toString()) +"."+ gameDate.year.toString();
+    
+          String time = gameDate.hour <= 9 ? "0"+ gameDate.hour.toString() :  
+                            gameDate.hour.toString() + ":" + (gameDate.minute <= 9 ? "0" + gameDate.minute.toString() : gameDate.minute.toString());
+    
+          bool isFull = (gamedata[index].gamePlayerCount == gamedata[index].maxPlayerCount) || 
+                        (gamedata[index].gameSubstituteCount == gamedata[index].maxSubstituteCount)  ? true : false;
+    
+          return checked == false ? 
+            MatchContainerWidget(
+              fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
+              fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
+              imageName: gamedata[index].sportName,
+              sportName: gamedata[index].sportName,
+              saloon: gamedata[index].saloonName,
+              date: date,
+              time: time,
+              onTap: (){
+               // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
+              },
+              expandedonTap: ()
+               {
+                 setState(() {
+                   checked=!checked;
+                 });
+               },
+               exitTeamRow: Row(children: [
+                Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
+                Icon(Icons.exit_to_app,color: Colors.white,size: 20)]),
+              ):
+              ExpandedMatchContainerWidget(
+              fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
+              fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
+              imageName: gamedata[index].sportName,
+              sportName: gamedata[index].sportName,
+              saloon: gamedata[index].saloonName,
+              date: date,
+              time: time,
+              gameNote: gamedata[index].gameNote,
+              gamerCount: gamedata[index].gamePlayerCount,
+              substituteCount: gamedata[index].gameSubstituteCount,
+              onTap: (){
+               // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
+              },
+              expandedonTap: (){
+                 setState(() {
+                   checked=!checked;
+                 });
+               },
+              );
+             // SizedBox(height: defaultPadding)
+        });
+      }
+      else{
+        return circularBasic;
+      }
+      }     
+      }
+    );
   }
 }
