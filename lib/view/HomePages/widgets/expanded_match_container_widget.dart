@@ -14,7 +14,6 @@ class ExpandedMatchContainerWidget extends StatefulWidget {
   final Icon fullEmptyIcon;
   final int gamerCount, substituteCount;
   final Widget? exitTeamRow;
-
   
   const ExpandedMatchContainerWidget({
     Key? key, 

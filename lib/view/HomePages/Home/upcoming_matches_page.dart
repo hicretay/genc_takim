@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, curly_braces_in_flow_control_structures
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, prefer_const_literals_to_create_immutables, curly_braces_in_flow_control_structures, avoid_function_literals_in_foreach_calls
 import 'package:flutter/material.dart';
 import 'package:genc_takim/model/game_list_model.dart';
 import 'package:genc_takim/service/game_list_service.dart';
@@ -17,6 +17,7 @@ class UpComingMatchesPage extends StatefulWidget {
 class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
   int selectedIndex = -1;
   List gameListData = [];
+  List selectedMatches = [];
 
   Future getGamesList() async{
     final GameListModel? games = await comingGameList(false);
@@ -54,7 +55,7 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
           color: Colors.black,
           image: DecorationImage(
           colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
-          image: AssetImage("assets/logos/logowhite.png"))
+          image: AssetImage("assets/logos/logo.png"))
           ),
           child: Column(
           children: [
@@ -67,7 +68,7 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
                 controller: teSearch,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.all(maxSpace),
-                  hintText: "Salon, oyun, spor ara",
+                  hintText: "Salon, oyun, spor... ara",
                   hintStyle: TextStyle(color: primaryColor),
                   filled: true,
                   fillColor: Colors.white,
@@ -81,6 +82,26 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
                     borderRadius: BorderRadius.circular(cardCurved),
                   )
                 ),
+                 onTap: (){
+                    selectedMatches.clear();
+                    setState(() {
+                      gameListData.forEach((element) {
+                        if( (element.saloonName.toLowerCase().contains(teSearch.text.toLowerCase())) || (element.sportName.toLowerCase().contains(teSearch.text.toLowerCase()))){
+                          selectedMatches.add(element);
+                        }
+                      });
+                    });
+                  },
+                  onChanged: (value){
+                    selectedMatches.clear();
+                    setState(() {
+                    gameListData.forEach((element) {
+                      if( (element.saloonName.toLowerCase().contains(teSearch.text.toLowerCase())) || (element.sportName.toLowerCase().contains(teSearch.text.toLowerCase()))){
+                        selectedMatches.add(element);
+                      }
+                    });
+                  });
+                  },
               ),
             ),
           ),
@@ -96,7 +117,7 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
                 return ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: gameListData.length,
+                itemCount: selectedMatches.isEmpty ? gameListData.length : selectedMatches.length,
                 itemBuilder: (context, index){
                 
                 DateTime gameDate = gamedata[index].gameTime;
@@ -114,9 +135,9 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
                   MatchContainerWidget(
                     fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
                     fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
-                    imageName: gamedata[index].sportName,
-                    sportName: gamedata[index].sportName,
-                    saloon: gamedata[index].saloonName,
+                    imageName: selectedMatches.isEmpty ? gamedata[index].sportName : selectedMatches[index].sportName,
+                    sportName: selectedMatches.isEmpty ? gamedata[index].sportName : selectedMatches[index].sportName,
+                    saloon: selectedMatches.isEmpty ? gamedata[index].saloonName : selectedMatches[index].saloonName,
                     date: date,
                     time: time,
                     onTap: (){},
@@ -130,9 +151,9 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
                     ExpandedMatchContainerWidget(
                     fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
                     fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
-                    imageName: gamedata[index].sportName,
-                    sportName: gamedata[index].sportName,
-                    saloon: gamedata[index].saloonName,
+                    imageName: selectedMatches.isEmpty ? gamedata[index].sportName : selectedMatches[index].sportName,
+                    sportName: selectedMatches.isEmpty ? gamedata[index].sportName : selectedMatches[index].sportName,
+                    saloon: selectedMatches.isEmpty ? gamedata[index].saloonName : selectedMatches[index].saloonName,
                     date: date,
                     time: time,
                     gameNote: gamedata[index].gameNote,
