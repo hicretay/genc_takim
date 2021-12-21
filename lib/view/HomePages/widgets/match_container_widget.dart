@@ -11,7 +11,7 @@ class MatchContainerWidget extends StatefulWidget {
   final VoidCallback onTap, expandedonTap;
   final String fullEmpty;
   final Icon fullEmptyIcon;
-  final Widget exitTeamRow;
+  final Widget? exitTeamRow;
 
   const MatchContainerWidget({
     Key? key, 
@@ -24,7 +24,7 @@ class MatchContainerWidget extends StatefulWidget {
     required this.fullEmpty, 
     required this.fullEmptyIcon,
     required this.expandedonTap, 
-    required this.exitTeamRow,
+    this.exitTeamRow,
   }) : super(key: key);
 
   @override

@@ -126,9 +126,6 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
                          selectedIndex = index;
                        });
                      },
-                     exitTeamRow: Row(children: [
-                      Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
-                      Icon(Icons.exit_to_app,color: Colors.white,size: 20)]),
                     ):
                     ExpandedMatchContainerWidget(
                     fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),

@@ -13,6 +13,7 @@ class ExpandedMatchContainerWidget extends StatefulWidget {
   final String fullEmpty;
   final Icon fullEmptyIcon;
   final int gamerCount, substituteCount;
+  final Widget? exitTeamRow;
 
   
   const ExpandedMatchContainerWidget({
@@ -29,6 +30,7 @@ class ExpandedMatchContainerWidget extends StatefulWidget {
     required this.gameNote, 
     required this.gamerCount, 
     required this.substituteCount,
+    this.exitTeamRow
   }) : super(key: key);
 
   @override
@@ -103,9 +105,7 @@ class _ExpandedMatchContainerWidgetState extends State<ExpandedMatchContainerWid
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: maxSpace),
-                        child: Row(children: [
-                          Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
-                          Icon(Icons.exit_to_app,color: Colors.white,size: 20),]),
+                        child: widget.exitTeamRow
                       ),
                     ],
                   )
