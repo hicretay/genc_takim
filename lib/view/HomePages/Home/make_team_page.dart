@@ -54,7 +54,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
     });
     super.initState();
   }
-
+   
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -214,10 +214,13 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                           borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
                       ),
                           child: CupertinoDatePicker(
+                            minimumYear: 2021,
+                            maximumYear: 2022,
                             backgroundColor: secondaryColor2,
                             mode: CupertinoDatePickerMode.dateAndTime,
                             use24hFormat: true,
                             initialDateTime: DateTime.now(),
+                            
                             onDateTimeChanged: (value){
                             setState(() {
                               date = value;
@@ -231,13 +234,13 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                  //---------------------------------------------------------------------------------------------------
         
                //-----------------------------OYUNCU SAYISI SEÇİMİ---------------------------------------
-                  selectedSport != "Tenis"?
+               
                   Padding(
                   padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))) : Container(),
-                  selectedSport != "Tenis"?
+                    child: Text("Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))),
+         
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -276,17 +279,17 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                         ),
                       ),
                     ),
-                  ):Container(),
+                  ),
                  //---------------------------------------------------------------------------------------------------
         
                //-----------------------------YEDEK OYUNCU SAYISI SEÇİMİ---------------------------------------
-                  selectedSport != "Tenis"?
+               
                   Padding(
                   padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("Yedek Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))) : Container(),
-                  selectedSport != "Tenis"?
+                    child: Text("Yedek Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))),
+       
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -325,7 +328,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                         ),
                       ),
                     ),
-                  ):Container(),
+                  ),
                  //---------------------------------------------------------------------------------------------------
 
                  //-----------------------------OYUN KURUCU NOTU---------------------------------------
@@ -336,7 +339,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                   child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text("Oyun Açıklamasını Giriniz *opsiyonel",style: TextStyle(color: Colors.white)))),
-                  selectedSport != "Tenis"?
                   Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -371,7 +373,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       ),
                     ),
                   ),
-                ):Container(),
+                ),
                     ],
                 ),
                   

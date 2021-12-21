@@ -14,8 +14,8 @@ class PassedMatchesPage extends StatefulWidget {
 }
 
 class _PassedMatchesPageState extends State<PassedMatchesPage> {
-  bool checked = false;
-    List gameListData = [];
+  int selectedIndex = -1;
+  List gameListData = [];
   DateTime today = DateTime.now();
 
   Future getGamesList() async{
@@ -60,7 +60,7 @@ class _PassedMatchesPageState extends State<PassedMatchesPage> {
           bool isFull = (gamedata[index].gamePlayerCount == gamedata[index].maxPlayerCount) || 
                         (gamedata[index].gameSubstituteCount == gamedata[index].maxSubstituteCount)  ? true : false;
     
-          return checked == false ? 
+          return selectedIndex != index ? 
             MatchContainerWidget(
               fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
               fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
@@ -74,7 +74,7 @@ class _PassedMatchesPageState extends State<PassedMatchesPage> {
               expandedonTap: ()
                {
                  setState(() {
-                   checked=!checked;
+                   selectedIndex = index;
                  });
                },
                exitTeamRow: Row(children: [
@@ -96,7 +96,7 @@ class _PassedMatchesPageState extends State<PassedMatchesPage> {
               },
               expandedonTap: (){
                  setState(() {
-                   checked=!checked;
+                   selectedIndex = -1;
                  });
                },
               );

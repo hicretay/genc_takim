@@ -15,8 +15,8 @@ class UpComingMatchesPage extends StatefulWidget {
 }
 
 class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
-  bool checked = false;
-    List gameListData = [];
+  int selectedIndex = -1;
+  List gameListData = [];
 
   Future getGamesList() async{
     final GameListModel? games = await comingGameList(false);
@@ -34,7 +34,7 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
   TextEditingController teSearch = TextEditingController();
   @override
   Widget build(BuildContext context) {
-        return SafeArea(
+      return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -45,8 +45,7 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
             bottomLeft: Radius.circular(25),
             bottomRight: Radius.circular(20)))
         ),
-        body: Container(
-          color: secondaryColor,
+        body: SingleChildScrollView(
           child: Container(
           decoration: BoxDecoration(
           color: Colors.black,
@@ -92,14 +91,14 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
             String date = (gameDate.day <= 9 ? "0"+ gameDate.day.toString() :  
                            gameDate.day.toString()) +"."+ (gameDate.month <= 9 ? "0" + gameDate.month.toString() :  
                            gameDate.month.toString()) +"."+ gameDate.year.toString();
-      
+              
             String time = gameDate.hour <= 9 ? "0"+ gameDate.hour.toString() :  
                               gameDate.hour.toString() + ":" + (gameDate.minute <= 9 ? "0" + gameDate.minute.toString() : gameDate.minute.toString());
-      
+              
             bool isFull = (gameListData[index].gamePlayerCount == gameListData[index].maxPlayerCount) || 
                           (gameListData[index].gameSubstituteCount == gameListData[index].maxSubstituteCount)  ? true : false;
-      
-            return checked == false ? 
+              
+            return selectedIndex != index ? 
               MatchContainerWidget(
                 fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
                 fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
@@ -114,7 +113,7 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
                 expandedonTap: ()
                  {
                    setState(() {
-                     checked=!checked;
+                     selectedIndex = index;
                    });
                  },
                  exitTeamRow: Row(children: [
@@ -137,13 +136,13 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
                 },
                 expandedonTap: (){
                    setState(() {
-                     checked=!checked;
+                      selectedIndex = -1;
                    });
                  },
                 );
                // SizedBox(height: defaultPadding)
           }),
-
+        
               Padding(
                 padding: const EdgeInsets.all(defaultPadding*2),
                 child: SizedBox(
@@ -169,7 +168,7 @@ class _UpComingMatchesPageState extends State<UpComingMatchesPage> {
               ),
             ],
           ),
-        ),
-    )));
+          ),
+        )));
   }
 }

@@ -15,7 +15,7 @@ class AddTeamPage extends StatefulWidget {
 }
 
 class _AddTeamPageState extends State<AddTeamPage> {
-  bool checked = false;
+  int selectedIndex = -1;
   List gameListData = [];
 
   Future getGamesList() async{
@@ -99,7 +99,7 @@ class _AddTeamPageState extends State<AddTeamPage> {
             bool isFull = (gameListData[index].gamePlayerCount == gameListData[index].maxPlayerCount) || 
                           (gameListData[index].gameSubstituteCount == gameListData[index].maxSubstituteCount)  ? true : false;
       
-            return checked == false ? 
+            return selectedIndex != index ?  
               MatchContainerWidget(
                 fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
                 fullEmpty: isFull ? "Kontenjan yok" : "Kontenjan var",
@@ -108,13 +108,11 @@ class _AddTeamPageState extends State<AddTeamPage> {
                 saloon: gameListData[index].saloonName,
                 date: date,
                 time: time,
-                onTap: (){
-                 // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
-                },
+                onTap: (){},
                 expandedonTap: ()
                  {
                    setState(() {
-                     checked=!checked;
+                     selectedIndex = index;
                    });
                  },
                  exitTeamRow: Row(children: [
@@ -132,16 +130,13 @@ class _AddTeamPageState extends State<AddTeamPage> {
                 gameNote: gameListData[index].gameNote,
                 gamerCount: gameListData[index].gamePlayerCount,
                 substituteCount: gameListData[index].gameSubstituteCount,
-                onTap: (){
-                 // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
-                },
+                onTap: (){},
                 expandedonTap: (){
                    setState(() {
-                     checked=!checked;
+                     selectedIndex = -1;
                    });
                  },
                 );
-               // SizedBox(height: defaultPadding)
           }),
               Padding(
                 padding: const EdgeInsets.all(defaultPadding*2),
