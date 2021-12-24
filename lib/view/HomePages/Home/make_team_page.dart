@@ -8,6 +8,7 @@ import 'package:genc_takim/service/saloons_list_service.dart';
 import 'package:genc_takim/service/sports_list_service.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/settings/functions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MakeTeamPage extends StatefulWidget {
  
@@ -24,6 +25,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
   int selectedSubstituteNumber = 4;
   int selectedSportId = 1;
   int selectedSaloonId = 1;
+  bool gameSaved = false;
 
   TextEditingController teNote = TextEditingController();
 
@@ -78,7 +80,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
         color: Colors.black,
         image: DecorationImage(
         colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstATop),
-        image: AssetImage("assets/logos/logowhite.png"))
+        image: AssetImage("assets/logos/logo.png"))
         ),
         child: ListView(
           children: [
@@ -201,18 +203,16 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                     padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
                     child: SizedBox(
                     width: deviceWidth(context),
-                    height: deviceHeight(context)*0.05,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: CupertinoTheme(
-                        data: CupertinoThemeData(
-                          textTheme: CupertinoTextThemeData(
-                          textStyle: TextStyle(color: Colors.white,fontSize: 18))
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                      ),
+                    height: deviceHeight(context)*0.08,
+                    child: Container(
+                      color: primaryColor,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: CupertinoTheme(                    
+                          data: CupertinoThemeData(
+                            textTheme: CupertinoTextThemeData(
+                            textStyle: TextStyle(color: Colors.white,fontSize: 18))
+                          ),
                           child: CupertinoDatePicker(
                             minimumYear: 2021,
                             maximumYear: 2022,
@@ -220,14 +220,14 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                             mode: CupertinoDatePickerMode.dateAndTime,
                             use24hFormat: true,
                             initialDateTime: DateTime.now(),
-                            
+
                             onDateTimeChanged: (value){
                             setState(() {
                               date = value;
                             });
                           }),
-                        ),
-                      )
+                        )
+                      ),
                     ),
                     ),
                   ),
@@ -289,7 +289,6 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text("Yedek Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))),
-       
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -397,9 +396,14 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                         fontSize: 20
                       )),
                       onPressed: () async{
-                        final saveGameData = await gameSave(selectedSportId, 1, selectedSaloonId, teNote.text, false, date, selectedPlayerNumber, selectedSubstituteNumber);
+                        SharedPreferences preferences = await SharedPreferences.getInstance();
+                        int? userId = preferences.getInt("userId");
+                        final saveGameData = await gameSave(selectedSportId, userId!, selectedSaloonId, teNote.text, false, date, selectedPlayerNumber, selectedSubstituteNumber);
                         if(saveGameData!.succes == true){
                           showToast(context, "Oyun başarıyla kaydedildi !");
+                          setState(() {
+                            gameSaved = true;
+                          });
                         }
                         else{
                           showToast(context, "Oyun kaydı başarısız !");
@@ -407,7 +411,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       }),
                   ),
                 ),
-
+                gameSaved == true ?
                 SizedBox(
                   width: deviceWidth(context)*0.6,
                   height: deviceHeight(context)*0.06,
@@ -431,7 +435,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       // FootballFieldPage(numberOfPlayer: selectedPlayerNumber):
                       // selectedSport=="Basketbol" ? BasketballFieldPage() : selectedSport=="Tenis" ? TennisFieldPage() : VolleyballFieldPage()));
                     }),
-                ),
+                ): Container()
               ],
             ),
           ],
@@ -440,5 +444,3 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
         )));
   }
 }
-
-//2021-12-30 20:00:00.000

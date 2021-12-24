@@ -32,7 +32,7 @@ class _NearMatchesPageState extends State<NearMatchesPage> {
            color: Colors.black,
            image: DecorationImage(
            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.3), BlendMode.dstATop),
-           image: AssetImage("assets/logos/logowhite.png"))
+           image: AssetImage("assets/logos/logo.png"))
            ),
           child: Column(
           children: [

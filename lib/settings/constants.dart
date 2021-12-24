@@ -7,11 +7,11 @@ const bgColor = Color(0xFF1C1F1F);
 
 const font = "RacingSansOne";
 const contentFont = "TekoRegular";
-const baseUrl = "https://172.24.42.62/genctakim/"; //yurt: 172.24.47.160 ofis: 192.168.1.6
+const baseUrl = "https://172.24.42.98/genctakim/"; 
 
 TextStyle contentTextStyle = const TextStyle(
-  fontFamily: font,
-  fontSize: 20,
+  fontFamily: contentFont,
+  fontSize: 25,
   color: primaryColor
 );
 

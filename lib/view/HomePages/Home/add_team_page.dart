@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:genc_takim/model/game_list_model.dart';
 import 'package:genc_takim/service/game_list_service.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/settings/functions.dart';
 import 'package:genc_takim/view/HomePages/Home/make_team_page.dart';
 import 'package:genc_takim/view/HomePages/widgets/expanded_match_container_widget.dart';
 import 'package:genc_takim/view/HomePages/widgets/match_container_widget.dart';
@@ -146,7 +147,15 @@ class _AddTeamPageState extends State<AddTeamPage> {
                          selectedIndex = index;
                        });
                      },
-                     
+                     exitTeamRow: GestureDetector(
+                       child: Row(children: [
+                       Text("Takıma Katıl",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
+                       Icon(Icons.add_box_outlined,color: Colors.white,size: 18)]),
+                       onTap: isFull == true ? (){
+                         showToast(context, "Maç dolu !");
+                       }:
+                       ()async{},
+                     ),
                     ):
                     ExpandedMatchContainerWidget(
                     fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
@@ -165,6 +174,15 @@ class _AddTeamPageState extends State<AddTeamPage> {
                          selectedIndex = -1;
                        });
                      },
+                    exitTeamRow: GestureDetector(
+                       child: Row(children: [
+                       Text("Takıma Katıl",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
+                       Icon(Icons.add_box_outlined,color: Colors.white,size: 18)]),
+                       onTap: isFull == true ? (){
+                         showToast(context, "Maç dolu !");
+                       }:
+                       ()async{},
+                     ),
                     );
                    });
                   }

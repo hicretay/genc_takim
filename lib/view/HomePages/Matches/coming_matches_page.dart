@@ -76,7 +76,7 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
                    selectedIndex = index;
                  });
                },
-               exitTeamRow: Row(children: [
+              exitTeamRow: Row(children: [
                 Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
                 Icon(Icons.exit_to_app,color: Colors.white,size: 20)]),
               ):

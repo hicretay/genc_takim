@@ -113,12 +113,11 @@ class _LoginPageState extends State<LoginPage> {
                                        showToast(context, "Giriş başarılı");
                                        SharedPreferences preferences = await SharedPreferences.getInstance();
                                        preferences.setString("email", emailController.text);
+                                       preferences.setInt("userId", userData.result!.id ?? 0);
                                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeNavBarWidget(tabIndex: 0)), (route) => false);
                                      }
                                      else{
                                        showAlert(context, "Hatalı giriş!");
-                                       // ignore: avoid_print
-                                       print("hata oluştu");
                                      }
                                    }
                                    else{

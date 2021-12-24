@@ -51,6 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
               onTap: () async {
                 SharedPreferences preferences = await SharedPreferences.getInstance();
                 preferences.remove("email");
+                preferences.remove("userId");
                 Navigator.pushAndRemoveUntil(context,
                 MaterialPageRoute(builder: (context) => const LoginPage()),(route) => false);
               },),
