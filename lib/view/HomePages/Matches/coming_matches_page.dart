@@ -29,6 +29,7 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
     return gameListData;
   }
 
+
   @override
   void initState() {
     getGamesList();
@@ -83,7 +84,7 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
                   Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
                   Icon(Icons.exit_to_app,color: Colors.white,size: 20)]),
                 onTap: ()async{
-                  final usergameDeletedata = await userMatchDelete(gamedata[index].id);
+                  final usergameDeletedata = await userMatchDelete(gamedata[index].gameUserId);
                   if(usergameDeletedata!.succes == true){
                     showToast(context, "Kullanıcı oyundan silindi");
                   }

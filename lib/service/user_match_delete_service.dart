@@ -25,19 +25,3 @@ Future<UserMatchDeleteModel?> userMatchDelete(int id) async{
     return null;
   }
 }
-
-// Future<UserMatchDeleteModel?>? userMatchDelete(int id) async {
-//   final response = await http.post(
-//     Uri.parse(baseUrl + "UserMatch/Delete"),
-//     body: '{"id":' + id.toString() + '}',
-//     headers: header
-//   );
-
-//   if (response.statusCode == 200) {
-//     final String responseString = response.body;
-//     return userMatchDeleteModelFromJson(responseString);
-    
-//   } else {
-//     return null;
-//   }
-// }

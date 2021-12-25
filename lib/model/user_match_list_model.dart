@@ -42,6 +42,7 @@ class Result {
         this.isPassed,
         this.userLocation,
         this.isSubstitute,
+        this.gameUserId,
     });
 
     int? id;
@@ -60,6 +61,7 @@ class Result {
     bool? isPassed;
     int? userLocation;
     bool? isSubstitute;
+    int? gameUserId;
 
     factory Result.fromJson(Map<String, dynamic> json) => Result(
         id: json["id"],
@@ -78,6 +80,7 @@ class Result {
         isPassed: json["isPassed"],
         userLocation: json["userLocation"],
         isSubstitute: json["isSubstitute"],
+        gameUserId: json["gameUserId"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -97,5 +100,6 @@ class Result {
         "isPassed": isPassed,
         "userLocation": userLocation,
         "isSubstitute": isSubstitute,
+        "gameUserId": gameUserId,
     };
 }
