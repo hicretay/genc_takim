@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, curly_braces_in_flow_control_structures
 import 'package:flutter/material.dart';
-import 'package:genc_takim/model/game_list_model.dart';
+import 'package:genc_takim/model/user_match_list_model.dart';
 import 'package:genc_takim/service/game_list_service.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/view/HomePages/widgets/expanded_match_container_widget.dart';
@@ -18,7 +18,7 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
   int selectedIndex = -1;
 
   Future getGamesList() async{
-    final GameListModel? games = await userGameList(1,false);
+    final UserGameListModel? games = await userMatchList(1,false);
     if(!mounted)
     return;
     setState(() {
