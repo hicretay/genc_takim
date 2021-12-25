@@ -1,25 +1,32 @@
 // ignore_for_file: override_on_non_overriding_member, prefer_const_constructors, no_logic_in_create_state, avoid_unnecessary_containers
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:genc_takim/service/user_match_save_service.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/settings/functions.dart';
 import 'package:genc_takim/view/FieldPages/widgets/full_empty_circle_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FootballFieldPage extends StatefulWidget {
-   final int numberOfPlayer;
-  const FootballFieldPage({Key? key, required this.numberOfPlayer}) : super(key: key);
+   final int? numberOfPlayer;
+   final int gameId;
+
+  const FootballFieldPage({Key? key, this.numberOfPlayer,required this.gameId}) : super(key: key);
 
   @override
-  _FootballFieldPageState createState() => _FootballFieldPageState(numberOfPlayer: numberOfPlayer);
+  _FootballFieldPageState createState() => _FootballFieldPageState(numberOfPlayer: numberOfPlayer, gameId: gameId);
 }
 
 class _FootballFieldPageState extends State<FootballFieldPage> {
-   late int numberOfPlayer;
+  int? numberOfPlayer;
+  int gameId;
 
-   _FootballFieldPageState({required this.numberOfPlayer});
+   _FootballFieldPageState({ this.numberOfPlayer,required this.gameId});
 
   @override
   void initState() { 
     super.initState();
-    //print(numberOfPlayer);
+    //print(gameId);
   }
   @override
   Widget build(BuildContext context) {
@@ -34,42 +41,42 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
             bottomLeft: Radius.circular(25),
             bottomRight: Radius.circular(20)))
         ),
-
       body: Container(
       decoration: BoxDecoration(
        image: DecorationImage(
-      // colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
        image: AssetImage("assets/images/futbol_sahasi.jpg"),fit: BoxFit.cover)
        ),
-       // ignore: prefer_const_literals_to_create_immutables
-       child: Column(
-         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-         children: [
-         Container(child: FullEmptyCircleWidget()),
-
-         Container(child:  Padding(
-           padding: const EdgeInsets.all(8.0),
-           child: GridView.builder(
-            itemCount: numberOfPlayer - 2,
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: (1 / .4),
-              crossAxisCount : 3,
-              mainAxisSpacing: defaultPadding*5,
-              crossAxisSpacing: defaultPadding,
-              ), 
-              itemBuilder: (BuildContext context, int index){
-                return FullEmptyCircleWidget();
-              }),
-         )),
-
-
-          Container(child: FullEmptyCircleWidget())
-
-
-       
-         
-       ],),
+       child: Align(
+         alignment: Alignment.center,
+         child: StaggeredGridView.countBuilder(
+           staggeredTileBuilder: (index) => index % numberOfPlayer! == 0  || index == numberOfPlayer! -1 ?
+           StaggeredTile.count(3, 1) :
+           StaggeredTile.count(1, 1),
+          itemCount: numberOfPlayer!,
+          shrinkWrap: true,
+            crossAxisCount : 3,
+            mainAxisSpacing: deviceWidth(context) / (numberOfPlayer!*numberOfPlayer!*numberOfPlayer!),
+            crossAxisSpacing: deviceWidth(context) / (numberOfPlayer!*numberOfPlayer!*2),
+            itemBuilder: (BuildContext context, int index){
+              return Padding(
+                padding: const EdgeInsets.all(defaultPadding*2),
+                child: FullEmptyCircleWidget(
+                  onTap: () async{
+                    SharedPreferences preferences = await SharedPreferences.getInstance();
+                    int? userId = preferences.getInt("userId");
+                    final addUserGameData = await userGameSave(gameId, userId!, index, false);
+                    if(addUserGameData!.succes == true){
+                      showToast(context, "Oyuna başarıyla kaydolundu !");
+                      Navigator.pop(context);
+                    }
+                    else{
+                      showToast(context, "Bir hata oluştu !");
+                    }
+                 },
+                ),
+              );
+            }),
+       ),
      )
       ));
   }

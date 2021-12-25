@@ -5,6 +5,10 @@ import 'package:genc_takim/service/game_list_service.dart';
 import 'package:genc_takim/service/user_match_save_service.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/settings/functions.dart';
+import 'package:genc_takim/view/FieldPages/basketball_field_page.dart';
+import 'package:genc_takim/view/FieldPages/football_field_page.dart';
+import 'package:genc_takim/view/FieldPages/tennis_field_page.dart';
+import 'package:genc_takim/view/FieldPages/volleyball_field_page.dart';
 import 'package:genc_takim/view/HomePages/Home/make_team_page.dart';
 import 'package:genc_takim/view/HomePages/widgets/expanded_match_container_widget.dart';
 import 'package:genc_takim/view/HomePages/widgets/match_container_widget.dart';
@@ -155,16 +159,18 @@ class _AddTeamPageState extends State<AddTeamPage> {
                        onTap: isFull == true ? (){
                          showToast(context, "Maç dolu !");
                        }:
-                       ()async{
-                         SharedPreferences preferences = await SharedPreferences.getInstance();
-                         int? userId = preferences.getInt("userId");
-                         final addUserGameData = await userGameSave(gameListData[index].id, userId!, 1,false);
-                         if(addUserGameData!.succes == true){
-                           showToast(context, "Oyuna başarıyla kaydolundu !");
-                         }
-                         else{
-                           showToast(context, "Bir hata oluştu !");
-                         }
+                       (){
+                         Navigator.push(context, MaterialPageRoute(builder: (context)=>
+
+                         gamedata[index].sportName == "Futbol" ?
+                         FootballFieldPage(numberOfPlayer: gamedata[index].maxPlayerCount, gameId: gamedata[index].id) :
+                         gamedata[index].sportName == "Basketbol" ?
+                         BasketballFieldPage(numberOfPlayer: gamedata[index].maxPlayerCount, gameId: gamedata[index].id) :
+                         gamedata[index].sportName == "Voleybol" ?
+                         VolleyballFieldPage(numberOfPlayer: gamedata[index].maxPlayerCount, gameId: gamedata[index].id) :
+                         TennisFieldPage(numberOfPlayer: gamedata[index].maxPlayerCount, gameId: gamedata[index].id) 
+
+                         ));
                        },
                      ),
                     ):
