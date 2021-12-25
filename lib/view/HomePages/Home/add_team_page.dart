@@ -142,7 +142,6 @@ class _AddTeamPageState extends State<AddTeamPage> {
                     saloon: selectedMatches.isEmpty ? gamedata[index].saloonName : selectedMatches[index].saloonName,
                     date: date,
                     time: time,
-                    onTap: (){},
                     expandedonTap: ()
                      {
                        setState(() {
@@ -180,7 +179,6 @@ class _AddTeamPageState extends State<AddTeamPage> {
                     gameNote: gamedata[index].gameNote,
                     gamerCount: gamedata[index].gamePlayerCount,
                     substituteCount: gamedata[index].gameSubstituteCount,
-                    onTap: (){},
                     expandedonTap: (){
                        setState(() {
                          selectedIndex = -1;

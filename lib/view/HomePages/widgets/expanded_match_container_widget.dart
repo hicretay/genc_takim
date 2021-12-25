@@ -9,7 +9,7 @@ class ExpandedMatchContainerWidget extends StatefulWidget {
   final String sportName;
   final String imageName;
   final String gameNote;
-  final VoidCallback onTap, expandedonTap;
+  final VoidCallback expandedonTap;
   final String fullEmpty;
   final Icon fullEmptyIcon;
   final int gamerCount, substituteCount;
@@ -19,8 +19,7 @@ class ExpandedMatchContainerWidget extends StatefulWidget {
     Key? key, 
     required this.saloon, 
     required this.date, 
-    required this.time, 
-    required this.onTap, 
+    required this.time,  
     required this.sportName, 
     required this.imageName, 
     required this.fullEmpty, 
@@ -40,79 +39,76 @@ class _ExpandedMatchContainerWidgetState extends State<ExpandedMatchContainerWid
   @override
   Widget build(BuildContext context) {
     bool isChecked=false;
-    return GestureDetector(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(      
-          height: deviceHeight(context)*0.35,       
-            decoration: BoxDecoration(
-              color: secondaryColor,
-              borderRadius: BorderRadius.all(Radius.circular(25)),              
-            ),
-            child: Column(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(      
+        height: deviceHeight(context)*0.35,       
+          decoration: BoxDecoration(
+            color: secondaryColor,
+            borderRadius: BorderRadius.all(Radius.circular(25)),              
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+               Flexible(
+                 child: Column(
+                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                   crossAxisAlignment: CrossAxisAlignment.center,
+                   children: [
+                   Text(widget.sportName,style: TextStyle(color: primaryColor,fontFamily: font,fontSize: 18)),
+                   Container(width: 50,height: 50,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/icons/${widget.imageName}.png")))),
+                   ]),
+               ),
+               Flexible(child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                 children: [
+                 const Text("Yer:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
+                 Text(widget.saloon,textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))])),
+               Flexible(child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                 children: [
+                     const Text("Tarih / Saat:",textAlign: TextAlign.center,  style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
+                     Text("${widget.date}\n${widget.time}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily:contentFont,fontSize: 20))]))]),
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                 children: [
+                 Column(
+                   children: [
+                   Text("Oyuncu Sayısı:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
+                   Text(widget.gamerCount.toString(),textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20))]),
+
+                 Column(
+                   children: [
+                   Text("Yedek Oyuncu Sayısı:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
+                   Text(widget.substituteCount.toString(),textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))]),
+               ]),
+
+                Text(widget.gameNote,textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20)),
                 Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                 Flexible(
-                   child: Column(
-                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                     crossAxisAlignment: CrossAxisAlignment.center,
-                     children: [
-                     Text(widget.sportName,style: TextStyle(color: primaryColor,fontFamily: font,fontSize: 18)),
-                     Container(width: 50,height: 50,decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/icons/${widget.imageName}.png")))),
-                     ]),
-                 ),
-                 Flexible(child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                   children: [
-                   const Text("Yer:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
-                   Text(widget.saloon,textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))])),
-                 Flexible(child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                   children: [
-                       const Text("Tarih / Saat:",textAlign: TextAlign.center,  style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
-                       Text("${widget.date}\n${widget.time}", textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily:contentFont,fontSize: 20))]))]),
-                 Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                   children: [
-                   Column(
-                     children: [
-                     Text("Oyuncu Sayısı:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
-                     Text(widget.gamerCount.toString(),textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20))]),
-
-                   Column(
-                     children: [
-                     Text("Yedek Oyuncu Sayısı:", style: TextStyle(color: primaryColor, fontFamily: "RacingSansOne",fontSize: 18)),
-                     Text(widget.substituteCount.toString(),textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20,))]),
-                 ]),
-
-                  Text(widget.gameNote,textAlign: TextAlign.center, style: TextStyle(color: Colors.white, fontFamily: contentFont,fontSize: 20)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: maxSpace),
-                        child: Row(children: [
-                          widget.fullEmptyIcon,
-                          Text(widget.fullEmpty,style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16))]),
-                      ),
-                      GestureDetector(
-                        child: Icon(isChecked==false ? Icons.expand_less_outlined : Icons.expand_less_outlined,color: primaryColor,size: 30),
-                        onTap: widget.expandedonTap
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: maxSpace),
-                        child: widget.exitTeamRow
-                      ),
-                    ],
-                  )
-                ],
-            ),
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: maxSpace),
+                      child: Row(children: [
+                        widget.fullEmptyIcon,
+                        Text(widget.fullEmpty,style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16))]),
+                    ),
+                    GestureDetector(
+                      child: Icon(isChecked==false ? Icons.expand_less_outlined : Icons.expand_less_outlined,color: primaryColor,size: 30),
+                      onTap: widget.expandedonTap
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: maxSpace),
+                      child: widget.exitTeamRow
+                    ),
+                  ],
+                )
+              ],
           ),
-      ),
-        onTap: widget.onTap
+        ),
     );
   }
 }

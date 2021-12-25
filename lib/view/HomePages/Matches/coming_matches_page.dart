@@ -70,9 +70,6 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
               saloon: gamedata[index].saloonName,
               date: date,
               time: time,
-              onTap: (){
-               // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
-              },
               expandedonTap: ()
                {
                  setState(() {
@@ -105,9 +102,6 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
               gameNote: gamedata[index].gameNote,
               gamerCount: gamedata[index].gamePlayerCount,
               substituteCount: gamedata[index].gameSubstituteCount,
-              onTap: (){
-               // Navigator.push(context, MaterialPageRoute(builder: (context)=> BasketballFieldPage()));
-              },
               expandedonTap: (){
                  setState(() {
                    selectedIndex = -1;

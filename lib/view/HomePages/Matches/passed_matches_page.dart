@@ -69,8 +69,6 @@ class _PassedMatchesPageState extends State<PassedMatchesPage> {
               saloon: gamedata[index].saloonName,
               date: date,
               time: time,
-              onTap: (){
-              },
               expandedonTap: ()
                {
                  setState(() {
@@ -89,8 +87,6 @@ class _PassedMatchesPageState extends State<PassedMatchesPage> {
               gameNote: gamedata[index].gameNote,
               gamerCount: gamedata[index].gamePlayerCount,
               substituteCount: gamedata[index].gameSubstituteCount,
-              onTap: (){
-              },
               expandedonTap: (){
                  setState(() {
                    selectedIndex = -1;
