@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:genc_takim/model/user_match_list_model.dart';
 import 'package:genc_takim/service/game_list_service.dart';
+import 'package:genc_takim/service/user_match_delete_service.dart';
 import 'package:genc_takim/settings/constants.dart';
+import 'package:genc_takim/settings/functions.dart';
 import 'package:genc_takim/view/HomePages/widgets/expanded_match_container_widget.dart';
 import 'package:genc_takim/view/HomePages/widgets/match_container_widget.dart';
 
@@ -76,9 +78,20 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
                    selectedIndex = index;
                  });
                },
-              exitTeamRow: Row(children: [
-                Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
-                Icon(Icons.exit_to_app,color: Colors.white,size: 20)]),
+              exitTeamRow: GestureDetector(
+                child: Row(children: [
+                  Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
+                  Icon(Icons.exit_to_app,color: Colors.white,size: 20)]),
+                onTap: ()async{
+                  final usergameDeletedata = await userMatchDelete(gamedata[index].id);
+                  if(usergameDeletedata!.succes == true){
+                    showToast(context, "Kullanıcı oyundan silindi");
+                  }
+                  else{
+                    showToast(context, "Bir hata oluştu");
+                  }
+                },
+              ),
               ):
               ExpandedMatchContainerWidget(
               fullEmptyIcon: Icon( isFull ? Icons.cancel_outlined : Icons.check_circle_outline,color: isFull ? Colors.red : primaryColor,size: 20),
@@ -99,9 +112,21 @@ class _ComingMatchesPageState extends State<ComingMatchesPage> {
                    selectedIndex = -1;
                  });
                },
-               exitTeamRow: Row(children: [
-                Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
-                Icon(Icons.exit_to_app,color: Colors.white,size: 20)]),
+               exitTeamRow: GestureDetector(
+                child: Row(children: [
+                  Text("Takımdan çık",style: TextStyle(color: Colors.white,fontFamily: contentFont,fontSize: 16)),
+                  Icon(Icons.exit_to_app,color: Colors.white,size: 20)]),
+                onTap: ()async{
+                  final usergameDeletedata = await userMatchDelete(gameListData[index].id);
+                  if(usergameDeletedata!.succes == true){
+                    showToast(context, "Kullanıcı oyundan silindi");
+                    await getGamesList();
+                  }
+                  else{
+                    await showToast(context, "Bir hata oluştu");
+                  }
+                },
+              ),
               );
              // SizedBox(height: defaultPadding)
         });
