@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:genc_takim/model/user_match_exist_location_model.dart';
+import 'package:genc_takim/service/user_match_exist_location_service.dart';
 import 'package:genc_takim/service/user_match_save_service.dart';
 import 'package:genc_takim/settings/constants.dart';
 import 'package:genc_takim/settings/functions.dart';
@@ -22,7 +24,30 @@ class _VolleyballFieldPageState extends State<VolleyballFieldPage> {
   int? numberOfPlayer;
   int gameId;
 
+  List isLocationFull = [];
+  List locations = [];
+
   _VolleyballFieldPageState({this.numberOfPlayer,required this.gameId});
+
+    Future getIsLocationFull() async{
+    final UserMatchExistLocationModel? userLocation = await userMatchIsFull(gameId);
+    setState(() {
+    isLocationFull = userLocation!.result!;
+      for (var item in isLocationFull) {
+       if(item.userLocation! != null){
+          locations.add(item.userLocation!);
+       }
+      }
+    });
+  }
+
+    @override
+  void initState() { 
+    super.initState();
+    setState(() {
+      getIsLocationFull();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +92,8 @@ class _VolleyballFieldPageState extends State<VolleyballFieldPage> {
                         showToast(context, "Bir hata oluştu !");
                       }
                    },
+                   circleIcon: locations.isEmpty ? Icon(Icons.check,color: primaryColor) :
+                   locations.contains(index) == true ? Icon(Icons.cancel_outlined,color: Colors.red) :  Icon(Icons.check,color: primaryColor), 
                   ),
                 );
               }),

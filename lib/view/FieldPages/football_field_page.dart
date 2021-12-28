@@ -83,9 +83,6 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
                 padding: const EdgeInsets.all(defaultPadding*2),
                 child: FullEmptyCircleWidget(
                   onTap: () async{
-                    // locations.forEach((element) {
-                    //   print(element);
-                    // });
                     SharedPreferences preferences = await SharedPreferences.getInstance();
                     int? userId = preferences.getInt("userId");
                     final addUserGameData = await userGameSave(gameId, userId!, index, false);
