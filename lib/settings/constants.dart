@@ -7,7 +7,7 @@ const bgColor = Color(0xFF1C1F1F);
 
 const font = "RacingSansOne";
 const contentFont = "TekoRegular";
-const baseUrl = "https://172.24.42.98/genctakim/"; 
+const baseUrl = "https://172.24.42.190/genctakim/"; 
 
 TextStyle contentTextStyle = const TextStyle(
   fontFamily: contentFont,
@@ -16,7 +16,8 @@ TextStyle contentTextStyle = const TextStyle(
 );
 
 Map<String, String> header = {
-  "Content-Type": "application/json",
+  "Content-Type": "application/json;charset=UTF-8",
+  'Charset': 'utf-8',
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Credentials": true.toString(),
   "Access-Control-Allow-Headers":
