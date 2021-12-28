@@ -78,7 +78,6 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
             mainAxisSpacing: deviceWidth(context) / (numberOfPlayer!*numberOfPlayer!*numberOfPlayer!),
             crossAxisSpacing: deviceWidth(context) / (numberOfPlayer!*numberOfPlayer!*2),
             itemBuilder: (BuildContext context, int index){
-              //int exp = isLocationFull[index].userLocation! == "" ? -1 : index;
               return Padding(
                 padding: const EdgeInsets.all(defaultPadding*2),
                 child: FullEmptyCircleWidget(
@@ -91,7 +90,7 @@ class _FootballFieldPageState extends State<FootballFieldPage> {
                       Navigator.pop(context);
                     }
                     else{
-                      showToast(context, "Bir hata oluştu !");
+                      showToast(context, addUserGameData.result.toString());
                     }
                  },
                  circleIcon: locations.isEmpty ? Icon(Icons.check,color: primaryColor) :

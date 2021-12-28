@@ -89,7 +89,7 @@ class _VolleyballFieldPageState extends State<VolleyballFieldPage> {
                         Navigator.pop(context);
                       }
                       else{
-                        showToast(context, "Bir hata oluştu !");
+                        showToast(context, addUserGameData.result.toString());
                       }
                    },
                    circleIcon: locations.isEmpty ? Icon(Icons.check,color: primaryColor) :

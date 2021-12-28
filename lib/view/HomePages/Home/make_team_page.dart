@@ -264,9 +264,15 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                               dropdownColor: secondaryColor2,
                               value: selectedPlayerNumber,
                               items: [
+                                DropdownMenuItem(child: Center(child: Text("2",style: TextStyle(color: Colors.white, fontSize: 14))),value: 2),
+                                DropdownMenuItem(child: Center(child: Text("4",style: TextStyle(color: Colors.white, fontSize: 14))),value: 4),
+                                DropdownMenuItem(child: Center(child: Text("6",style: TextStyle(color: Colors.white, fontSize: 14))),value: 6),
+                                DropdownMenuItem(child: Center(child: Text("10",style: TextStyle(color: Colors.white, fontSize: 14))),value: 8),
                                 DropdownMenuItem(child: Center(child: Text("10",style: TextStyle(color: Colors.white, fontSize: 14))),value: 10),
                                 DropdownMenuItem(child: Center(child: Text("12",style: TextStyle(color: Colors.white, fontSize: 14))),value: 12),
                                 DropdownMenuItem(child: Center(child: Text("14",style: TextStyle(color: Colors.white, fontSize: 14))),value: 14),
+                                DropdownMenuItem(child: Center(child: Text("16",style: TextStyle(color: Colors.white, fontSize: 14))),value: 16),
+                                DropdownMenuItem(child: Center(child: Text("18",style: TextStyle(color: Colors.white, fontSize: 14))),value: 18),
                               ],
                               onChanged: (value) {
                                setState(() {
@@ -282,53 +288,53 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                   ),
                  //---------------------------------------------------------------------------------------------------
         
-               //-----------------------------YEDEK OYUNCU SAYISI SEÇİMİ---------------------------------------
+              //  //-----------------------------YEDEK OYUNCU SAYISI SEÇİMİ---------------------------------------
                
-                  Padding(
-                  padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("Yedek Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
-                      child: SizedBox(
-                      width: deviceWidth(context),
-                      height: deviceHeight(context)*0.05,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
-                          color: secondaryColor2,
-                        ),
-                        child:  Align(
-                          alignment: Alignment.center,
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<int>(
-                              isExpanded: true,
-                              isDense: true,
-                              iconEnabledColor: Colors.white,
-                              iconSize: 30,
-                              dropdownColor: secondaryColor2,
-                              value: selectedSubstituteNumber,
-                              items: [
-                                DropdownMenuItem(child: Center(child: Text("4",style: TextStyle(color: Colors.white, fontSize: 14))),value: 4),
-                                DropdownMenuItem(child: Center(child: Text("5",style: TextStyle(color: Colors.white, fontSize: 14))),value: 5),
-                                DropdownMenuItem(child: Center(child: Text("6",style: TextStyle(color: Colors.white, fontSize: 14))),value: 6),
-                              ],
-                              onChanged: (value) {
-                              setState(() {
-                                selectedSubstituteNumber = value!;
-                              });
-                              },
-                            ),
-                          ),
-                        ),
-                        ),
-                      ),
-                    ),
-                  ),
-                 //---------------------------------------------------------------------------------------------------
+              //     Padding(
+              //     padding: const EdgeInsets.only(left: defaultPadding,top: defaultPadding,),
+              //     child: Align(
+              //       alignment: Alignment.centerLeft,
+              //       child: Text("Yedek Oyuncu Sayısı Seç",style: TextStyle(color: Colors.white)))),
+              //     Align(
+              //       alignment: Alignment.centerLeft,
+              //       child: Padding(
+              //         padding: const EdgeInsets.fromLTRB(defaultPadding, minSpace, defaultPadding, minSpace),
+              //         child: SizedBox(
+              //         width: deviceWidth(context),
+              //         height: deviceHeight(context)*0.05,
+              //         child: Container(
+              //           decoration: BoxDecoration(
+              //             borderRadius: BorderRadius.all(Radius.circular(maxSpace)),
+              //             color: secondaryColor2,
+              //           ),
+              //           child:  Align(
+              //             alignment: Alignment.center,
+              //             child: DropdownButtonHideUnderline(
+              //               child: DropdownButton<int>(
+              //                 isExpanded: true,
+              //                 isDense: true,
+              //                 iconEnabledColor: Colors.white,
+              //                 iconSize: 30,
+              //                 dropdownColor: secondaryColor2,
+              //                 value: selectedSubstituteNumber,
+              //                 items: [
+              //                   DropdownMenuItem(child: Center(child: Text("4",style: TextStyle(color: Colors.white, fontSize: 14))),value: 4),
+              //                   DropdownMenuItem(child: Center(child: Text("5",style: TextStyle(color: Colors.white, fontSize: 14))),value: 5),
+              //                   DropdownMenuItem(child: Center(child: Text("6",style: TextStyle(color: Colors.white, fontSize: 14))),value: 6),
+              //                 ],
+              //                 onChanged: (value) {
+              //                 setState(() {
+              //                   selectedSubstituteNumber = value!;
+              //                 });
+              //                 },
+              //               ),
+              //             ),
+              //           ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //    //---------------------------------------------------------------------------------------------------
 
                  //-----------------------------OYUN KURUCU NOTU---------------------------------------
                   Column(
@@ -398,7 +404,7 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       onPressed: () async{
                         SharedPreferences preferences = await SharedPreferences.getInstance();
                         int? userId = preferences.getInt("userId");
-                        final saveGameData = await gameSave(selectedSportId, userId!, selectedSaloonId, teNote.text, false, date, selectedPlayerNumber, selectedSubstituteNumber);
+                        final saveGameData = await gameSave(selectedSportId, userId!, selectedSaloonId, teNote.text, false, date, selectedPlayerNumber, 0);
                         if(saveGameData!.succes == true){
                           showToast(context, "Oyun başarıyla kaydedildi !");
                           setState(() {
@@ -411,31 +417,31 @@ class _MakeTeamPageState extends State<MakeTeamPage> {
                       }),
                   ),
                 ),
-                gameSaved == true ?
-                SizedBox(
-                  width: deviceWidth(context)*0.6,
-                  height: deviceHeight(context)*0.06,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      )
-                    ),
-                    child: Text("Sahadan Konum Seç",
-                    style: TextStyle(
-                      fontFamily: font,
-                      color: Colors.white,
-                      fontSize: 20
-                    )),
-                    onPressed: (){
-                      // Navigator.push(context,
-                      // MaterialPageRoute(builder: (context) => 
-                      // selectedSport=="Futbol" ?
-                      // FootballFieldPage(numberOfPlayer: selectedPlayerNumber):
-                      // selectedSport=="Basketbol" ? BasketballFieldPage() : selectedSport=="Tenis" ? TennisFieldPage() : VolleyballFieldPage()));
-                    }),
-                ): Container()
+                // gameSaved == true ?
+                // SizedBox(
+                //   width: deviceWidth(context)*0.6,
+                //   height: deviceHeight(context)*0.06,
+                //   child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       primary: primaryColor,
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(12),
+                //       )
+                //     ),
+                //     child: Text("Sahadan Konum Seç",
+                //     style: TextStyle(
+                //       fontFamily: font,
+                //       color: Colors.white,
+                //       fontSize: 20
+                //     )),
+                //     onPressed: (){
+                //       // Navigator.push(context,
+                //       // MaterialPageRoute(builder: (context) => 
+                //       // selectedSport=="Futbol" ?
+                //       // FootballFieldPage(numberOfPlayer: selectedPlayerNumber):
+                //       // selectedSport=="Basketbol" ? BasketballFieldPage() : selectedSport=="Tenis" ? TennisFieldPage() : VolleyballFieldPage()));
+                //     }),
+                // ): Container()
               ],
             ),
           ],
