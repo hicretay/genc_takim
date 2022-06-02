@@ -1,12 +1,11 @@
 # Genç Takım
 </p>
 Gençlik Spor Bakanlığı projelerinden olan Genç Takım Uygulaması, Belediye ve Gençlik Spor Bakanlığına bağlı gençlik merkezlerinin spor salonlarını kullanarak gençlerin aralarında takım oluşturmasının sağlanması ve ilgili merkezin spor salonlarından yer ayrılmasını işlevlerini gerçekleştirecektir. 
-Uygulamanın logo ve ekran tasarımlarından başlanarak akış diyagramı oluşturulması, veritabanı tasarımı, Json API servislerinin Asp .net core ile yazılması, yazılan servislerin Flutter arayüzüne entegre edilmesi ve hata analiz - testleri tamamlanarak bütün bir yaşam döngüsü tamamlanacaktır. Kasım 2021 itibariyle Web API yazılması aşamasındadır.<br> <br>
+Uygulamanın logo ve ekran tasarımlarından başlanarak akış diyagramı oluşturulması, veritabanı tasarımı, Json API servislerinin Asp .net core ile yazılması, yazılan servislerin Flutter arayüzüne entegre edilmesi ve hata analiz - testleri tamamlanarak bütün bir yaşam döngüsü tamamlanmıştır.<br> <br>
 
 Uygulama özellikleri;
 - Responsive Tasarım
 - Restful API
-- Bloc Pattern
 - Shared Preferences
 - Hata Kontrolleri 
 
